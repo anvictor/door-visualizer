@@ -1,0 +1,26 @@
+<svg shape-rendering="geometricPrecision"><defs><linearGradient
+      id="eGYD1BzxIaQ3-fill"
+      x1="0"
+      y1="0.827017"
+      x2="0.931783"
+      y2="0.181173"
+      spreadMethod="pad"
+      gradientUnits="objectBoundingBox"
+      gradientTransform="translate(0 0)"
+    ><stop id="eGYD1BzxIaQ3-fill-0" offset="0%" stop-color="#c3f5e8" /><stop
+        id="eGYD1BzxIaQ3-fill-1"
+        offset="100%"
+        stop-color="#45e9f2"
+      /></linearGradient></defs><ellipse
+    rx="150"
+    ry="150"
+    transform="translate(150 150)"
+    fill="#a9a9a9"
+    stroke="#000"
+  /><ellipse
+    rx="120"
+    ry="120"
+    transform="translate(150 150)"
+    fill="url(#eGYD1BzxIaQ3-fill)"
+    stroke="#000"
+  /></svg>

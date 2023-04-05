@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import StellDoorVisualizer from "./StellDoorVisualizer/StellDoorVisualizer";
+const values = {
+  dimensions: {
+    doorSize: { width: 920, height:2200 },
+  },
+  leavesCount: 2,
+  dinDirection: "left",
+  hingesCount: 3,
+  useGlazing: false,
+  useDoorCloser: false,
+  doorCloser: 'up',
+  thirdHingePosition: "middle",
+  handleHeight: 1050,
+};
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StellDoorVisualizer values = {values} frameSurfaceColor={"green"}
+    doorLeafSurfaceColor={"red"} />
     </div>
   );
 }

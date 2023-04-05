@@ -1,0 +1,13 @@
+.svgWrapper {
+    font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.svgBody {
+    width: 100%;
+}

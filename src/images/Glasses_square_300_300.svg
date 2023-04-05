@@ -1,0 +1,41 @@
+<svg shape-rendering="geometricPrecision"><defs><linearGradient
+      id="ez9IhRLUy4u6-fill"
+      x1="0"
+      y1="1"
+      x2="1"
+      y2="0"
+      spreadMethod="pad"
+      gradientUnits="objectBoundingBox"
+      gradientTransform="translate(0 0)"
+    ><stop id="ez9IhRLUy4u6-fill-0" offset="0%" stop-color="#dbf9ff" /><stop
+        id="ez9IhRLUy4u6-fill-1"
+        offset="100%"
+        stop-color="#a1c0bf"
+      /></linearGradient></defs><path
+    d="M0,0h299.01325L274.61371,25h-250.00952L-0.00001,0.98676L0,0Z"
+    fill="#a8a8a8"
+    stroke="#000"
+  /><path
+    d="M0,0h299.01325L274.61371,25h-250.00952L-0.00001,0.98676L0,0Z"
+    transform="matrix(0 1-1 0 300 0.49338)"
+    fill="#a8a8a8"
+    stroke="#000"
+  /><path
+    d="M0,0h299.01325L274.61371,25h-250.00952L-0.00001,0.98676L0,0Z"
+    transform="matrix(-1 0 0-1 299.99999 300)"
+    fill="#a8a8a8"
+    stroke="#000"
+  /><path
+    d="M0,0h299.01325L274.61371,25h-250.00952L-0.00001,0.98676L0,0Z"
+    transform="matrix(0-1 1 0 0 299.99999)"
+    fill="#a8a8a8"
+    stroke="#000"
+  /><rect
+    width="250"
+    height="250"
+    rx="0"
+    ry="0"
+    transform="translate(25 25)"
+    fill="url(#ez9IhRLUy4u6-fill)"
+    stroke-width="0"
+  /></svg>

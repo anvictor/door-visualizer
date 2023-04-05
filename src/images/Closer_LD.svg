@@ -1,0 +1,21 @@
+<svg
+  shape-rendering="geometricPrecision"
+  text-rendering="geometricPrecision"
+><rect
+    width="578"
+    height="27"
+    rx="0"
+    ry="0"
+    transform="translate(29 0)"
+    fill="#bdbdbd"
+    stroke="#000"
+  /><path
+    d="M16.48808,40.03434c0,0,0,0,0,0c0-3.31371,2.68629-6,6-6h300c3.31371,0,6,2.68629,6,6v77c0,3.31371-2.68629,6-6,6h-300c-3.31371,0-6-2.68629-6-6v-77Z"
+    transform="translate(-16.48808 9.96566)"
+    fill="#bdbdbd"
+    stroke="#000"
+  /><path
+    d="M46.00102,44v-17h22v2h384v-2h10v12h-394v5h-22Z"
+    fill="#bdbdbd"
+    stroke="#000"
+  /></svg>
