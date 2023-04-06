@@ -1,38 +1,42 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.ConfigureMenu {
+  width: 1024px;
+  border: 1px solid red;
+  margin: 5px;
+  background-color: wheat;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ColorPickerWithSearch {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+  border: 1px solid red;
+}
+.ColorPickerWithSearch_options {
+  visibility: hidden;
+}
+.ColorPickerWithSearch_options_active {
+  position: absolute;
+  right: 0;
+  max-height: 200px;
+  overflow-y: scroll;
+  z-index: 100;
+}
+.ColorPickerWithSearch_label {
+  margin: 5px;
+  padding: 5px;
+  font-size: small;
+}
+.ColorPickerWithSearch_input {
+  margin: 5px;
+  padding: 5px;
+}
+.colorLine {
+  display: flex;
+}
+.ColorPickerWithSearch_dropdown {
+  width: 50%;
+  position: relative;
 }

@@ -1,3 +1,4 @@
+import {ValuesProps} from '../types';
 /**
  * The image of the door is made SVG in layers.
 The list of important layers from the bottom - the furthest from the viewer.
@@ -46,6 +47,22 @@ HANDLE_AXIS_RELATIVE_SHIFT_X.set('square_L', { X: 118, Y: 26 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set('square_R', { X: 26, Y: 26 }); 
 HANDLE_AXIS_RELATIVE_SHIFT_X.set('round_L', { X: 117, Y: 25 }); 
 HANDLE_AXIS_RELATIVE_SHIFT_X.set('round_R', { X: 25, Y: 25 }); 
+
+const values: ValuesProps = {
+  dimensions: {
+    doorSize: { width: 920, height: 2200 },
+  },
+  leavesCount: 2,
+  dinDirection: "left",
+  hingesCount: 3,
+  useGlazing: false,
+  useDoorCloser: false,
+  doorCloser: "up",
+  thirdHingePosition: "middle",
+  handleHeight: 1050,
+  frameColor: "",
+  doorLeafColor: "",
+};
 
 const add_10_Percents = (value: number) => +value + +value / 10;
 
@@ -473,6 +490,7 @@ const getHandleData = (
 };
 
 export {
+  values,
   CLOSER_SHIFT_X,
   CLOSER_SHIFT_Y,
   CLOSER_WIDTH_X,

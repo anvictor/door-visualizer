@@ -1,0 +1,1756 @@
+{
+  "colors": [
+    {
+      "displayName": "RAL 1000 Green beige",
+      "sortOrder": 1,
+      "name": "RAL 1000 Green beige",
+      "hex": "#cdba88",
+      "value": "RAL1000",
+      "id": "RAL1000"
+    },
+    {
+      "displayName": "RAL 1001 Beige",
+      "sortOrder": 2,
+      "name": "RAL 1001 Beige",
+      "hex": "#d0b084",
+      "value": "RAL1001",
+      "id": "RAL1001"
+    },
+    {
+      "displayName": "RAL 1002 Sand yellow",
+      "sortOrder": 3,
+      "name": "RAL 1002 Sand yellow",
+      "hex": "#d2aa6d",
+      "value": "RAL1002",
+      "id": "RAL1002"
+    },
+    {
+      "displayName": "RAL 1003 Signal yellow",
+      "sortOrder": 4,
+      "name": "RAL 1003 Signal yellow",
+      "hex": "#f9a800",
+      "value": "RAL1003",
+      "id": "RAL1003"
+    },
+    {
+      "displayName": "RAL 1004 Golden yellow",
+      "sortOrder": 5,
+      "name": "RAL 1004 Golden yellow",
+      "hex": "#e49e22",
+      "value": "RAL1004",
+      "id": "RAL1004"
+    },
+    {
+      "displayName": "RAL 1005 Honey yellow",
+      "sortOrder": 6,
+      "name": "RAL 1005 Honey yellow",
+      "hex": "#cb8e1e",
+      "value": "RAL1005",
+      "id": "RAL1005"
+    },
+    {
+      "displayName": "RAL 1006 Maize yellow",
+      "sortOrder": 7,
+      "name": "RAL 1006 Maize yellow",
+      "hex": "#e29000",
+      "value": "RAL1006",
+      "id": "RAL1006"
+    },
+    {
+      "displayName": "RAL 1007 Daffodil yellow",
+      "sortOrder": 8,
+      "name": "RAL 1007 Daffodil yellow",
+      "hex": "#e88c00",
+      "value": "RAL1007",
+      "id": "RAL1007"
+    },
+    {
+      "displayName": "RAL 1011 Brown beige",
+      "sortOrder": 9,
+      "name": "RAL 1011 Brown beige",
+      "hex": "#af804f",
+      "value": "RAL1011",
+      "id": "RAL1011"
+    },
+    {
+      "displayName": "RAL 1012 Lemon yellow",
+      "sortOrder": 10,
+      "name": "RAL 1012 Lemon yellow",
+      "hex": "#ddaf27",
+      "value": "RAL1012",
+      "id": "RAL1012"
+    },
+    {
+      "displayName": "RAL 1013 Oyster white",
+      "sortOrder": 11,
+      "name": "RAL 1013 Oyster white",
+      "hex": "#e3d9c6",
+      "value": "RAL1013",
+      "id": "RAL1013"
+    },
+    {
+      "displayName": "RAL 1014 Ivory",
+      "sortOrder": 12,
+      "name": "RAL 1014 Ivory",
+      "hex": "#ddc49a",
+      "value": "RAL1014",
+      "id": "RAL1014"
+    },
+    {
+      "displayName": "RAL 1015 Light ivory",
+      "sortOrder": 13,
+      "name": "RAL 1015 Light ivory",
+      "hex": "#e6d2b5",
+      "value": "RAL1015",
+      "id": "RAL1015"
+    },
+    {
+      "displayName": "RAL 1016 Sulfur yellow",
+      "sortOrder": 14,
+      "name": "RAL 1016 Sulfur yellow",
+      "hex": "#f1dd38",
+      "value": "RAL1016",
+      "id": "RAL1016"
+    },
+    {
+      "displayName": "RAL 1017 Saffron yellow",
+      "sortOrder": 15,
+      "name": "RAL 1017 Saffron yellow",
+      "hex": "#f6a950",
+      "value": "RAL1017",
+      "id": "RAL1017"
+    },
+    {
+      "displayName": "RAL 1018 Zinc yellow",
+      "sortOrder": 16,
+      "name": "RAL 1018 Zinc yellow",
+      "hex": "#faca30",
+      "value": "RAL1018",
+      "id": "RAL1018"
+    },
+    {
+      "displayName": "RAL 1019 Grey beige",
+      "sortOrder": 17,
+      "name": "RAL 1019 Grey beige",
+      "hex": "#a48f7a",
+      "value": "RAL1019",
+      "id": "RAL1019"
+    },
+    {
+      "displayName": "RAL 1020 Olive yellow",
+      "sortOrder": 18,
+      "name": "RAL 1020 Olive yellow",
+      "hex": "#a08f65",
+      "value": "RAL1020",
+      "id": "RAL1020"
+    },
+    {
+      "displayName": "RAL 1021 Colza yellow",
+      "sortOrder": 19,
+      "name": "RAL 1021 Colza yellow",
+      "hex": "#f6b600",
+      "value": "RAL1021",
+      "id": "RAL1021"
+    },
+    {
+      "displayName": "RAL 1023 Traffic yellow",
+      "sortOrder": 20,
+      "name": "RAL 1023 Traffic yellow",
+      "hex": "#f7b500",
+      "value": "RAL1023",
+      "id": "RAL1023"
+    },
+    {
+      "displayName": "RAL 1024 Ochre yellow",
+      "sortOrder": 21,
+      "name": "RAL 1024 Ochre yellow",
+      "hex": "#ba8f4c",
+      "value": "RAL1024",
+      "id": "RAL1024"
+    },
+    {
+      "displayName": "RAL 1026",
+      "sortOrder": 22,
+      "name": "RAL 1026",
+      "hex": "#ffff00",
+      "value": "RAL1026",
+      "id": "RAL1026"
+    },
+    {
+      "displayName": "RAL 1027 Curry",
+      "sortOrder": 23,
+      "name": "RAL 1027 Curry",
+      "hex": "#a77f0e",
+      "value": "RAL1027",
+      "id": "RAL1027"
+    },
+    {
+      "displayName": "RAL 1028 Melon yellow",
+      "sortOrder": 24,
+      "name": "RAL 1028 Melon yellow",
+      "hex": "#ff9b00",
+      "value": "RAL1028",
+      "id": "RAL1028"
+    },
+    {
+      "displayName": "RAL 1032 Broom yellow",
+      "sortOrder": 25,
+      "name": "RAL 1032 Broom yellow",
+      "hex": "#e2a300",
+      "value": "RAL1032",
+      "id": "RAL1032"
+    },
+    {
+      "displayName": "RAL 1033 Dahlia yellow",
+      "sortOrder": 26,
+      "name": "RAL 1033 Dahlia yellow",
+      "hex": "#f99a1c",
+      "value": "RAL1033",
+      "id": "RAL1033"
+    },
+    {
+      "displayName": "RAL 1034 Pastel yellow",
+      "sortOrder": 27,
+      "name": "RAL 1034 Pastel yellow",
+      "hex": "#eb9c52",
+      "value": "RAL1034",
+      "id": "RAL1034"
+    },
+    {
+      "displayName": "RAL 1035",
+      "sortOrder": 28,
+      "name": "RAL 1035",
+      "hex": "#908370",
+      "value": "RAL1035",
+      "id": "RAL1035"
+    },
+    {
+      "displayName": "RAL 1036",
+      "sortOrder": 29,
+      "name": "RAL 1036",
+      "hex": "#80643f",
+      "value": "RAL1036",
+      "id": "RAL1036"
+    },
+    {
+      "displayName": "RAL 1037 Sun yellow",
+      "sortOrder": 30,
+      "name": "RAL 1037 Sun yellow",
+      "hex": "#f09200",
+      "value": "RAL1037",
+      "id": "RAL1037"
+    },
+    {
+      "displayName": "RAL 2000 Yellow orange",
+      "sortOrder": 31,
+      "name": "RAL 2000 Yellow orange",
+      "hex": "#da6e00",
+      "value": "RAL2000",
+      "id": "RAL2000"
+    },
+    {
+      "displayName": "RAL 2001 Red orange",
+      "sortOrder": 32,
+      "name": "RAL 2001 Red orange",
+      "hex": "#ba481b",
+      "value": "RAL2001",
+      "id": "RAL2001"
+    },
+    {
+      "displayName": "RAL 2002 Vermilion",
+      "sortOrder": 33,
+      "name": "RAL 2002 Vermilion",
+      "hex": "#bf3922",
+      "value": "RAL2002",
+      "id": "RAL2002"
+    },
+    {
+      "displayName": "RAL 2003 Pastel orange",
+      "sortOrder": 34,
+      "name": "RAL 2003 Pastel orange",
+      "hex": "#f67728",
+      "value": "RAL2003",
+      "id": "RAL2003"
+    },
+    {
+      "displayName": "RAL 2004 Pure orange",
+      "sortOrder": 35,
+      "name": "RAL 2004 Pure orange",
+      "hex": "#e25303",
+      "value": "RAL2004",
+      "id": "RAL2004"
+    },
+    {
+      "displayName": "RAL 2005",
+      "sortOrder": 36,
+      "name": "RAL 2005",
+      "hex": "#ff4d06",
+      "value": "RAL2005",
+      "id": "RAL2005"
+    },
+    {
+      "displayName": "RAL 2007",
+      "sortOrder": 37,
+      "name": "RAL 2007",
+      "hex": "#ffb200",
+      "value": "RAL2007",
+      "id": "RAL2007"
+    },
+    {
+      "displayName": "RAL 2008 Bright red orange",
+      "sortOrder": 38,
+      "name": "RAL 2008 Bright red orange",
+      "hex": "#ed6b21",
+      "value": "RAL2008",
+      "id": "RAL2008"
+    },
+    {
+      "displayName": "RAL 2009 Traffic orange",
+      "sortOrder": 39,
+      "name": "RAL 2009 Traffic orange",
+      "hex": "#de5307",
+      "value": "RAL2009",
+      "id": "RAL2009"
+    },
+    {
+      "displayName": "RAL 2010 Signal orange",
+      "sortOrder": 40,
+      "name": "RAL 2010 Signal orange",
+      "hex": "#d05d28",
+      "value": "RAL2010",
+      "id": "RAL2010"
+    },
+    {
+      "displayName": "RAL 2011 Deep orange",
+      "sortOrder": 41,
+      "name": "RAL 2011 Deep orange",
+      "hex": "#e26e0e",
+      "value": "RAL2011",
+      "id": "RAL2011"
+    },
+    {
+      "displayName": "RAL 2012 Salmon orange",
+      "sortOrder": 42,
+      "name": "RAL 2012 Salmon orange",
+      "hex": "#d5654d",
+      "value": "RAL2012",
+      "id": "RAL2012"
+    },
+    {
+      "displayName": "RAL 2013",
+      "sortOrder": 43,
+      "name": "RAL 2013",
+      "hex": "#923e25",
+      "value": "RAL2013",
+      "id": "RAL2013"
+    },
+    {
+      "displayName": "RAL 3000 Flame red",
+      "sortOrder": 44,
+      "name": "RAL 3000 Flame red",
+      "hex": "#a72920",
+      "value": "RAL3000",
+      "id": "RAL3000"
+    },
+    {
+      "displayName": "RAL 3001 Signal red",
+      "sortOrder": 45,
+      "name": "RAL 3001 Signal red",
+      "hex": "#9b2423",
+      "value": "RAL3001",
+      "id": "RAL3001"
+    },
+    {
+      "displayName": "RAL 3002 Carmine red",
+      "sortOrder": 46,
+      "name": "RAL 3002 Carmine red",
+      "hex": "#872321",
+      "value": "RAL3002",
+      "id": "RAL3002"
+    },
+    {
+      "displayName": "RAL 3003 Ruby red",
+      "sortOrder": 47,
+      "name": "RAL 3003 Ruby red",
+      "hex": "#861a22",
+      "value": "RAL3003",
+      "id": "RAL3003"
+    },
+    {
+      "displayName": "RAL 3004 Purple red",
+      "sortOrder": 48,
+      "name": "RAL 3004 Purple red",
+      "hex": "#6b1c23",
+      "value": "RAL3004",
+      "id": "RAL3004"
+    },
+    {
+      "displayName": "RAL 3005 Wine red",
+      "sortOrder": 49,
+      "name": "RAL 3005 Wine red",
+      "hex": "#59191f",
+      "value": "RAL3005",
+      "id": "RAL3005"
+    },
+    {
+      "displayName": "RAL 3007 Black red",
+      "sortOrder": 50,
+      "name": "RAL 3007 Black red",
+      "hex": "#3e2022",
+      "value": "RAL3007",
+      "id": "RAL3007"
+    },
+    {
+      "displayName": "RAL 3009 Oxide red",
+      "sortOrder": 51,
+      "name": "RAL 3009 Oxide red",
+      "hex": "#6d342d",
+      "value": "RAL3009",
+      "id": "RAL3009"
+    },
+    {
+      "displayName": "RAL 3011 Brown red",
+      "sortOrder": 52,
+      "name": "RAL 3011 Brown red",
+      "hex": "#792423",
+      "value": "RAL3011",
+      "id": "RAL3011"
+    },
+    {
+      "displayName": "RAL 3012 Beige red",
+      "sortOrder": 53,
+      "name": "RAL 3012 Beige red",
+      "hex": "#c6846d",
+      "value": "RAL3012",
+      "id": "RAL3012"
+    },
+    {
+      "displayName": "RAL 3013 Tomato red",
+      "sortOrder": 54,
+      "name": "RAL 3013 Tomato red",
+      "hex": "#972e25",
+      "value": "RAL3013",
+      "id": "RAL3013"
+    },
+    {
+      "displayName": "RAL 3014 Antique pink",
+      "sortOrder": 55,
+      "name": "RAL 3014 Antique pink",
+      "hex": "#cb7375",
+      "value": "RAL3014",
+      "id": "RAL3014"
+    },
+    {
+      "displayName": "RAL 3015 Light pink",
+      "sortOrder": 56,
+      "name": "RAL 3015 Light pink",
+      "hex": "#d8a0a6",
+      "value": "RAL3015",
+      "id": "RAL3015"
+    },
+    {
+      "displayName": "RAL 3016 Coral red",
+      "sortOrder": 57,
+      "name": "RAL 3016 Coral red",
+      "hex": "#a63d2f",
+      "value": "RAL3016",
+      "id": "RAL3016"
+    },
+    {
+      "displayName": "RAL 3017 Rose",
+      "sortOrder": 58,
+      "name": "RAL 3017 Rose",
+      "hex": "#cb555d",
+      "value": "RAL3017",
+      "id": "RAL3017"
+    },
+    {
+      "displayName": "RAL 3018 Strawberry red",
+      "sortOrder": 59,
+      "name": "RAL 3018 Strawberry red",
+      "hex": "#c73f4a",
+      "value": "RAL3018",
+      "id": "RAL3018"
+    },
+    {
+      "displayName": "RAL 3020 Traffic red",
+      "sortOrder": 60,
+      "name": "RAL 3020 Traffic red",
+      "hex": "#bb1e10",
+      "value": "RAL3020",
+      "id": "RAL3020"
+    },
+    {
+      "displayName": "RAL 3022 Salmon pink",
+      "sortOrder": 61,
+      "name": "RAL 3022 Salmon pink",
+      "hex": "#cf6955",
+      "value": "RAL3022",
+      "id": "RAL3022"
+    },
+    {
+      "displayName": "RAL 3024",
+      "sortOrder": 62,
+      "name": "RAL 3024",
+      "hex": "#ff2d21",
+      "value": "RAL3024",
+      "id": "RAL3024"
+    },
+    {
+      "displayName": "RAL 3026",
+      "sortOrder": 63,
+      "name": "RAL 3026",
+      "hex": "#ff2a1b",
+      "value": "RAL3026",
+      "id": "RAL3026"
+    },
+    {
+      "displayName": "RAL 3027 Raspberry red",
+      "sortOrder": 64,
+      "name": "RAL 3027 Raspberry red",
+      "hex": "#ab273c",
+      "value": "RAL3027",
+      "id": "RAL3027"
+    },
+    {
+      "displayName": "RAL 3028",
+      "sortOrder": 65,
+      "name": "RAL 3028",
+      "hex": "#cc2c24",
+      "value": "RAL3028",
+      "id": "RAL3028"
+    },
+    {
+      "displayName": "RAL 3031 Orient red",
+      "sortOrder": 66,
+      "name": "RAL 3031 Orient red",
+      "hex": "#a63437",
+      "value": "RAL3031",
+      "id": "RAL3031"
+    },
+    {
+      "displayName": "RAL 3032",
+      "sortOrder": 67,
+      "name": "RAL 3032",
+      "hex": "#701d23",
+      "value": "RAL3032",
+      "id": "RAL3032"
+    },
+    {
+      "displayName": "RAL 3033",
+      "sortOrder": 68,
+      "name": "RAL 3033",
+      "hex": "#a53a2d",
+      "value": "RAL3033",
+      "id": "RAL3033"
+    },
+    {
+      "displayName": "RAL 4001 Red lilac",
+      "sortOrder": 69,
+      "name": "RAL 4001 Red lilac",
+      "hex": "#816183",
+      "value": "RAL4001",
+      "id": "RAL4001"
+    },
+    {
+      "displayName": "RAL 4002 Red violet",
+      "sortOrder": 70,
+      "name": "RAL 4002 Red violet",
+      "hex": "#8d3c4b",
+      "value": "RAL4002",
+      "id": "RAL4002"
+    },
+    {
+      "displayName": "RAL 4003 Heather violet",
+      "sortOrder": 71,
+      "name": "RAL 4003 Heather violet",
+      "hex": "#c4618c",
+      "value": "RAL4003",
+      "id": "RAL4003"
+    },
+    {
+      "displayName": "RAL 4004 Claret violet",
+      "sortOrder": 72,
+      "name": "RAL 4004 Claret violet",
+      "hex": "#651e38",
+      "value": "RAL4004",
+      "id": "RAL4004"
+    },
+    {
+      "displayName": "RAL 4005 Blue lilac",
+      "sortOrder": 73,
+      "name": "RAL 4005 Blue lilac",
+      "hex": "#76689a",
+      "value": "RAL4005",
+      "id": "RAL4005"
+    },
+    {
+      "displayName": "RAL 4006",
+      "sortOrder": 74,
+      "name": "RAL 4006",
+      "hex": "#903373",
+      "value": "RAL4006",
+      "id": "RAL4006"
+    },
+    {
+      "displayName": "RAL 4007",
+      "sortOrder": 75,
+      "name": "RAL 4007",
+      "hex": "#47243c",
+      "value": "RAL4007",
+      "id": "RAL4007"
+    },
+    {
+      "displayName": "RAL 4008 Signal violet",
+      "sortOrder": 76,
+      "name": "RAL 4008 Signal violet",
+      "hex": "#844c82",
+      "value": "RAL4008",
+      "id": "RAL4008"
+    },
+    {
+      "displayName": "RAL 4009 Pastel violet",
+      "sortOrder": 77,
+      "name": "RAL 4009 Pastel violet",
+      "hex": "#9d8692",
+      "value": "RAL4009",
+      "id": "RAL4009"
+    },
+    {
+      "displayName": "RAL 4010 Telemagenta",
+      "sortOrder": 78,
+      "name": "RAL 4010 Telemagenta",
+      "hex": "#bc4077",
+      "value": "RAL4010",
+      "id": "RAL4010"
+    },
+    {
+      "displayName": "RAL 4011",
+      "sortOrder": 79,
+      "name": "RAL 4011",
+      "hex": "#6e6387",
+      "value": "RAL4011",
+      "id": "RAL4011"
+    },
+    {
+      "displayName": "RAL 4012",
+      "sortOrder": 80,
+      "name": "RAL 4012",
+      "hex": "#6b6b7f",
+      "value": "RAL4012",
+      "id": "RAL4012"
+    },
+    {
+      "displayName": "RAL 5000 Violet blue",
+      "sortOrder": 81,
+      "name": "RAL 5000 Violet blue",
+      "hex": "#314f6f",
+      "value": "RAL5000",
+      "id": "RAL5000"
+    },
+    {
+      "displayName": "RAL 5001 Green blue",
+      "sortOrder": 82,
+      "name": "RAL 5001 Green blue",
+      "hex": "#0f4c64",
+      "value": "RAL5001",
+      "id": "RAL5001"
+    },
+    {
+      "displayName": "RAL 5002 Ultramarine blue",
+      "sortOrder": 83,
+      "name": "RAL 5002 Ultramarine blue",
+      "hex": "#00387b",
+      "value": "RAL5002",
+      "id": "RAL5002"
+    },
+    {
+      "displayName": "RAL 5003 Saphire blue",
+      "sortOrder": 84,
+      "name": "RAL 5003 Saphire blue",
+      "hex": "#1f3855",
+      "value": "RAL5003",
+      "id": "RAL5003"
+    },
+    {
+      "displayName": "RAL 5004 Black blue",
+      "sortOrder": 85,
+      "name": "RAL 5004 Black blue",
+      "hex": "#191e28",
+      "value": "RAL5004",
+      "id": "RAL5004"
+    },
+    {
+      "displayName": "RAL 5005 Signal blue",
+      "sortOrder": 86,
+      "name": "RAL 5005 Signal blue",
+      "hex": "#005387",
+      "value": "RAL5005",
+      "id": "RAL5005"
+    },
+    {
+      "displayName": "RAL 5007 Brillant blue",
+      "sortOrder": 87,
+      "name": "RAL 5007 Brillant blue",
+      "hex": "#376b8c",
+      "value": "RAL5007",
+      "id": "RAL5007"
+    },
+    {
+      "displayName": "RAL 5008 Grey blue",
+      "sortOrder": 88,
+      "name": "RAL 5008 Grey blue",
+      "hex": "#2b3a44",
+      "value": "RAL5008",
+      "id": "RAL5008"
+    },
+    {
+      "displayName": "RAL 5009 Azure blue",
+      "sortOrder": 89,
+      "name": "RAL 5009 Azure blue",
+      "hex": "#225f78",
+      "value": "RAL5009",
+      "id": "RAL5009"
+    },
+    {
+      "displayName": "RAL 5010 Gentian blue",
+      "sortOrder": 90,
+      "name": "RAL 5010 Gentian blue",
+      "hex": "#004f7c",
+      "value": "RAL5010",
+      "id": "RAL5010"
+    },
+    {
+      "displayName": "RAL 5011 Steel blue",
+      "sortOrder": 91,
+      "name": "RAL 5011 Steel blue",
+      "hex": "#1a2b3c",
+      "value": "RAL5011",
+      "id": "RAL5011"
+    },
+    {
+      "displayName": "RAL 5012 Light blue",
+      "sortOrder": 92,
+      "name": "RAL 5012 Light blue",
+      "hex": "#0089b6",
+      "value": "RAL5012",
+      "id": "RAL5012"
+    },
+    {
+      "displayName": "RAL 5013 Cobalt blue",
+      "sortOrder": 93,
+      "name": "RAL 5013 Cobalt blue",
+      "hex": "#193153",
+      "value": "RAL5013",
+      "id": "RAL5013"
+    },
+    {
+      "displayName": "RAL 5014 Pigeon blue",
+      "sortOrder": 94,
+      "name": "RAL 5014 Pigeon blue",
+      "hex": "#637d96",
+      "value": "RAL5014",
+      "id": "RAL5014"
+    },
+    {
+      "displayName": "RAL 5015 Sky blue",
+      "sortOrder": 95,
+      "name": "RAL 5015 Sky blue",
+      "hex": "#007cb0",
+      "value": "RAL5015",
+      "id": "RAL5015"
+    },
+    {
+      "displayName": "RAL 5017 Traffic blue",
+      "sortOrder": 96,
+      "name": "RAL 5017 Traffic blue",
+      "hex": "#005b8c",
+      "value": "RAL5017",
+      "id": "RAL5017"
+    },
+    {
+      "displayName": "RAL 5018 Turquoise blue",
+      "sortOrder": 97,
+      "name": "RAL 5018 Turquoise blue",
+      "hex": "#058b8c",
+      "value": "RAL5018",
+      "id": "RAL5018"
+    },
+    {
+      "displayName": "RAL 5019 Capri blue",
+      "sortOrder": 98,
+      "name": "RAL 5019 Capri blue",
+      "hex": "#005e83",
+      "value": "RAL5019",
+      "id": "RAL5019"
+    },
+    {
+      "displayName": "RAL 5020 Ocean blue",
+      "sortOrder": 99,
+      "name": "RAL 5020 Ocean blue",
+      "hex": "#00414b",
+      "value": "RAL5020",
+      "id": "RAL5020"
+    },
+    {
+      "displayName": "RAL 5021 Water blue",
+      "sortOrder": 100,
+      "name": "RAL 5021 Water blue",
+      "hex": "#007577",
+      "value": "RAL5021",
+      "id": "RAL5021"
+    },
+    {
+      "displayName": "RAL 5022 Night blue",
+      "sortOrder": 101,
+      "name": "RAL 5022 Night blue",
+      "hex": "#222d5a",
+      "value": "RAL5022",
+      "id": "RAL5022"
+    },
+    {
+      "displayName": "RAL 5023 Distant blue",
+      "sortOrder": 102,
+      "name": "RAL 5023 Distant blue",
+      "hex": "#42698c",
+      "value": "RAL5023",
+      "id": "RAL5023"
+    },
+    {
+      "displayName": "RAL 5024 Pastel blue",
+      "sortOrder": 103,
+      "name": "RAL 5024 Pastel blue",
+      "hex": "#6093ac",
+      "value": "RAL5024",
+      "id": "RAL5024"
+    },
+    {
+      "displayName": "RAL 5025",
+      "sortOrder": 104,
+      "name": "RAL 5025",
+      "hex": "#21697c",
+      "value": "RAL5025",
+      "id": "RAL5025"
+    },
+    {
+      "displayName": "RAL 5026",
+      "sortOrder": 105,
+      "name": "RAL 5026",
+      "hex": "#0f3052",
+      "value": "RAL5026",
+      "id": "RAL5026"
+    },
+    {
+      "displayName": "RAL 6000 Patina green",
+      "sortOrder": 106,
+      "name": "RAL 6000 Patina green",
+      "hex": "#3c7460",
+      "value": "RAL6000",
+      "id": "RAL6000"
+    },
+    {
+      "displayName": "RAL 6001 Emerald green",
+      "sortOrder": 107,
+      "name": "RAL 6001 Emerald green",
+      "hex": "#366735",
+      "value": "RAL6001",
+      "id": "RAL6001"
+    },
+    {
+      "displayName": "RAL 6002 Leaf green",
+      "sortOrder": 108,
+      "name": "RAL 6002 Leaf green",
+      "hex": "#325928",
+      "value": "RAL6002",
+      "id": "RAL6002"
+    },
+    {
+      "displayName": "RAL 6003 Olive green",
+      "sortOrder": 109,
+      "name": "RAL 6003 Olive green",
+      "hex": "#50533c",
+      "value": "RAL6003",
+      "id": "RAL6003"
+    },
+    {
+      "displayName": "RAL 6004 Blue green",
+      "sortOrder": 110,
+      "name": "RAL 6004 Blue green",
+      "hex": "#024442",
+      "value": "RAL6004",
+      "id": "RAL6004"
+    },
+    {
+      "displayName": "RAL 6005 Moss green",
+      "sortOrder": 111,
+      "name": "RAL 6005 Moss green",
+      "hex": "#114232",
+      "value": "RAL6005",
+      "id": "RAL6005"
+    },
+    {
+      "displayName": "RAL 6006 Grey olive",
+      "sortOrder": 112,
+      "name": "RAL 6006 Grey olive",
+      "hex": "#3c392e",
+      "value": "RAL6006",
+      "id": "RAL6006"
+    },
+    {
+      "displayName": "RAL 6007 Bottle green",
+      "sortOrder": 113,
+      "name": "RAL 6007 Bottle green",
+      "hex": "#2c3222",
+      "value": "RAL6007",
+      "id": "RAL6007"
+    },
+    {
+      "displayName": "RAL 6008 Brown green",
+      "sortOrder": 114,
+      "name": "RAL 6008 Brown green",
+      "hex": "#37342a",
+      "value": "RAL6008",
+      "id": "RAL6008"
+    },
+    {
+      "displayName": "RAL 6009 Fir green",
+      "sortOrder": 115,
+      "name": "RAL 6009 Fir green",
+      "hex": "#27352a",
+      "value": "RAL6009",
+      "id": "RAL6009"
+    },
+    {
+      "displayName": "RAL 6010 Grass green",
+      "sortOrder": 116,
+      "name": "RAL 6010 Grass green",
+      "hex": "#4d6f39",
+      "value": "RAL6010",
+      "id": "RAL6010"
+    },
+    {
+      "displayName": "RAL 6011 Reseda green",
+      "sortOrder": 117,
+      "name": "RAL 6011 Reseda green",
+      "hex": "#6c7c59",
+      "value": "RAL6011",
+      "id": "RAL6011"
+    },
+    {
+      "displayName": "RAL 6012 Black green",
+      "sortOrder": 118,
+      "name": "RAL 6012 Black green",
+      "hex": "#303d3a",
+      "value": "RAL6012",
+      "id": "RAL6012"
+    },
+    {
+      "displayName": "RAL 6013 Reed green",
+      "sortOrder": 119,
+      "name": "RAL 6013 Reed green",
+      "hex": "#7d765a",
+      "value": "RAL6013",
+      "id": "RAL6013"
+    },
+    {
+      "displayName": "RAL 6014 Yellow olive",
+      "sortOrder": 120,
+      "name": "RAL 6014 Yellow olive",
+      "hex": "#474135",
+      "value": "RAL6014",
+      "id": "RAL6014"
+    },
+    {
+      "displayName": "RAL 6015 Black olive",
+      "sortOrder": 121,
+      "name": "RAL 6015 Black olive",
+      "hex": "#3d3d36",
+      "value": "RAL6015",
+      "id": "RAL6015"
+    },
+    {
+      "displayName": "RAL 6016 Turquoise green",
+      "sortOrder": 122,
+      "name": "RAL 6016 Turquoise green",
+      "hex": "#00694c",
+      "value": "RAL6016",
+      "id": "RAL6016"
+    },
+    {
+      "displayName": "RAL 6017 May green",
+      "sortOrder": 123,
+      "name": "RAL 6017 May green",
+      "hex": "#587f40",
+      "value": "RAL6017",
+      "id": "RAL6017"
+    },
+    {
+      "displayName": "RAL 6018 Yellow green",
+      "sortOrder": 124,
+      "name": "RAL 6018 Yellow green",
+      "hex": "#61993b",
+      "value": "RAL6018",
+      "id": "RAL6018"
+    },
+    {
+      "displayName": "RAL 6019 Pastel green",
+      "sortOrder": 125,
+      "name": "RAL 6019 Pastel green",
+      "hex": "#b9ceac",
+      "value": "RAL6019",
+      "id": "RAL6019"
+    },
+    {
+      "displayName": "RAL 6020 Chrome green",
+      "sortOrder": 126,
+      "name": "RAL 6020 Chrome green",
+      "hex": "#37422f",
+      "value": "RAL6020",
+      "id": "RAL6020"
+    },
+    {
+      "displayName": "RAL 6021 Pale green",
+      "sortOrder": 127,
+      "name": "RAL 6021 Pale green",
+      "hex": "#8a9977",
+      "value": "RAL6021",
+      "id": "RAL6021"
+    },
+    {
+      "displayName": "RAL 6022 Olive drab",
+      "sortOrder": 128,
+      "name": "RAL 6022 Olive drab",
+      "hex": "#3a3327",
+      "value": "RAL6022",
+      "id": "RAL6022"
+    },
+    {
+      "displayName": "RAL 6024 Traffic green",
+      "sortOrder": 129,
+      "name": "RAL 6024 Traffic green",
+      "hex": "#008351",
+      "value": "RAL6024",
+      "id": "RAL6024"
+    },
+    {
+      "displayName": "RAL 6025 Fern green",
+      "sortOrder": 130,
+      "name": "RAL 6025 Fern green",
+      "hex": "#5e6e3b",
+      "value": "RAL6025",
+      "id": "RAL6025"
+    },
+    {
+      "displayName": "RAL 6026 Opal green",
+      "sortOrder": 131,
+      "name": "RAL 6026 Opal green",
+      "hex": "#005f4e",
+      "value": "RAL6026",
+      "id": "RAL6026"
+    },
+    {
+      "displayName": "RAL 6027 Light green",
+      "sortOrder": 132,
+      "name": "RAL 6027 Light green",
+      "hex": "#7ebab5",
+      "value": "RAL6027",
+      "id": "RAL6027"
+    },
+    {
+      "displayName": "RAL 6028 Pine green",
+      "sortOrder": 133,
+      "name": "RAL 6028 Pine green",
+      "hex": "#315442",
+      "value": "RAL6028",
+      "id": "RAL6028"
+    },
+    {
+      "displayName": "RAL 6029 Mint green",
+      "sortOrder": 134,
+      "name": "RAL 6029 Mint green",
+      "hex": "#006f3d",
+      "value": "RAL6029",
+      "id": "RAL6029"
+    },
+    {
+      "displayName": "RAL 6031 Bronze green",
+      "sortOrder": 135,
+      "name": "RAL 6031 Bronze green",
+      "hex": "#485746",
+      "value": "RAL6031",
+      "id": "RAL6031"
+    },
+    {
+      "displayName": "RAL 6032 Signal green",
+      "sortOrder": 136,
+      "name": "RAL 6032 Signal green",
+      "hex": "#237f52",
+      "value": "RAL6032",
+      "id": "RAL6032"
+    },
+    {
+      "displayName": "RAL 6033 Mint turquoise",
+      "sortOrder": 137,
+      "name": "RAL 6033 Mint turquoise",
+      "hex": "#46877f",
+      "value": "RAL6033",
+      "id": "RAL6033"
+    },
+    {
+      "displayName": "RAL 6034 Pastel turquoise",
+      "sortOrder": 138,
+      "name": "RAL 6034 Pastel turquoise",
+      "hex": "#7aacac",
+      "value": "RAL6034",
+      "id": "RAL6034"
+    },
+    {
+      "displayName": "RAL 6035",
+      "sortOrder": 139,
+      "name": "RAL 6035",
+      "hex": "#194d25",
+      "value": "RAL6035",
+      "id": "RAL6035"
+    },
+    {
+      "displayName": "RAL 6036",
+      "sortOrder": 140,
+      "name": "RAL 6036",
+      "hex": "#04574b",
+      "value": "RAL6036",
+      "id": "RAL6036"
+    },
+    {
+      "displayName": "RAL 6037",
+      "sortOrder": 141,
+      "name": "RAL 6037",
+      "hex": "#008b29",
+      "value": "RAL6037",
+      "id": "RAL6037"
+    },
+    {
+      "displayName": "RAL 6038",
+      "sortOrder": 142,
+      "name": "RAL 6038",
+      "hex": "#00b51a",
+      "value": "RAL6038",
+      "id": "RAL6038"
+    },
+    {
+      "displayName": "RAL 7000 Squirrel grey",
+      "sortOrder": 143,
+      "name": "RAL 7000 Squirrel grey",
+      "hex": "#7a888e",
+      "value": "RAL7000",
+      "id": "RAL7000"
+    },
+    {
+      "displayName": "RAL 7001 Silver grey",
+      "sortOrder": 144,
+      "name": "RAL 7001 Silver grey",
+      "hex": "#8c969d",
+      "value": "RAL7001",
+      "id": "RAL7001"
+    },
+    {
+      "displayName": "RAL 7002 Olive grey",
+      "sortOrder": 145,
+      "name": "RAL 7002 Olive grey",
+      "hex": "#817863",
+      "value": "RAL7002",
+      "id": "RAL7002"
+    },
+    {
+      "displayName": "RAL 7003 Moss grey",
+      "sortOrder": 146,
+      "name": "RAL 7003 Moss grey",
+      "hex": "#7a7669",
+      "value": "RAL7003",
+      "id": "RAL7003"
+    },
+    {
+      "displayName": "RAL 7004 Signal grey",
+      "sortOrder": 147,
+      "name": "RAL 7004 Signal grey",
+      "hex": "#9b9b9b",
+      "value": "RAL7004",
+      "id": "RAL7004"
+    },
+    {
+      "displayName": "RAL 7005 Mouse grey",
+      "sortOrder": 148,
+      "name": "RAL 7005 Mouse grey",
+      "hex": "#6c6e6b",
+      "value": "RAL7005",
+      "id": "RAL7005"
+    },
+    {
+      "displayName": "RAL 7006 Beige grey",
+      "sortOrder": 149,
+      "name": "RAL 7006 Beige grey",
+      "hex": "#766a5e",
+      "value": "RAL7006",
+      "id": "RAL7006"
+    },
+    {
+      "displayName": "RAL 7008 Khaki grey",
+      "sortOrder": 150,
+      "name": "RAL 7008 Khaki grey",
+      "hex": "#745e3d",
+      "value": "RAL7008",
+      "id": "RAL7008"
+    },
+    {
+      "displayName": "RAL 7009 Green grey",
+      "sortOrder": 151,
+      "name": "RAL 7009 Green grey",
+      "hex": "#5d6058",
+      "value": "RAL7009",
+      "id": "RAL7009"
+    },
+    {
+      "displayName": "RAL 7010 Tarpaulin grey",
+      "sortOrder": 152,
+      "name": "RAL 7010 Tarpaulin grey",
+      "hex": "#585c56",
+      "value": "RAL7010",
+      "id": "RAL7010"
+    },
+    {
+      "displayName": "RAL 7011 Iron grey",
+      "sortOrder": 153,
+      "name": "RAL 7011 Iron grey",
+      "hex": "#52595d",
+      "value": "RAL7011",
+      "id": "RAL7011"
+    },
+    {
+      "displayName": "RAL 7012 Basalt grey",
+      "sortOrder": 154,
+      "name": "RAL 7012 Basalt grey",
+      "hex": "#575d5e",
+      "value": "RAL7012",
+      "id": "RAL7012"
+    },
+    {
+      "displayName": "RAL 7013 Brown grey",
+      "sortOrder": 155,
+      "name": "RAL 7013 Brown grey",
+      "hex": "#575044",
+      "value": "RAL7013",
+      "id": "RAL7013"
+    },
+    {
+      "displayName": "RAL 7015 Slate grey",
+      "sortOrder": 156,
+      "name": "RAL 7015 Slate grey",
+      "hex": "#4f5358",
+      "value": "RAL7015",
+      "id": "RAL7015"
+    },
+    {
+      "displayName": "RAL 7016 Antracite grey",
+      "sortOrder": 157,
+      "name": "RAL 7016 Antracite grey",
+      "hex": "#383e42",
+      "value": "RAL7016",
+      "id": "RAL7016"
+    },
+    {
+      "displayName": "RAL 7021 Black grey",
+      "sortOrder": 158,
+      "name": "RAL 7021 Black grey",
+      "hex": "#2f3234",
+      "value": "RAL7021",
+      "id": "RAL7021"
+    },
+    {
+      "displayName": "RAL 7022 Umbra grey",
+      "sortOrder": 159,
+      "name": "RAL 7022 Umbra grey",
+      "hex": "#4c4a44",
+      "value": "RAL7022",
+      "id": "RAL7022"
+    },
+    {
+      "displayName": "RAL 7023 Concrete grey",
+      "sortOrder": 160,
+      "name": "RAL 7023 Concrete grey",
+      "hex": "#808076",
+      "value": "RAL7023",
+      "id": "RAL7023"
+    },
+    {
+      "displayName": "RAL 7024 Graphite grey",
+      "sortOrder": 161,
+      "name": "RAL 7024 Graphite grey",
+      "hex": "#45494e",
+      "value": "RAL7024",
+      "id": "RAL7024"
+    },
+    {
+      "displayName": "RAL 7026 Granite grey",
+      "sortOrder": 162,
+      "name": "RAL 7026 Granite grey",
+      "hex": "#374345",
+      "value": "RAL7026",
+      "id": "RAL7026"
+    },
+    {
+      "displayName": "RAL 7030 Stone grey",
+      "sortOrder": 163,
+      "name": "RAL 7030 Stone grey",
+      "hex": "#928e85",
+      "value": "RAL7030",
+      "id": "RAL7030"
+    },
+    {
+      "displayName": "RAL 7031 Blue grey",
+      "sortOrder": 164,
+      "name": "RAL 7031 Blue grey",
+      "hex": "#5b686d",
+      "value": "RAL7031",
+      "id": "RAL7031"
+    },
+    {
+      "displayName": "RAL 7032 Pebble grey",
+      "sortOrder": 165,
+      "name": "RAL 7032 Pebble grey",
+      "hex": "#b5b0a1",
+      "value": "RAL7032",
+      "id": "RAL7032"
+    },
+    {
+      "displayName": "RAL 7033 Cement grey",
+      "sortOrder": 166,
+      "name": "RAL 7033 Cement grey",
+      "hex": "#7f8274",
+      "value": "RAL7033",
+      "id": "RAL7033"
+    },
+    {
+      "displayName": "RAL 7034 Yellow grey",
+      "sortOrder": 167,
+      "name": "RAL 7034 Yellow grey",
+      "hex": "#92886f",
+      "value": "RAL7034",
+      "id": "RAL7034"
+    },
+    {
+      "displayName": "RAL 7035 Light grey",
+      "sortOrder": 168,
+      "name": "RAL 7035 Light grey",
+      "hex": "#c5c7c4",
+      "value": "RAL7035",
+      "id": "RAL7035"
+    },
+    {
+      "displayName": "RAL 7036 Platinum grey",
+      "sortOrder": 169,
+      "name": "RAL 7036 Platinum grey",
+      "hex": "#979392",
+      "value": "RAL7036",
+      "id": "RAL7036"
+    },
+    {
+      "displayName": "RAL 7037 Dusty grey",
+      "sortOrder": 170,
+      "name": "RAL 7037 Dusty grey",
+      "hex": "#7a7b7a",
+      "value": "RAL7037",
+      "id": "RAL7037"
+    },
+    {
+      "displayName": "RAL 7038 Agate grey",
+      "sortOrder": 171,
+      "name": "RAL 7038 Agate grey",
+      "hex": "#b0b0a9",
+      "value": "RAL7038",
+      "id": "RAL7038"
+    },
+    {
+      "displayName": "RAL 7039 Quartz grey",
+      "sortOrder": 172,
+      "name": "RAL 7039 Quartz grey",
+      "hex": "#6b665e",
+      "value": "RAL7039",
+      "id": "RAL7039"
+    },
+    {
+      "displayName": "RAL 7040 Window grey",
+      "sortOrder": 173,
+      "name": "RAL 7040 Window grey",
+      "hex": "#989ea1",
+      "value": "RAL7040",
+      "id": "RAL7040"
+    },
+    {
+      "displayName": "RAL 7042 Traffic grey A",
+      "sortOrder": 174,
+      "name": "RAL 7042 Traffic grey A",
+      "hex": "#8e9291",
+      "value": "RAL7042",
+      "id": "RAL7042"
+    },
+    {
+      "displayName": "RAL 7043 Traffic grey B",
+      "sortOrder": 175,
+      "name": "RAL 7043 Traffic grey B",
+      "hex": "#4f5250",
+      "value": "RAL7043",
+      "id": "RAL7043"
+    },
+    {
+      "displayName": "RAL 7044 Silk grey",
+      "sortOrder": 176,
+      "name": "RAL 7044 Silk grey",
+      "hex": "#b7b3a8",
+      "value": "RAL7044",
+      "id": "RAL7044"
+    },
+    {
+      "displayName": "RAL 7045 Telegrey 1",
+      "sortOrder": 177,
+      "name": "RAL 7045 Telegrey 1",
+      "hex": "#8d9295",
+      "value": "RAL7045",
+      "id": "RAL7045"
+    },
+    {
+      "displayName": "RAL 7046 Telegrey 2",
+      "sortOrder": 178,
+      "name": "RAL 7046 Telegrey 2",
+      "hex": "#7f868a",
+      "value": "RAL7046",
+      "id": "RAL7046"
+    },
+    {
+      "displayName": "RAL 7047 Telegrey 4",
+      "sortOrder": 179,
+      "name": "RAL 7047 Telegrey 4",
+      "hex": "#c8c8c7",
+      "value": "RAL7047",
+      "id": "RAL7047"
+    },
+    {
+      "displayName": "RAL 7048",
+      "sortOrder": 180,
+      "name": "RAL 7048",
+      "hex": "#817b73",
+      "value": "RAL7048",
+      "id": "RAL7048"
+    },
+    {
+      "displayName": "RAL 8000 Green brown",
+      "sortOrder": 181,
+      "name": "RAL 8000 Green brown",
+      "hex": "#89693e",
+      "value": "RAL8000",
+      "id": "RAL8000"
+    },
+    {
+      "displayName": "RAL 8001 Ochre brown",
+      "sortOrder": 182,
+      "name": "RAL 8001 Ochre brown",
+      "hex": "#9d622b",
+      "value": "RAL8001",
+      "id": "RAL8001"
+    },
+    {
+      "displayName": "RAL 8002 Signal brown",
+      "sortOrder": 183,
+      "name": "RAL 8002 Signal brown",
+      "hex": "#794d3e",
+      "value": "RAL8002",
+      "id": "RAL8002"
+    },
+    {
+      "displayName": "RAL 8003 Clay brown",
+      "sortOrder": 184,
+      "name": "RAL 8003 Clay brown",
+      "hex": "#7e4b26",
+      "value": "RAL8003",
+      "id": "RAL8003"
+    },
+    {
+      "displayName": "RAL 8004 Copper brown",
+      "sortOrder": 185,
+      "name": "RAL 8004 Copper brown",
+      "hex": "#8d4931",
+      "value": "RAL8004",
+      "id": "RAL8004"
+    },
+    {
+      "displayName": "RAL 8007 Fawn brown",
+      "sortOrder": 186,
+      "name": "RAL 8007 Fawn brown",
+      "hex": "#70452a",
+      "value": "RAL8007",
+      "id": "RAL8007"
+    },
+    {
+      "displayName": "RAL 8008 Olive brown",
+      "sortOrder": 187,
+      "name": "RAL 8008 Olive brown",
+      "hex": "#724a25",
+      "value": "RAL8008",
+      "id": "RAL8008"
+    },
+    {
+      "displayName": "RAL 8011 Nut brown",
+      "sortOrder": 188,
+      "name": "RAL 8011 Nut brown",
+      "hex": "#5a3826",
+      "value": "RAL8011",
+      "id": "RAL8011"
+    },
+    {
+      "displayName": "RAL 8012 Red brown",
+      "sortOrder": 189,
+      "name": "RAL 8012 Red brown",
+      "hex": "#66332b",
+      "value": "RAL8012",
+      "id": "RAL8012"
+    },
+    {
+      "displayName": "RAL 8014 Sepia brown",
+      "sortOrder": 190,
+      "name": "RAL 8014 Sepia brown",
+      "hex": "#4a3526",
+      "value": "RAL8014",
+      "id": "RAL8014"
+    },
+    {
+      "displayName": "RAL 8015 Chestnut brown",
+      "sortOrder": 191,
+      "name": "RAL 8015 Chestnut brown",
+      "hex": "#5e2f26",
+      "value": "RAL8015",
+      "id": "RAL8015"
+    },
+    {
+      "displayName": "RAL 8016 Mahogany brown",
+      "sortOrder": 192,
+      "name": "RAL 8016 Mahogany brown",
+      "hex": "#4c2b20",
+      "value": "RAL8016",
+      "id": "RAL8016"
+    },
+    {
+      "displayName": "RAL 8017 Chocolate brown",
+      "sortOrder": 193,
+      "name": "RAL 8017 Chocolate brown",
+      "hex": "#442f29",
+      "value": "RAL8017",
+      "id": "RAL8017"
+    },
+    {
+      "displayName": "RAL 8019 Grey brown",
+      "sortOrder": 194,
+      "name": "RAL 8019 Grey brown",
+      "hex": "#3d3635",
+      "value": "RAL8019",
+      "id": "RAL8019"
+    },
+    {
+      "displayName": "RAL 8022 Black brown",
+      "sortOrder": 195,
+      "name": "RAL 8022 Black brown",
+      "hex": "#1a1718",
+      "value": "RAL8022",
+      "id": "RAL8022"
+    },
+    {
+      "displayName": "RAL 8023 Orange brown",
+      "sortOrder": 196,
+      "name": "RAL 8023 Orange brown",
+      "hex": "#a45729",
+      "value": "RAL8023",
+      "id": "RAL8023"
+    },
+    {
+      "displayName": "RAL 8024 Beige brown",
+      "sortOrder": 197,
+      "name": "RAL 8024 Beige brown",
+      "hex": "#795038",
+      "value": "RAL8024",
+      "id": "RAL8024"
+    },
+    {
+      "displayName": "RAL 8025 Pale brown",
+      "sortOrder": 198,
+      "name": "RAL 8025 Pale brown",
+      "hex": "#755847",
+      "value": "RAL8025",
+      "id": "RAL8025"
+    },
+    {
+      "displayName": "RAL 8027 Leather brown",
+      "sortOrder": 199,
+      "name": "RAL 8027 Leather brown",
+      "hex": "#504938",
+      "value": "RAL8027",
+      "id": "RAL8027"
+    },
+    {
+      "displayName": "RAL 8028 Terra brown",
+      "sortOrder": 200,
+      "name": "RAL 8028 Terra brown",
+      "hex": "#513a2a",
+      "value": "RAL8028",
+      "id": "RAL8028"
+    },
+    {
+      "displayName": "RAL 8029",
+      "sortOrder": 201,
+      "name": "RAL 8029",
+      "hex": "#7f4031",
+      "value": "RAL8029",
+      "id": "RAL8029"
+    },
+    {
+      "displayName": "RAL 8077 Schüccobrown",
+      "sortOrder": 202,
+      "name": "RAL 8077 Schüccobrown",
+      "hex": "#432108",
+      "value": "RAL8077",
+      "id": "RAL8077"
+    },
+    {
+      "displayName": "RAL 9001 Cream",
+      "sortOrder": 203,
+      "name": "RAL 9001 Cream",
+      "hex": "#e9e0d2",
+      "value": "RAL9001",
+      "id": "RAL9001"
+    },
+    {
+      "displayName": "RAL 9002 Grey white",
+      "sortOrder": 204,
+      "name": "RAL 9002 Grey white",
+      "hex": "#d7d5cb",
+      "value": "RAL9002",
+      "id": "RAL9002"
+    },
+    {
+      "displayName": "RAL 9003 Signal white",
+      "sortOrder": 205,
+      "name": "RAL 9003 Signal white",
+      "hex": "#ecece7",
+      "value": "RAL9003",
+      "id": "RAL9003"
+    },
+    {
+      "displayName": "RAL 9004 Signal black",
+      "sortOrder": 206,
+      "name": "RAL 9004 Signal black",
+      "hex": "#2b2b2c",
+      "value": "RAL9004",
+      "id": "RAL9004"
+    },
+    {
+      "displayName": "RAL 9005 Deep black",
+      "sortOrder": 207,
+      "name": "RAL 9005 Deep black",
+      "hex": "#0e0e10",
+      "value": "RAL9005",
+      "id": "RAL9005"
+    },
+    {
+      "displayName": "RAL 9006 White aluminium",
+      "sortOrder": 208,
+      "name": "RAL 9006 White aluminium",
+      "hex": "#a1a1a0",
+      "value": "RAL9006",
+      "id": "RAL9006"
+    },
+    {
+      "displayName": "RAL 9007 Grey aluminium",
+      "sortOrder": 209,
+      "name": "RAL 9007 Grey aluminium",
+      "hex": "#878581",
+      "value": "RAL9007",
+      "id": "RAL9007"
+    },
+    {
+      "displayName": "RAL 9010 Pure white",
+      "sortOrder": 210,
+      "name": "RAL 9010 Pure white",
+      "hex": "#f1ece1",
+      "value": "RAL9010",
+      "id": "RAL9010"
+    },
+    {
+      "displayName": "RAL 9011 Graphite black",
+      "sortOrder": 211,
+      "name": "RAL 9011 Graphite black",
+      "hex": "#27292b",
+      "value": "RAL9011",
+      "id": "RAL9011"
+    },
+    {
+      "displayName": "RAL 9016 Traffic white",
+      "sortOrder": 212,
+      "name": "RAL 9016 Traffic white",
+      "hex": "#f1f0ea",
+      "value": "RAL9016",
+      "id": "RAL9016"
+    },
+    {
+      "displayName": "RAL 9017",
+      "sortOrder": 213,
+      "name": "RAL 9017",
+      "hex": "#2a292a",
+      "value": "RAL9017",
+      "id": "RAL9017"
+    },
+    {
+      "displayName": "RAL 9018 Papyrus white",
+      "sortOrder": 214,
+      "name": "RAL 9018 Papyrus white",
+      "hex": "#c8cbc4",
+      "value": "RAL9018",
+      "id": "RAL9018"
+    },
+    {
+      "displayName": "RAL 9022",
+      "sortOrder": 215,
+      "name": "RAL 9022",
+      "hex": "#858583",
+      "value": "RAL9022",
+      "id": "RAL9022"
+    },
+    {
+      "displayName": "RAL 9023",
+      "sortOrder": 216,
+      "name": "RAL 9023",
+      "hex": "#797b7a",
+      "value": "RAL9023",
+      "id": "RAL9023"
+    },
+    {
+      "displayName": "DB 701 Light grey",
+      "sortOrder": 217,
+      "name": "DB 701 Light grey",
+      "hex": "#90908e",
+      "value": "DB701",
+      "id": "DB701"
+    },
+    {
+      "displayName": "DB 702 Grey",
+      "sortOrder": 218,
+      "name": "DB 702 Grey",
+      "hex": "#73716f",
+      "value": "DB702",
+      "id": "DB702"
+    },
+    {
+      "displayName": "DB 703 Dark Grey",
+      "sortOrder": 219,
+      "name": "DB 703 Dark Grey",
+      "hex": "#575556",
+      "value": "DB703",
+      "id": "DB703"
+    }
+  ]
+}

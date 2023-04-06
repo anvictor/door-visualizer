@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { ReactComponent as Closer_LD } from "../images/Closer_LD.svg";
 import { ReactComponent as Closer_LU } from "../images/Closer_LU.svg";
-import{ ReactComponent as Closer_R_D} from "../images/Closer_R_D.svg";
-import{ ReactComponent as Closer_R_U} from "../images/Closer_R_U.svg";
-import{ ReactComponent as Glasses_round_300_300} from "../images/Glasses_round_300_300.svg";
-import{ ReactComponent as Glasses_square_300_300} from "../images/Glasses_square_300_300.svg";
-import{ ReactComponent as Handle_long_L_x118_y76} from "../images/Handle_long_L_x118_y76.svg";
-import{ ReactComponent as Handle_long_R_x16_y76} from "../images/Handle_long_R_x16_y76.svg";
-import{ ReactComponent as Handle_round_L_x117_y25} from "../images/Handle_round_L_x117_y25.svg";
-import{ ReactComponent as Handle_round_R_x25_y25} from "../images/Handle_round_R_x25_y25.svg";
-import{ ReactComponent as Handle_square_L_x118_y26} from "../images/Handle_square_L_x118_y26.svg";
-import{ ReactComponent as Handle_square_R_x26_y26} from "../images/Handle_square_R_x26_y26.svg";
-import{ ReactComponent as Hinge_18_132} from "../images/Hinge_18_132.svg";
+import { ReactComponent as Closer_R_D } from "../images/Closer_R_D.svg";
+import { ReactComponent as Closer_R_U } from "../images/Closer_R_U.svg";
+import { ReactComponent as Glasses_round_300_300 } from "../images/Glasses_round_300_300.svg";
+import { ReactComponent as Glasses_square_300_300 } from "../images/Glasses_square_300_300.svg";
+import { ReactComponent as Handle_long_L_x118_y76 } from "../images/Handle_long_L_x118_y76.svg";
+import { ReactComponent as Handle_long_R_x16_y76 } from "../images/Handle_long_R_x16_y76.svg";
+import { ReactComponent as Handle_round_L_x117_y25 } from "../images/Handle_round_L_x117_y25.svg";
+import { ReactComponent as Handle_round_R_x25_y25 } from "../images/Handle_round_R_x25_y25.svg";
+import { ReactComponent as Handle_square_L_x118_y26 } from "../images/Handle_square_L_x118_y26.svg";
+import { ReactComponent as Handle_square_R_x26_y26 } from "../images/Handle_square_R_x26_y26.svg";
+import { ReactComponent as Hinge_18_132 } from "../images/Hinge_18_132.svg";
 import alum_brushed_H from "../images/alum_brushed_H.png";
 import alum_brushed_V from "../images/alum_brushed_V.png";
+import colorsData from "../colorsRal.json";
 import "./StellDoorVisualizer.css";
 import {
   CLOSER_SHIFT_X,
@@ -23,10 +24,12 @@ import {
   GLASING_CENTER_SHIFT_X,
   GLASING_CENTER_SHIFT_Y,
   GLASING_CENTER_Y,
-  GLASING_TYPE, // PATTERN_IMAGE_HEIGHT_Y,
+  GLASING_TYPE,
+  // PATTERN_IMAGE_HEIGHT_Y,
   // PATTERN_IMAGE_WIDTH_X,
   // SHIFT_VIEWPORT_Y,
-  STROKE_COLOR, // VISIBLE_WALL_HEIGHT_Y,
+  STROKE_COLOR,
+  // VISIBLE_WALL_HEIGHT_Y,
   // VISIBLE_WALL_WIDTH_X,
   add_10_Percents,
   getFrameClearanceHeight_Y,
@@ -55,11 +58,7 @@ import {
   getPictureLeafRight_X,
 } from "./utils";
 
-const StellDoorVisualizer = ({
-  values,
-  frameSurfaceColor,
-  doorLeafSurfaceColor,
-}: any) => {
+const StellDoorVisualizer = ({ values }: any) => {
   const [pullView, setPullView] = useState(true);
   const handleHoverPullView = () => {
     setPullView(!pullView);
@@ -76,6 +75,8 @@ const StellDoorVisualizer = ({
     doorCloser,
     thirdHingePosition,
     handleHeight,
+    frameColor,
+    doorLeafColor,
   } = values;
 
   //Frame
@@ -142,10 +143,13 @@ const StellDoorVisualizer = ({
       portClearance.setAttribute("height", frameClearanceHeight_Y.toString());
     }
 
-    // frame surface fill // url(#alumBrushedV)
-    if (frameSurfaceColor) {
-      frame?.setAttribute("fill", frameSurfaceColor);
-      pushViewFrame?.setAttribute("fill", frameSurfaceColor);
+    // frame  fill // url(#alumBrushedV)
+    if (frameColor) {
+      const color = colorsData.colors.filter(
+        (color) => color.value === frameColor
+      )[0].hex;
+      frame?.setAttribute("fill", color);
+      pushViewFrame?.setAttribute("fill", color);
     } else {
       frame?.setAttribute("fill", "#f1f0ea");
       pushViewFrame?.setAttribute("fill", "#f1f0ea");
@@ -211,10 +215,13 @@ const StellDoorVisualizer = ({
       pictureLeafRight.setAttribute("height", leafHeight_Y.toString());
       pictureLeafRight.setAttribute("fill", "url(#alumBrushedH)");
     }
-    // leafs surface fill
-    if (doorLeafSurfaceColor) {
-      pictureLeafLeft?.setAttribute("fill", doorLeafSurfaceColor);
-      pictureLeafRight?.setAttribute("fill", doorLeafSurfaceColor);
+    // leafs  fill
+    if (doorLeafColor) {
+      const color = colorsData.colors.filter(
+        (color) => color.value === doorLeafColor
+      )[0].hex;
+      pictureLeafLeft?.setAttribute("fill", color);
+      pictureLeafRight?.setAttribute("fill", color);
     } else {
       pictureLeafLeft?.setAttribute("fill", "#f1f0ea");
       pictureLeafRight?.setAttribute("fill", "#f1f0ea");
@@ -423,13 +430,7 @@ const StellDoorVisualizer = ({
     prepareLeafs();
     prepareHinges();
     prepareHandle();
-  }, [
-    hingesCount,
-    thirdHingePosition,
-    pullView,
-    frameSurfaceColor,
-    doorLeafSurfaceColor,
-  ]);
+  }, [hingesCount, thirdHingePosition, pullView, frameColor, doorLeafColor]);
 
   const style = {
     width: "100%",
@@ -525,7 +526,7 @@ const StellDoorVisualizer = ({
 
         {/* svg#Closer order number is svg.children[15-18]*/}
         <Closer_LD />
-         <Closer_LU />
+        <Closer_LU />
         <Closer_R_D />
         <Closer_R_U />
         {/* svg#Glasse order number is svg.children[19-20]*/}

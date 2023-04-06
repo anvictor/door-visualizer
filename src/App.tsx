@@ -1,25 +1,21 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
+import { values as valuesInit } from "./StellDoorVisualizer/utils";
 import "./App.css";
 import StellDoorVisualizer from "./StellDoorVisualizer/StellDoorVisualizer";
-const values = {
-  dimensions: {
-    doorSize: { width: 920, height:2200 },
-  },
-  leavesCount: 2,
-  dinDirection: "left",
-  hingesCount: 3,
-  useGlazing: false,
-  useDoorCloser: false,
-  doorCloser: 'up',
-  thirdHingePosition: "middle",
-  handleHeight: 1050,
-};
+import ConfigureMenu from "./ConfigureMenu/ConfigureMenu";
+
 function App() {
+  const [values, setValues] = useState(valuesInit);
+  const getValues = (values: any) => {
+    setValues(values);
+  };
+
   return (
     <div className="App">
-      <StellDoorVisualizer values = {values} frameSurfaceColor={"green"}
-    doorLeafSurfaceColor={"red"} />
+      <ConfigureMenu values={values} getValues={getValues} />
+      <div className="Visualizer">
+        <StellDoorVisualizer values={values} />
+      </div>
     </div>
   );
 }
