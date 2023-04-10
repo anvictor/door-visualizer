@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ReactComponent as Closer_LD } from "../images/Closer_LD.svg";
 import { ReactComponent as Closer_LU } from "../images/Closer_LU.svg";
 import { ReactComponent as Closer_R_D } from "../images/Closer_R_D.svg";
@@ -20,7 +20,7 @@ import {
   CLOSER_SHIFT_X,
   CLOSER_SHIFT_Y,
   CLOSER_WIDTH_X,
-  FRAME_PROFILE_WIDTH_VISIBLE_X,
+  // FRAME_PROFILE_WIDTH_VISIBLE_X,
   GLASING_CENTER_SHIFT_X,
   GLASING_CENTER_SHIFT_Y,
   GLASING_CENTER_Y,
@@ -57,37 +57,57 @@ import {
   getPictureLeafRightWidth_X,
   getPictureLeafRight_X,
 } from "./utils";
+import ValuesContext from "../ValuesContext/ValuesContext";
+import Rooler from "./Rooler";
 
-const StellDoorVisualizer = ({ values }: any) => {
+const StellDoorVisualizer = () => {
+  const { values } = useContext(ValuesContext);
   const [pullView, setPullView] = useState(true);
   const handleHoverPullView = () => {
     setPullView(!pullView);
   };
   const {
-    dimensions: {
-      doorSize: { width, height },
-    },
-    leavesCount,
     dinDirection,
-    hingesCount,
-    useGlazing,
-    useDoorCloser,
     doorCloser,
-    thirdHingePosition,
-    handleHeight,
-    frameColor,
     doorLeafColor,
+    frameColor,
+    frameJumb_Y,
+    frameJumbVisible_Y,
+    frameProfileWidth_X,
+    frameProfileWidthVisible_X,
+    handleHeight,
+    hingesCount,
+    doorWidth_X,
+    doorHeight_Y,
+    leavesCount,
+    thirdHingePosition,
+    treshHoldHeight_Y,
+    treshHoldHeightVisible_Y,
+    useDoorCloser,
+    useGlazing,
+    hingeUpUnderTop_Y,
+    hingeDownOverBottom_Y,
   } = values;
 
   //Frame
-  const frameWidth_X = +width;
-  const frameHeight_Y = +height;
+  const frameWidth_X = +doorWidth_X.value;
+  const frameHeight_Y = +doorHeight_Y.value;
   const frameLeft_X = getFrameLeft_X(frameWidth_X);
   const frameTop_Y = getFrameTop_Y(frameHeight_Y);
-  const frameClearanceLeft_X = getFrameClearanceLeft_X(frameLeft_X);
-  const frameClearanceTop_Y = getFrameClearanceTop_Y(frameTop_Y);
-  const frameClearanceWidth_X = getFrameClearanceWidth_X(frameWidth_X);
-  const frameClearanceHeight_Y = getFrameClearanceHeight_Y(frameHeight_Y);
+  const frameClearanceLeft_X = getFrameClearanceLeft_X(
+    frameLeft_X,
+    frameProfileWidth_X.value
+  );
+  const frameClearanceTop_Y = getFrameClearanceTop_Y(frameTop_Y, frameJumb_Y.value);
+  const frameClearanceWidth_X = getFrameClearanceWidth_X(
+    frameWidth_X,
+    frameProfileWidth_X.value
+  );
+  const frameClearanceHeight_Y = getFrameClearanceHeight_Y(
+    frameHeight_Y,
+    treshHoldHeight_Y.value,
+    frameJumb_Y.value
+  );
 
   const prepareFrames = () => {
     // pull view frame
@@ -159,27 +179,36 @@ const StellDoorVisualizer = ({ values }: any) => {
   // wall behind
 
   // Doorleaf
-  const isDoubleLeaf = leavesCount === "DoubleLeaf";
+  const isDoubleLeaf = leavesCount.value === "DoubleLeaf";
 
   const pictureLeafLeftWidth_X = getPictureLeafLeftWidth_X(
     isDoubleLeaf,
     frameWidth_X,
-    dinDirection,
-    pullView
+    dinDirection.value,
+    pullView,
+    frameProfileWidthVisible_X.value
   );
 
   const pictureLeafRightWidth_X = getPictureLeafRightWidth_X(
     frameWidth_X,
-    pictureLeafLeftWidth_X
+    pictureLeafLeftWidth_X,
+    frameProfileWidthVisible_X.value
   );
 
-  const leafHeight_Y = getLeafHeight_Y(frameHeight_Y);
-  const pictureLeafLeft_X = getPictureLeafLeft_X(frameLeft_X);
+  const leafHeight_Y = getLeafHeight_Y(
+    frameHeight_Y,
+    treshHoldHeightVisible_Y.value,
+    frameJumbVisible_Y.value
+  );
+  const pictureLeafLeft_X = getPictureLeafLeft_X(
+    frameLeft_X,
+    frameProfileWidthVisible_X.value
+  );
 
   const pictureLeafRight_X = pullView
     ? getPictureLeafRight_X(pictureLeafLeft_X, pictureLeafLeftWidth_X)
     : getPictureLeafRight_X(pictureLeafLeft_X, pictureLeafLeftWidth_X);
-  const leafTop_Y = getLeafTop_Y(frameTop_Y);
+  const leafTop_Y = getLeafTop_Y(frameTop_Y, frameJumbVisible_Y.value);
 
   const prepareLeafs = () => {
     /* catch  picture Leaf Left
@@ -229,15 +258,15 @@ const StellDoorVisualizer = ({ values }: any) => {
   };
 
   // Handles
-  const handleData = getHandleData(dinDirection, pullView);
+  const handleData = getHandleData(dinDirection.value, pullView);
   const handle_Y = getHandle_Y(
     handleHeight,
-    dinDirection,
+    dinDirection.value,
     pullView,
     frameHeight_Y
   );
   const handle_X = getHandle_X(
-    dinDirection,
+    dinDirection.value,
     isDoubleLeaf,
     pictureLeafLeft_X,
     pictureLeafLeftWidth_X,
@@ -255,45 +284,51 @@ const StellDoorVisualizer = ({ values }: any) => {
   };
 
   // Hinges
-  const hingeLeft_X = getHingeLeft_X(frameLeft_X);
-  const hingeRight_X = getHingeRight_X(frameLeft_X, frameWidth_X);
-  const hingeUp_Y = getHingeUp_Y(frameTop_Y);
-  const hingeDown_Y = getHingeDown_Y(frameTop_Y, frameHeight_Y);
+  const hingeLeft_X = getHingeLeft_X(frameLeft_X, frameProfileWidthVisible_X.value);
+  const hingeRight_X = getHingeRight_X(
+    frameLeft_X,
+    frameWidth_X,
+    frameProfileWidthVisible_X.value
+  );
+  const hingeUp_Y = getHingeUp_Y(frameTop_Y, hingeUpUnderTop_Y.value);
+  const hingeDown_Y = getHingeDown_Y(frameTop_Y, frameHeight_Y, hingeDownOverBottom_Y.value);
   const hingeMiddle_Y = getHingeMiddle_Y(
     frameTop_Y,
     frameHeight_Y,
-    thirdHingePosition
+    thirdHingePosition.value,
+    hingeUpUnderTop_Y.value,
+    hingeDownOverBottom_Y.value
   );
   const hingeLeftUpVisibility = getHingeLeftBaseVisibility(
-    dinDirection,
-    leavesCount,
+    dinDirection.value,
+    leavesCount.value,
     pullView
   );
   const hingeLeftDownVisibility = getHingeLeftBaseVisibility(
-    dinDirection,
-    leavesCount,
+    dinDirection.value,
+    leavesCount.value,
     pullView
   );
   const hingeRightUpVisibility = getHingeRightBaseVisibility(
-    dinDirection,
-    leavesCount,
+    dinDirection.value,
+    leavesCount.value,
     pullView
   );
   const hingeRightDownVisibility = getHingeRightBaseVisibility(
-    dinDirection,
-    leavesCount,
+    dinDirection.value,
+    leavesCount.value,
     pullView
   );
   const hingeLeftMiddleVisibility = getHingeLeftAdditionalVisibility(
-    dinDirection,
-    leavesCount,
-    hingesCount,
+    dinDirection.value,
+    leavesCount.value,
+    hingesCount.value,
     pullView
   );
   const hingeRightMiddleVisibility = getHingeRightAdditionalVisibility(
-    dinDirection,
-    leavesCount,
-    hingesCount,
+    dinDirection.value,
+    leavesCount.value,
+    hingesCount.value,
     pullView
   );
 
@@ -337,11 +372,10 @@ const StellDoorVisualizer = ({ values }: any) => {
 
   // DoorCloser
   const closerLeft_X =
-    frameLeft_X + FRAME_PROFILE_WIDTH_VISIBLE_X + CLOSER_SHIFT_X;
+    frameLeft_X + frameProfileWidthVisible_X.value + CLOSER_SHIFT_X;
   const closerRight_X =
     frameLeft_X + frameWidth_X - CLOSER_WIDTH_X - CLOSER_SHIFT_X;
-  const closerTop_Y =
-    frameTop_Y + FRAME_PROFILE_WIDTH_VISIBLE_X - CLOSER_SHIFT_Y;
+  const closerTop_Y = frameTop_Y + frameProfileWidthVisible_X.value - CLOSER_SHIFT_Y;
 
   const prepareDoorCloser = () => {
     const svg = document.getElementById("scene");
@@ -402,20 +436,41 @@ const StellDoorVisualizer = ({ values }: any) => {
       glasses_round_300_300?.setAttribute("visibility", "hidden");
     }
   };
-
-  useEffect(() => {
+  const prepareSVG = () => {
     const svg = document.getElementById("scene");
+    const viewBoxWidth = `${
+      add_10_Percents(frameWidth_X) > 1100
+        ? add_10_Percents(frameWidth_X)
+        : 1100
+    }`;
+    const viewBoxShift = 0;
+    // `${
+    //   add_10_Percents(frameWidth_X) > 1000 ? 0 : (frameWidth_X - add_10_Percents(frameWidth_X))/2
+    // }`;
     if (svg) {
       svg.setAttribute(
         "viewBox",
-        `0 0 ${add_10_Percents(frameWidth_X)} ${add_10_Percents(frameHeight_Y)}`
+        `${viewBoxShift} 0 ${viewBoxWidth} ${add_10_Percents(frameHeight_Y)}`
       );
-      // svg.setAttribute(
-      //   'viewBox',
-      //   `0 ${SHIFT_VIEWPORT_Y} ${VISIBLE_WALL_WIDTH_X} ${VISIBLE_WALL_HEIGHT_Y}`,
-      // );
     }
+  };
+  const prepareRooler = () => {
+    const Rooler = document.getElementById("rooler");
+    if (Rooler) {
+      Rooler.setAttribute(
+        "x",
+        `${
+          add_10_Percents(frameWidth_X) > 1100
+            ? add_10_Percents(frameWidth_X) / 2 - 500
+            : 50
+        }`
+      );
+    }
+  };
 
+  useEffect(() => {
+    prepareSVG();
+    prepareRooler();
     prepareFrames();
     prepareLeafs();
     prepareHinges();
@@ -426,11 +481,20 @@ const StellDoorVisualizer = ({ values }: any) => {
   }, []);
 
   useEffect(() => {
+    prepareSVG();
+    prepareRooler();
     prepareFrames();
     prepareLeafs();
     prepareHinges();
     prepareHandle();
-  }, [hingesCount, thirdHingePosition, pullView, frameColor, doorLeafColor]);
+  }, [
+    values,
+    hingesCount,
+    thirdHingePosition,
+    pullView,
+    frameColor,
+    doorLeafColor,
+  ]);
 
   const style = {
     width: "100%",
@@ -532,6 +596,7 @@ const StellDoorVisualizer = ({ values }: any) => {
         {/* svg#Glasse order number is svg.children[19-20]*/}
         <Glasses_round_300_300 />
         <Glasses_square_300_300 />
+        <Rooler />
       </svg>
       <div
         onMouseEnter={handleHoverPullView}

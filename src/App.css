@@ -1,19 +1,16 @@
 .App {
   display: flex;
+  font-size: small;
+  align-items:center;
 }
 .ConfigureMenu {
   width: 1024px;
-  border: 1px solid red;
+  border: 1px solid gray;
   margin: 5px;
-  background-color: wheat;
 }
-.ColorPickerWithSearch {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 45px;
-  border: 1px solid red;
-}
+/* .ColorPickerWithSearch {
+ 
+} */
 .ColorPickerWithSearch_options {
   visibility: hidden;
 }
@@ -24,19 +21,51 @@
   overflow-y: scroll;
   z-index: 100;
 }
-.ColorPickerWithSearch_label {
-  margin: 5px;
-  padding: 5px;
-  font-size: small;
-}
+
 .ColorPickerWithSearch_input {
   margin: 5px;
-  padding: 5px;
 }
-.colorLine {
+.displayFlex {
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+.ColorPickerWithSearch {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: -18px;
 }
 .ColorPickerWithSearch_dropdown {
-  width: 50%;
   position: relative;
+}
+.width20percent {
+  width: 20%;
+}
+.width40percent {
+  width: 40%;
+}
+.width26percent {
+  width: 26%;
+}
+.width27percent {
+  width: 27%;
+}
+.inputAndLabel {
+  height: 27px;
+}
+.numInput {
+  margin: 5px;
+}
+.rowEven {
+  padding: 5px;
+  background-color: rgba(128, 128, 128, 0.466);
+}
+.rowOdd {
+  padding: 5px;
+  background-color: rgba(128, 128, 128, 0.151);
+}
+.dropdown {
+  display: flex;
 }
