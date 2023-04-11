@@ -75,20 +75,19 @@ const StellDoorVisualizer = () => {
     frameJumbVisible_Y,
     frameProfileWidth_X,
     frameProfileWidthVisible_X,
-    handleHeight,
+    handleHeight_Y: handleHeight,
     hingesCount,
     doorWidth_X,
     doorHeight_Y,
     leavesCount,
     thirdHingePosition,
-    treshHoldHeight_Y,
-    treshHoldHeightVisible_Y,
+    thresholdHeight_Y: treshHoldHeight_Y,
+    thresholdHeightVisible_Y: treshHoldHeightVisible_Y,
     useDoorCloser,
     useGlazing,
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
   } = values;
-
   //Frame
   const frameWidth_X = +doorWidth_X.value;
   const frameHeight_Y = +doorHeight_Y.value;

@@ -14,10 +14,10 @@ const NumericInput: React.FC<NumericInputPropsType> = ({
   max,
   label,
   className,
-  value: incomingValue,
+  value,//: incomingValue,
   getNumber,
 }) => {
-  const [value, setValue] = useState<number>(incomingValue);
+  // const [value, setValue] = useState<number>(incomingValue);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const inputValue = parseInt(event.target.value, 10);
@@ -26,7 +26,7 @@ const NumericInput: React.FC<NumericInputPropsType> = ({
     if (!isNaN(inputValue)) {
       // Clamp the value between min and max
       const clampedValue = Math.min(Math.max(inputValue, min), max);
-      setValue(clampedValue);
+      // setValue(clampedValue);
       getNumber(clampedValue);
     }
   };

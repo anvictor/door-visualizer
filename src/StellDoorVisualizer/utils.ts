@@ -25,6 +25,7 @@ const DOOR_HEIGHT_MIN_Y = 900;
 const DOOR_HEIGHT_MAX_Y = 3000;
 const DOOR_HEIGHT_Y = 2200;
 const THRESH_HOLD_HEIGHT_VISIBLE_Y = 5;
+const THRESH_HOLD_HEIGHT_MIN_Y = 0;
 const FRAME_MIN = 30;
 const FRAME_MAX = 70;
 const FRAME_PROFILE_WIDTH_VISIBLE_X = 40;
@@ -36,7 +37,7 @@ const HINGE_UP_UNDER_TOP_MIN_Y = 0;
 const HINGE_UP_UNDER_TOP_MAX_Y = 200;
 const HINGE_UP_UNDER_TOP_Y = 150;
 const THRESH_HOLD_HEIGHT_Y = 55;
-const HINGE_DOWN_OVER_BOTTOM_MIN_Y = 0;
+const HINGE_DOWN_OVER_BOTTOM_MIN_Y = 100;
 const HINGE_DOWN_OVER_BOTTOM_MAX_Y = 500;
 const HINGE_DOWN_OVER_BOTTOM_Y = 400;
 const HINGE_WIDTH_X = 18;
@@ -85,7 +86,7 @@ const values: ValuesType = {
     max: FRAME_MAX,
     value: FRAME_PROFILE_WIDTH_VISIBLE_X,
   },
-  handleHeight: "1050",
+  handleHeight_Y: "1050",
   hingesCount: {
     value: "TwoPieces",
     displayName: "Two Pieces",
@@ -102,13 +103,13 @@ const values: ValuesType = {
   },
   leavesCount: {value:"SingleLeaf", displayName:"Single Leaf"}, //"DoubleLeaf","SingleLeaf"
   thirdHingePosition: {value:"Betwen",displayName:"Betwen"}, //"Size500mmUnderTheTop", "Betwen"
-  treshHoldHeight_Y: {
-    min: FRAME_MIN,
+  thresholdHeight_Y: {
+    min: THRESH_HOLD_HEIGHT_MIN_Y,
     max: FRAME_MAX,
     value: THRESH_HOLD_HEIGHT_Y,
   },
-  treshHoldHeightVisible_Y: {
-    min: FRAME_MIN,
+  thresholdHeightVisible_Y: {
+    min: THRESH_HOLD_HEIGHT_MIN_Y,
     max: FRAME_MAX,
     value: THRESH_HOLD_HEIGHT_VISIBLE_Y,
   },
@@ -485,7 +486,6 @@ const getHingeMiddle_Y = (
   hingeUpUnderTop_Y: number,
   hingeDownOverBottom_Y: number
 ) => {
-  console.log("thirdHingePosition", thirdHingePosition);
   if (thirdHingePosition === "Size500mmUnderTheTop") {
     return +frameTop_Y + 500;
   }

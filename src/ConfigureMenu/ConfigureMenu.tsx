@@ -16,21 +16,27 @@ const ConfigureMenu = () => {
     frameJumbVisible_Y,
     frameProfileWidth_X,
     frameProfileWidthVisible_X,
-    handleHeight,
+    handleHeight_Y: handleHeight,
     hingesCount,
     doorWidth_X,
     leavesCount,
     thirdHingePosition,
-    treshHoldHeight_Y,
-    treshHoldHeightVisible_Y,
+    thresholdHeight_Y,
+    thresholdHeightVisible_Y,
     useDoorCloser,
     useGlazing,
     doorHeight_Y,
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
   } = values;
-  const hingesCountOptions = [{value:"TwoPieces",displayName:"Two Pieces"}, {value:"ThreePieces", displayName:"Three Pieces"}];
-  const thirdHingePositionOptions = [{value:"Size500mmUnderTheTop",displayName:"500 mm Under The Top"}, {value:"Betwen",displayName:"Betwen"}];
+  const hingesCountOptions = [
+    { value: "TwoPieces", displayName: "Two Pieces" },
+    { value: "ThreePieces", displayName: "Three Pieces" },
+  ];
+  const thirdHingePositionOptions = [
+    { value: "Size500mmUnderTheTop", displayName: "500 mm Under The Top" },
+    { value: "Betwen", displayName: "Betwen Hinges" },
+  ];
 
   const onChange = <T extends keyof ValuesType>(
     propName: T,
@@ -40,14 +46,58 @@ const ConfigureMenu = () => {
     setValues(values);
   };
 
-  const check = () => {
-    if (treshHoldHeight_Y < treshHoldHeightVisible_Y) {
-      onChange("treshHoldHeightVisible_Y", treshHoldHeight_Y);
+  const handleLeadindDependentChange = (
+    leading: keyof ValuesType,
+    leadingMin: number,
+    leadingMax: number,
+    dependent: keyof ValuesType,
+    dependentMin: number,
+    dependentValue: number,
+    value: string
+  ) => {
+    onChange(leading, {
+      min: leadingMin,
+      max: leadingMax,
+      value: +value,
+    });
+    if (dependentValue > +value) {
+      onChange(dependent, {
+        min: dependentMin,
+        max: +value,
+        value: +value,
+      });
     }
   };
-  setTimeout(() => {
-    check();
-  }, 500);
+
+  const handleHeightChange = (
+    leading: keyof ValuesType,
+    leadingMin: number,
+    leadingMax: number,
+    dependentHinge: keyof ValuesType,
+    dependentHingeMin: number,
+    dependentHandle: keyof ValuesType,
+    value: string
+  ) => {
+    const doorHeightInfluentMax = 1500;
+    const doorHeightInfluentHingeMin = 1201;
+    const doorHeightInfluentHandleMin = 1100;
+    const doorHeightInfluent = 1100;
+    onChange(leading, {
+      min: leadingMin,
+      max: leadingMax,
+      value: +value,
+    });
+    if (+value < doorHeightInfluentMax && +value > doorHeightInfluentHingeMin) {
+      onChange(dependentHinge, {
+        min: dependentHingeMin,
+        max: +value - doorHeightInfluent,
+        value: +value - doorHeightInfluent,
+      });
+    }
+    if (+value < doorHeightInfluentMax && +value > doorHeightInfluentHandleMin) {
+      onChange(dependentHandle, `${+value - 450}`);
+    }
+  };
 
   return (
     <div className="ConfigureMenu">
@@ -61,8 +111,8 @@ const ConfigureMenu = () => {
           className="inputAndLabel displayFlex width40percent"
           getNumber={(value: string) =>
             onChange("doorWidth_X", {
-              min: frameJumb_Y.min,
-              max: frameJumb_Y.max,
+              min: doorWidth_X.min,
+              max: doorWidth_X.max,
               value: +value,
             })
           }
@@ -74,11 +124,15 @@ const ConfigureMenu = () => {
           label="Installation Height"
           className="inputAndLabel displayFlex width40percent"
           getNumber={(value: string) =>
-            onChange("doorHeight_Y", {
-              min: doorHeight_Y.min,
-              max: doorHeight_Y.max,
-              value: +value,
-            })
+            handleHeightChange(
+              "doorHeight_Y",
+              doorHeight_Y.min,
+              doorHeight_Y.max,
+              "hingeDownOverBottom_Y",
+              hingeDownOverBottom_Y.min,
+              "handleHeight_Y",
+              value
+            )
           }
         />
       </div>
@@ -99,31 +153,35 @@ const ConfigureMenu = () => {
         />
       </div>
       <div className="displayFlex rowOdd">
-        <p className="width20percent">Threshold Y</p>
+        <p className="width20percent">Threshold</p>
         <NumericInput
-          min={treshHoldHeight_Y.min}
-          max={treshHoldHeight_Y.max}
-          value={treshHoldHeight_Y.value}
+          min={thresholdHeight_Y.min}
+          max={thresholdHeight_Y.max}
+          value={thresholdHeight_Y.value}
           label="Height"
           className="inputAndLabel displayFlex width40percent"
           getNumber={(value: string) =>
-            onChange("treshHoldHeight_Y", {
-              min: treshHoldHeight_Y.min,
-              max: treshHoldHeight_Y.max,
-              value: +value,
-            })
+            handleLeadindDependentChange(
+              "thresholdHeight_Y",
+              thresholdHeight_Y.min,
+              thresholdHeight_Y.max,
+              "thresholdHeightVisible_Y",
+              thresholdHeightVisible_Y.min,
+              thresholdHeightVisible_Y.value,
+              value
+            )
           }
         />
         <NumericInput
-          min={treshHoldHeightVisible_Y.min}
-          max={treshHoldHeight_Y.value}
-          value={treshHoldHeightVisible_Y.value}
+          min={thresholdHeightVisible_Y.min}
+          max={thresholdHeightVisible_Y.max}
+          value={thresholdHeightVisible_Y.value}
           label="Height Visible"
           className="inputAndLabel displayFlex width40percent"
           getNumber={(value: string) =>
-            onChange("treshHoldHeightVisible_Y", {
-              min: treshHoldHeightVisible_Y.min,
-              max: treshHoldHeight_Y.value,
+            onChange("thresholdHeightVisible_Y", {
+              min: thresholdHeightVisible_Y.min,
+              max: thresholdHeight_Y.value,
               value: +value,
             })
           }
@@ -138,11 +196,15 @@ const ConfigureMenu = () => {
           label="Width"
           className="inputAndLabel displayFlex width40percent"
           getNumber={(value: string) =>
-            onChange("frameProfileWidth_X", {
-              min: frameProfileWidth_X.min,
-              max: frameProfileWidth_X.max,
-              value: +value,
-            })
+            handleLeadindDependentChange(
+              "frameProfileWidth_X",
+              frameProfileWidth_X.min,
+              frameProfileWidth_X.max,
+              "frameProfileWidthVisible_X",
+              frameProfileWidthVisible_X.min,
+              frameProfileWidthVisible_X.value,
+              value
+            )
           }
         />
         <NumericInput
@@ -169,11 +231,15 @@ const ConfigureMenu = () => {
           label="Heigth"
           className="inputAndLabel displayFlex width40percent"
           getNumber={(value: string) =>
-            onChange("frameJumb_Y", {
-              min: frameJumb_Y.min,
-              max: frameJumb_Y.max,
-              value: +value,
-            })
+            handleLeadindDependentChange(
+              "frameJumb_Y",
+              frameJumb_Y.min,
+              frameJumb_Y.max,
+              "frameJumbVisible_Y",
+              frameJumbVisible_Y.min,
+              frameJumbVisible_Y.value,
+              value
+            )
           }
         />
         <NumericInput
@@ -222,13 +288,13 @@ const ConfigureMenu = () => {
           }
         />
       </div>
-      <div className="displayFlex rowEven">
+      <div className="displayFlex rowOdd">
         <p className="width20percent">Hinges</p>
         <Dropdown
           options={hingesCountOptions}
           value={hingesCount.value}
           label="Hinges Count"
-          className="inputAndLabel displayFlex width27percent"
+          className="inputAndLabel displayFlex width40percent"
           onChange={(value: string) =>
             onChange("hingesCount", {
               value,
@@ -239,12 +305,14 @@ const ConfigureMenu = () => {
         <Dropdown
           options={thirdHingePositionOptions}
           value={thirdHingePosition.value}
-          label="Hinges Count"
+          label="Third Hinge Position"
           className="inputAndLabel displayFlex width40percent"
-          onChange={(value: string) => onChange("thirdHingePosition", {
-            value,
-            displayName: thirdHingePosition.displayName,
-          })}
+          onChange={(value: string) =>
+            onChange("thirdHingePosition", {
+              value,
+              displayName: thirdHingePosition.displayName,
+            })
+          }
         />
       </div>
 

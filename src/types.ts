@@ -18,13 +18,13 @@ export interface ValuesType {
   frameJumbVisible_Y: LimitedNumType;
   frameProfileWidth_X: LimitedNumType;
   frameProfileWidthVisible_X: LimitedNumType;
-  handleHeight: string;
+  handleHeight_Y: string;
   hingesCount: OptionType;
   doorWidth_X: LimitedNumType;
   leavesCount: OptionType;
   thirdHingePosition: OptionType;
-  treshHoldHeight_Y: LimitedNumType;
-  treshHoldHeightVisible_Y: LimitedNumType;
+  thresholdHeight_Y: LimitedNumType;
+  thresholdHeightVisible_Y: LimitedNumType;
   useDoorCloser: boolean;
   useGlazing: boolean;
   doorHeight_Y: LimitedNumType;
