@@ -9,7 +9,17 @@ export interface OptionType {
   displayName: string;
 }
 
+export interface ActiveLeafType {
+  min: number;
+  max: number;
+  value: number;
+  type: string;
+  displayName: string;
+}
+
 export interface ValuesType {
+  activeLeafWidthOptions:OptionType[],
+  activeLeafWidth_X: ActiveLeafType;
   dinDirection: OptionType;
   doorCloser: string;
   doorLeafColor: string;

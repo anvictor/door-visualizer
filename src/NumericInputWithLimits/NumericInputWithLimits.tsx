@@ -7,6 +7,7 @@ interface NumericInputPropsType {
   className: string;
   value: number;
   getNumber: Function;
+  disabled?: boolean;
 }
 
 const NumericInput: React.FC<NumericInputPropsType> = ({
@@ -14,10 +15,10 @@ const NumericInput: React.FC<NumericInputPropsType> = ({
   max,
   label,
   className,
-  value,//: incomingValue,
+  value,
   getNumber,
+  disabled,
 }) => {
-  // const [value, setValue] = useState<number>(incomingValue);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const inputValue = parseInt(event.target.value, 10);
@@ -40,6 +41,7 @@ const NumericInput: React.FC<NumericInputPropsType> = ({
         min={min}
         max={max}
         onChange={handleChange}
+        disabled={disabled}
       />
     </div>
   );

@@ -67,6 +67,7 @@ const StellDoorVisualizer = () => {
     setPullView(!pullView);
   };
   const {
+    activeLeafWidth_X,
     dinDirection,
     doorCloser,
     doorLeafColor,
@@ -75,14 +76,14 @@ const StellDoorVisualizer = () => {
     frameJumbVisible_Y,
     frameProfileWidth_X,
     frameProfileWidthVisible_X,
-    handleHeight_Y: handleHeight,
+    handleHeight_Y,
     hingesCount,
     doorWidth_X,
     doorHeight_Y,
     leavesCount,
     thirdHingePosition,
-    thresholdHeight_Y: treshHoldHeight_Y,
-    thresholdHeightVisible_Y: treshHoldHeightVisible_Y,
+    thresholdHeight_Y,
+    thresholdHeightVisible_Y,
     useDoorCloser,
     useGlazing,
     hingeUpUnderTop_Y,
@@ -104,7 +105,7 @@ const StellDoorVisualizer = () => {
   );
   const frameClearanceHeight_Y = getFrameClearanceHeight_Y(
     frameHeight_Y,
-    treshHoldHeight_Y.value,
+    thresholdHeight_Y.value,
     frameJumb_Y.value
   );
 
@@ -185,7 +186,8 @@ const StellDoorVisualizer = () => {
     frameWidth_X,
     dinDirection.value,
     pullView,
-    frameProfileWidthVisible_X.value
+    frameProfileWidthVisible_X.value,
+    activeLeafWidth_X,
   );
 
   const pictureLeafRightWidth_X = getPictureLeafRightWidth_X(
@@ -196,7 +198,7 @@ const StellDoorVisualizer = () => {
 
   const leafHeight_Y = getLeafHeight_Y(
     frameHeight_Y,
-    treshHoldHeightVisible_Y.value,
+    thresholdHeightVisible_Y.value,
     frameJumbVisible_Y.value
   );
   const pictureLeafLeft_X = getPictureLeafLeft_X(
@@ -259,7 +261,7 @@ const StellDoorVisualizer = () => {
   // Handles
   const handleData = getHandleData(dinDirection.value, pullView);
   const handle_Y = getHandle_Y(
-    handleHeight,
+    handleHeight_Y,
     dinDirection.value,
     pullView,
     frameHeight_Y

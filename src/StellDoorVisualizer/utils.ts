@@ -1,4 +1,4 @@
-import { ValuesType } from "../types";
+import { ActiveLeafType, ValuesType } from "../types";
 /**
  * The image of the door is made SVG in layers.
 The list of important layers from the bottom - the furthest from the viewer.
@@ -18,6 +18,7 @@ In the case when only one sheet is used, it is always depicted by the first shee
 
 In case reorder or add or remove layers change indexation.
  */
+const LEAF_MIN = 250;
 const DOOR_WIDTH_MIN_X = 700;
 const DOOR_WIDTH_X = 920;
 const DOOR_WIDTH_MAX_X = 2800;
@@ -52,7 +53,6 @@ const CLOSER_SHIFT_Y = 30;
 const HANDLE_TYPE = "square"; // ["square", "round", "long"]
 const LOCK_SHIFT_X = 50;
 const ACTIVE_TO_PASSIVE_LEAF_OVERLAP = 40;
-const ACTIVE_LEAF_WIDTH = "exactlyHalf"; // ['number' as string || 'exactlyHalf']
 const HANDLE_AXIS_RELATIVE_SHIFT_X = new Map();
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_L", { X: 118, Y: 76 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_R", { X: 16, Y: 76 });
@@ -62,7 +62,18 @@ HANDLE_AXIS_RELATIVE_SHIFT_X.set("round_L", { X: 117, Y: 25 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("round_R", { X: 25, Y: 25 });
 
 const values: ValuesType = {
-  dinDirection: {value:"Left", displayName:"Left"}, // "Left", "Right"
+  activeLeafWidth_X: {
+    type: "number",
+    displayName: "Number in mm",
+    min: 250,
+    max: 1500,
+    value: 600,
+  },
+  activeLeafWidthOptions: [
+    { value: "exactlyHalf", displayName: "Exactly Half" },
+    { value: "number", displayName: "Number in mm" },
+  ],
+  dinDirection: { value: "Left", displayName: "Left" }, // "Left", "Right"
   doorCloser: "up",
   doorLeafColor: "",
   frameColor: "",
@@ -101,8 +112,8 @@ const values: ValuesType = {
     max: DOOR_WIDTH_MAX_X,
     value: DOOR_WIDTH_X,
   },
-  leavesCount: {value:"SingleLeaf", displayName:"Single Leaf"}, //"DoubleLeaf","SingleLeaf"
-  thirdHingePosition: {value:"Betwen",displayName:"Betwen"}, //"Size500mmUnderTheTop", "Betwen"
+  leavesCount: { value: "SingleLeaf", displayName: "Single Leaf" }, //"DoubleLeaf","SingleLeaf"
+  thirdHingePosition: { value: "Betwen", displayName: "Betwen" }, //"Size500mmUnderTheTop", "Betwen"
   thresholdHeight_Y: {
     min: THRESH_HOLD_HEIGHT_MIN_Y,
     max: FRAME_MAX,
@@ -172,10 +183,11 @@ const getPictureLeafLeftWidth_X = (
   frameWidth_X: number,
   dinDirection: string,
   pullView: boolean,
-  frameProfileWidthVisible_X: number
+  frameProfileWidthVisible_X: number,
+  activeLeafWidth_X: ActiveLeafType
 ) => {
   /*
-  H-two door leafs from PULL view side devided visual width HALF or NOT 
+  H-two door leaves from PULL view side devided visual width HALF or NOT 
   P-PULL view side or NOT
   D-DOUBLE leafs or NOT 
   L-active LEFT or NOT?
@@ -201,7 +213,7 @@ ____________
    */
   let pictureLeafLeftWidth_X = 200;
   // no lint error
-  const isExactlyHalf = ACTIVE_LEAF_WIDTH === "exactlyHalf";
+  const isExactlyHalf = activeLeafWidth_X.type === "exactlyHalf";
   const indexLogicLeafLeftWidth =
     1000 * +isExactlyHalf +
     100 * +pullView +
@@ -249,21 +261,23 @@ ____________
       break;
     case "right_push_active":
       pictureLeafLeftWidth_X =
-        +ACTIVE_LEAF_WIDTH - ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
+        activeLeafWidth_X.value - ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
       break;
     case "right_push_passive":
       pictureLeafLeftWidth_X =
         +frameWidth_X -
         frameProfileWidthVisible_X * 2 -
-        +ACTIVE_LEAF_WIDTH +
+        activeLeafWidth_X.value +
         ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
       break;
     case "left_pull_passive":
       pictureLeafLeftWidth_X =
-        +frameWidth_X - frameProfileWidthVisible_X * 2 - +ACTIVE_LEAF_WIDTH;
+        +frameWidth_X -
+        frameProfileWidthVisible_X * 2 -
+        activeLeafWidth_X.value;
       break;
     case "left_pull_active":
-      pictureLeafLeftWidth_X = +ACTIVE_LEAF_WIDTH;
+      pictureLeafLeftWidth_X = activeLeafWidth_X.value;
       break;
     case "right_push_is_overlaped":
       pictureLeafLeftWidth_X =
@@ -601,6 +615,7 @@ export {
   // PATTERN_IMAGE_WIDTH_X,
   // SHIFT_VIEWPORT_Y,
   STROKE_COLOR,
+  LEAF_MIN,
   add_10_Percents,
   getFrameClearanceHeight_Y,
   getFrameClearanceLeft_X,
