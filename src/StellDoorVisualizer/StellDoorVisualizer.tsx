@@ -9,8 +9,8 @@ import { ReactComponent as HANDLE_LONG_L_X118_Y76 } from "../images/HANDLE_LONG_
 import { ReactComponent as HANDLE_LONG_R_X16_Y76 } from "../images/HANDLE_LONG_R_X16_Y76.svg";
 import { ReactComponent as HANDLE_ROUND_L_X117_Y25 } from "../images/HANDLE_ROUND_L_X117_Y25.svg";
 import { ReactComponent as HANDLE_ROUND_R_X25_Y25 } from "../images/HANDLE_ROUND_R_X25_Y25.svg";
-import { ReactComponent as Handle_square_L_x118_y26 } from "../images/Handle_square_L_x118_y26.svg";
-import { ReactComponent as Handle_square_R_x26_y26 } from "../images/Handle_square_R_x26_y26.svg";
+import { ReactComponent as HANDLE_SQUARE_L_X118_Y26 } from "../images/HANDLE_SQUARE_L_X118_Y26.svg";
+import { ReactComponent as HANDLE_SQUARE_R_X26_Y26 } from "../images/HANDLE_SQUARE_R_X26_Y26.svg";
 import { ReactComponent as HINGE_18_132 } from "../images/HINGE_18_132.svg";
 import alum_brushed_H from "../images/alum_brushed_H.png";
 import alum_brushed_V from "../images/alum_brushed_V.png";
@@ -563,8 +563,8 @@ const StellDoorVisualizer = () => {
         {/* rect#picture_Leaf_Right order number is svg.children[5]*/}
         <rect id="picture_Leaf_Right" fill="#519ec215" stroke={STROKE_COLOR} />
         {/* svg#Handle order number is svg.children[6]*/}
-        {handleData.handleType === "square_R" && <Handle_square_R_x26_y26 />}
-        {handleData.handleType === "square_L" && <Handle_square_L_x118_y26 />}
+        {handleData.handleType === "square_R" && <HANDLE_SQUARE_R_X26_Y26 />}
+        {handleData.handleType === "square_L" && <HANDLE_SQUARE_L_X118_Y26 />}
         {handleData.handleType === "round_L" && <HANDLE_ROUND_L_X117_Y25 />}
         {handleData.handleType === "round_R" && <HANDLE_ROUND_R_X25_Y25 />}
         {handleData.handleType === "long_L" && <HANDLE_LONG_L_X118_Y76 />}
