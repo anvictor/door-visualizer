@@ -11,7 +11,7 @@ import { ReactComponent as Handle_round_L_x117_y25 } from "../images/Handle_roun
 import { ReactComponent as Handle_round_R_x25_y25 } from "../images/Handle_round_R_x25_y25.svg";
 import { ReactComponent as Handle_square_L_x118_y26 } from "../images/Handle_square_L_x118_y26.svg";
 import { ReactComponent as Handle_square_R_x26_y26 } from "../images/Handle_square_R_x26_y26.svg";
-import { ReactComponent as Hinge_18_132 } from "../images/Hinge_18_132.svg";
+import { ReactComponent as HINGE_18_132 } from "../images/HINGE_18_132.svg";
 import alum_brushed_H from "../images/alum_brushed_H.png";
 import alum_brushed_V from "../images/alum_brushed_V.png";
 import colorsData from "../colorsRal.json";
@@ -569,12 +569,12 @@ const StellDoorVisualizer = () => {
         {handleData.handleType === "long_L" && <Handle_long_L_x118_y76 />}
         {handleData.handleType === "long_R" && <Handle_long_R_x16_y76 />}
         {/* svg#Hinge order number is svg.children[7-12]*/}
-        <Hinge_18_132 />
-        <Hinge_18_132 />
-        <Hinge_18_132 />
-        <Hinge_18_132 />
-        <Hinge_18_132 />
-        <Hinge_18_132 />
+        <HINGE_18_132 />
+        <HINGE_18_132 />
+        <HINGE_18_132 />
+        <HINGE_18_132 />
+        <HINGE_18_132 />
+        <HINGE_18_132 />
         {/* rect#pushViewFrame in case push view order number is svg.children[13-14]*/}
         <rect
           id="pushViewFrame"
