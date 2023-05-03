@@ -20,7 +20,7 @@ export interface ActiveLeafType {
 export interface ValuesType {
   activeLeafWidthOptions:OptionType[],
   activeLeafWidth_X: ActiveLeafType;
-  dinDirection: OptionType;
+  openDirection: OptionType;
   doorCloser: string;
   doorLeafColor: string;
   frameColor: string;
@@ -40,4 +40,5 @@ export interface ValuesType {
   doorHeight_Y: LimitedNumType;
   hingeUpUnderTop_Y: LimitedNumType;
   hingeDownOverBottom_Y: LimitedNumType;
+  handleTypeString: string;
 }

@@ -11,7 +11,7 @@ const ConfigureMenu = () => {
   const {
     activeLeafWidth_X,
     activeLeafWidthOptions,
-    dinDirection,
+    openDirection,
     doorCloser,
     doorLeafColor,
     frameColor,
@@ -31,6 +31,7 @@ const ConfigureMenu = () => {
     doorHeight_Y,
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
+    handleTypeString,
   } = values;
 
   const isExactlyHalf = activeLeafWidth_X.type === "exactlyHalf";
@@ -50,7 +51,15 @@ const ConfigureMenu = () => {
     { value: "Size500mmUnderTheTop", displayName: "500 mm Under The Top" },
     { value: "Betwen", displayName: "Betwen Hinges" },
   ];
-
+  const openDirectionOptions = [
+    { value: "Left", displayName: "Left hand pull" },
+    { value: "Right", displayName: "Right hand pull" },
+  ];
+  const handleTypeOptions = [
+    { value: "long", displayName: "Long" },
+    { value: "square", displayName: "Square" },
+    { value: "round", displayName: "Round" },
+  ];
   const leavesCountOptions = [
     { value: "SingleLeaf", displayName: "Single Leaf" },
     { value: "DoubleLeaf", displayName: "Double Leaf" },
@@ -120,7 +129,6 @@ const ConfigureMenu = () => {
       handleLeavesCount("DoubleLeaf");
     }
     const activeWidthMax = getLimitedActiveLeafWidth(0).max;
-    console.log("activeWidthMax", activeWidthMax);
     if (!isDoubleLeaf) {
       onChange("activeLeafWidth_X", {
         ...activeLeafWidth_X,
@@ -149,10 +157,17 @@ const ConfigureMenu = () => {
       (option) => option.value === value
     )[0];
     onChange("leavesCount", chosenValue);
-    if (chosenValue.value === leavesCountOptions[0].value) {
+    if (chosenValue.value === "SingleLeaf") {
       onChange("activeLeafWidth_X", {
         ...activeLeafWidth_X,
-        type: activeLeafWidthOptions[1].value,
+        type: "number",
+        value: doorWidth_X.value - frameProfileWidthVisible_X.value * 2,
+      });
+    } else if (chosenValue.value === "DoubleLeaf") {
+      console.log(chosenValue.value);
+      onChange("activeLeafWidth_X", {
+        ...activeLeafWidth_X,
+        type: "exactlyHalf",
       });
     }
   };
@@ -424,13 +439,34 @@ const ConfigureMenu = () => {
           getNumber={handleActiveLeafWidth}
         />
       </div>
+      <div className="displayFlex rowOdd">
+        <p className="width10percent">Open</p>
+        <Dropdown
+          options={handleTypeOptions}
+          value={handleTypeString}
+          label="Handle Type"
+          className="inputAndLabel displayFlex width40percent"
+          onChange={(value: string) =>
+            onChange("handleTypeString", value)
+          }
+        />
+        <Dropdown
+          options={openDirectionOptions}
+          value={openDirection.value}
+          label="Open Direction"
+          className="inputAndLabel displayFlex width40percent"
+          onChange={(value: string) =>
+            onChange("openDirection", { ...openDirection, value })
+          }
+        />
+      </div>
 
       <p>GLASING_TYPE = 'glasses_round_300_300' "Glasses_square_300_300"</p>
       <p>HANDLE_TYPE = 'square'; // ["square", "round","long"]</p>
       <p>
         HANDLE: 'long_L','long_R', 'square_L', 'square_R', 'round_L', 'round_R'
       </p>
-      <p>dinDirection: "Left", // "Left", "Right"</p>
+     
     </div>
   );
 };

@@ -5,15 +5,15 @@ import { ReactComponent as CLOSER_RD } from "../images/CLOSER_RD.svg";
 import { ReactComponent as CLOSER_RU } from "../images/CLOSER_RU.svg";
 import { ReactComponent as GLASSES_ROUND_300_300 } from "../images/GLASSES_ROUND_300_300.svg";
 import { ReactComponent as GLASSES_SQUARE_300_300 } from "../images/GLASSES_SQUARE_300_300.svg";
-import { ReactComponent as HANDLE_LONG_L_X118_Y76 } from "../images/HANDLE_LONG_L_X118_Y76.svg";
-import { ReactComponent as HANDLE_LONG_R_X16_Y76 } from "../images/HANDLE_LONG_R_X16_Y76.svg";
+import { ReactComponent as HANDLE_LONG_L_X118_YHANDLE_LONG_L_X118_Y_MIN_26 } from "../images/HANDLE_LONG_L_X118_Y_MIN_26.svg";
+import { ReactComponent as HANDLE_LONG_R_X16_Y_MIN_26 } from "../images/HANDLE_LONG_R_X16_Y_MIN_26.svg";
 import { ReactComponent as HANDLE_ROUND_L_X117_Y25 } from "../images/HANDLE_ROUND_L_X117_Y25.svg";
 import { ReactComponent as HANDLE_ROUND_R_X25_Y25 } from "../images/HANDLE_ROUND_R_X25_Y25.svg";
 import { ReactComponent as HANDLE_SQUARE_L_X118_Y26 } from "../images/HANDLE_SQUARE_L_X118_Y26.svg";
 import { ReactComponent as HANDLE_SQUARE_R_X26_Y26 } from "../images/HANDLE_SQUARE_R_X26_Y26.svg";
 import { ReactComponent as HINGE_18_132 } from "../images/HINGE_18_132.svg";
-import alum_brushed_H from "../images/alum_brushed_H.png";
-import alum_brushed_V from "../images/alum_brushed_V.png";
+import ALUM_BRUSHED_H from "../images/ALUM_BRUSHED_H.png";
+import ALUM_BRUSHED_V from "../images/ALUM_BRUSHED_V.png";
 import colorsData from "../colorsRal.json";
 import "./StellDoorVisualizer.css";
 import {
@@ -68,7 +68,7 @@ const StellDoorVisualizer = () => {
   };
   const {
     activeLeafWidth_X,
-    dinDirection,
+    openDirection,
     doorCloser,
     doorLeafColor,
     frameColor,
@@ -88,6 +88,7 @@ const StellDoorVisualizer = () => {
     useGlazing,
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
+    handleTypeString,
   } = values;
   //Frame
   const frameWidth_X = +doorWidth_X.value;
@@ -184,7 +185,7 @@ const StellDoorVisualizer = () => {
   const pictureLeafLeftWidth_X = getPictureLeafLeftWidth_X(
     isDoubleLeaf,
     frameWidth_X,
-    dinDirection.value,
+    openDirection.value,
     pullView,
     frameProfileWidthVisible_X.value,
     activeLeafWidth_X,
@@ -259,21 +260,23 @@ const StellDoorVisualizer = () => {
   };
 
   // Handles
-  const handleData = getHandleData(dinDirection.value, pullView);
+  const handleData = getHandleData(openDirection.value, pullView,handleTypeString);
   const handle_Y = getHandle_Y(
     handleHeight_Y,
-    dinDirection.value,
+    openDirection.value,
     pullView,
-    frameHeight_Y
+    frameHeight_Y,
+    handleTypeString
   );
   const handle_X = getHandle_X(
-    dinDirection.value,
+    openDirection.value,
     isDoubleLeaf,
     pictureLeafLeft_X,
     pictureLeafLeftWidth_X,
     pictureLeafRight_X,
     pictureLeafRightWidth_X,
-    pullView
+    pullView,
+    handleTypeString
   );
 
   const prepareHandle = () => {
@@ -301,33 +304,33 @@ const StellDoorVisualizer = () => {
     hingeDownOverBottom_Y.value
   );
   const hingeLeftUpVisibility = getHingeLeftBaseVisibility(
-    dinDirection.value,
+    openDirection.value,
     leavesCount.value,
     pullView
   );
   const hingeLeftDownVisibility = getHingeLeftBaseVisibility(
-    dinDirection.value,
+    openDirection.value,
     leavesCount.value,
     pullView
   );
   const hingeRightUpVisibility = getHingeRightBaseVisibility(
-    dinDirection.value,
+    openDirection.value,
     leavesCount.value,
     pullView
   );
   const hingeRightDownVisibility = getHingeRightBaseVisibility(
-    dinDirection.value,
+    openDirection.value,
     leavesCount.value,
     pullView
   );
   const hingeLeftMiddleVisibility = getHingeLeftAdditionalVisibility(
-    dinDirection.value,
+    openDirection.value,
     leavesCount.value,
     hingesCount.value,
     pullView
   );
   const hingeRightMiddleVisibility = getHingeRightAdditionalVisibility(
-    dinDirection.value,
+    openDirection.value,
     leavesCount.value,
     hingesCount.value,
     pullView
@@ -479,6 +482,7 @@ const StellDoorVisualizer = () => {
     prepareDoorCloser();
     prepareGlazing();
     // catch svg scene
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -520,7 +524,7 @@ const StellDoorVisualizer = () => {
             height="100%"
           >
             <image
-              href={alum_brushed_H}
+              href={ALUM_BRUSHED_H}
               x="0"
               y="0"
               width={"100%"}
@@ -534,7 +538,7 @@ const StellDoorVisualizer = () => {
             height={"100%"}
           >
             <image
-              href={alum_brushed_V}
+              href={ALUM_BRUSHED_V}
               x="0"
               y="0"
               width="100%"
@@ -567,8 +571,8 @@ const StellDoorVisualizer = () => {
         {handleData.handleType === "square_L" && <HANDLE_SQUARE_L_X118_Y26 />}
         {handleData.handleType === "round_L" && <HANDLE_ROUND_L_X117_Y25 />}
         {handleData.handleType === "round_R" && <HANDLE_ROUND_R_X25_Y25 />}
-        {handleData.handleType === "long_L" && <HANDLE_LONG_L_X118_Y76 />}
-        {handleData.handleType === "long_R" && <HANDLE_LONG_R_X16_Y76 />}
+        {handleData.handleType === "long_L" && <HANDLE_LONG_L_X118_YHANDLE_LONG_L_X118_Y_MIN_26 />}
+        {handleData.handleType === "long_R" && <HANDLE_LONG_R_X16_Y_MIN_26 />}
         {/* svg#Hinge order number is svg.children[7-12]*/}
         <HINGE_18_132 />
         <HINGE_18_132 />

@@ -54,8 +54,8 @@ const HANDLE_TYPE = "square"; // ["square", "round", "long"]
 const LOCK_SHIFT_X = 50;
 const ACTIVE_TO_PASSIVE_LEAF_OVERLAP = 40;
 const HANDLE_AXIS_RELATIVE_SHIFT_X = new Map();
-HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_L", { X: 118, Y: 76 });
-HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_R", { X: 16, Y: 76 });
+HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_L", { X: 118, Y: -26 });
+HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_R", { X: 16, Y: -26 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("square_L", { X: 118, Y: 26 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("square_R", { X: 26, Y: 26 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("round_L", { X: 117, Y: 25 });
@@ -73,7 +73,7 @@ const values: ValuesType = {
     { value: "exactlyHalf", displayName: "Exactly Half" },
     { value: "number", displayName: "Number in mm" },
   ],
-  dinDirection: { value: "Left", displayName: "Left" }, // "Left", "Right"
+  openDirection: { value: "Left", displayName: "Left hand pull" }, // "Left", "Right"
   doorCloser: "up",
   doorLeafColor: "",
   frameColor: "",
@@ -136,6 +136,7 @@ const values: ValuesType = {
     max: HINGE_DOWN_OVER_BOTTOM_MAX_Y,
     value: HINGE_DOWN_OVER_BOTTOM_Y,
   },
+  handleTypeString: HANDLE_TYPE,
 };
 
 const add_10_Percents = (value: number) => +value + +value / 10;
@@ -181,7 +182,7 @@ const getFrameClearanceHeight_Y = (
 const getPictureLeafLeftWidth_X = (
   isDoubleLeaf: boolean,
   frameWidth_X: number,
-  dinDirection: string,
+  openDirection: string,
   pullView: boolean,
   frameProfileWidthVisible_X: number,
   activeLeafWidth_X: ActiveLeafType
@@ -218,7 +219,7 @@ ____________
     1000 * +isExactlyHalf +
     100 * +pullView +
     10 * +isDoubleLeaf +
-    +(dinDirection === "Left");
+    +(openDirection === "Left");
 
   let indexLeafPicture = "";
   if (
@@ -336,23 +337,28 @@ const getLeafTop_Y = (frameTop_Y: number, frameJumbVisible_Y: number) => {
 
 const getHandle_Y = (
   handleHeight: string,
-  dinDirection: string,
+  openDirection: string,
   pullView: boolean,
-  frameHeight_Y: number
+  frameHeight_Y: number,
+  handleTypeString: string
 ) => {
-  const handleAxisDescent_Y = getHandleData(dinDirection, pullView)
-    .HandleAxisRelativeShift.Y;
+  const handleAxisDescent_Y = getHandleData(
+    openDirection,
+    pullView,
+    handleTypeString
+  ).HandleAxisRelativeShift.Y;
   return add_10_Percents(+frameHeight_Y) - +handleHeight + handleAxisDescent_Y;
 };
 
 const getHandle_X = (
-  dinDirection: string,
+  openDirection: string,
   isDoubleLeaf: boolean,
   pictureLeafLeft_X: number,
   pictureLeafLeftWidth_X: number,
   pictureLeafRight_X: number,
   pictureLeafRightWidth_X: number,
-  pullView: boolean
+  pullView: boolean,
+  handleTypeString: string
 ) => {
   let handle_X = 0;
   /*
@@ -400,7 +406,7 @@ const getHandle_X = (
                         handleAxisShift_X
    */
   const indexLogicHandle_X =
-    100 * +pullView + 10 * +isDoubleLeaf + +(dinDirection === "Left");
+    100 * +pullView + 10 * +isDoubleLeaf + +(openDirection === "Left");
 
   let indexPictureHandle_X = "";
   if (
@@ -423,8 +429,11 @@ const getHandle_X = (
     indexPictureHandle_X = "right_picture_leaf_handle_at_left_with_overlaping"; // *****
   }
 
-  const handleAxisShift_X = getHandleData(dinDirection, pullView)
-    .HandleAxisRelativeShift.X;
+  const handleAxisShift_X = getHandleData(
+    openDirection,
+    pullView,
+    handleTypeString
+  ).HandleAxisRelativeShift.X;
 
   switch (indexPictureHandle_X) {
     case "handle_at_right_with_overlaping": // *
@@ -513,7 +522,7 @@ const getHingeMiddle_Y = (
 };
 
 const getHingeLeftBaseVisibility = (
-  dinDirection: string,
+  openDirection: string,
   leavesCount: string,
   pullView: boolean
 ) => {
@@ -521,7 +530,7 @@ const getHingeLeftBaseVisibility = (
   if (!pullView) {
     LeftBaseVisibility = false;
   }
-  if (dinDirection === "Right" && leavesCount === "SingleLeaf") {
+  if (openDirection === "Right" && leavesCount === "SingleLeaf") {
     LeftBaseVisibility = false;
   }
 
@@ -529,7 +538,7 @@ const getHingeLeftBaseVisibility = (
 };
 
 const getHingeRightBaseVisibility = (
-  dinDirection: string,
+  openDirection: string,
   leavesCount: string,
   pullView: boolean
 ) => {
@@ -537,7 +546,7 @@ const getHingeRightBaseVisibility = (
   if (!pullView) {
     RightBaseVisibility = false;
   }
-  if (dinDirection === "Left" && leavesCount === "SingleLeaf") {
+  if (openDirection === "Left" && leavesCount === "SingleLeaf") {
     RightBaseVisibility = false;
   }
 
@@ -545,7 +554,7 @@ const getHingeRightBaseVisibility = (
 };
 
 const getHingeLeftAdditionalVisibility = (
-  dinDirection: string,
+  openDirection: string,
   leavesCount: string,
   hingesCount: string,
   pullView: boolean
@@ -554,7 +563,7 @@ const getHingeLeftAdditionalVisibility = (
   if (!pullView || hingesCount === "TwoPieces") {
     LeftBaseVisibility = false;
   }
-  if (dinDirection === "Right" && leavesCount === "SingleLeaf") {
+  if (openDirection === "Right" && leavesCount === "SingleLeaf") {
     LeftBaseVisibility = false;
   }
 
@@ -562,7 +571,7 @@ const getHingeLeftAdditionalVisibility = (
 };
 
 const getHingeRightAdditionalVisibility = (
-  dinDirection: string,
+  openDirection: string,
   leavesCount: string,
   hingesCount: string,
   pullView: boolean
@@ -571,27 +580,31 @@ const getHingeRightAdditionalVisibility = (
   if (!pullView || hingesCount === "TwoPieces") {
     RightBaseVisibility = false;
   }
-  if (dinDirection === "Left" && leavesCount === "SingleLeaf") {
+  if (openDirection === "Left" && leavesCount === "SingleLeaf") {
     RightBaseVisibility = false;
   }
 
   return RightBaseVisibility ? "visible" : "hidden";
 };
 
-const getHandleData = (dinDirection: string, pullView: boolean) => {
+const getHandleData = (
+  openDirection: string,
+  pullView: boolean,
+  handleTypeString: string
+) => {
   let handleData = {
     handleType: "",
     HandleAxisRelativeShift: { X: 0, Y: 0 },
   };
   let handleToYouOpenDirection = "R";
   if (
-    (pullView && dinDirection === "Left") ||
-    (!pullView && dinDirection === "Right")
+    (pullView && openDirection === "Left") ||
+    (!pullView && openDirection === "Right")
   ) {
     handleToYouOpenDirection = "L";
   }
 
-  const handleType = `${HANDLE_TYPE}_${handleToYouOpenDirection}`;
+  const handleType = `${handleTypeString}_${handleToYouOpenDirection}`;
   handleData = {
     handleType: handleType,
     HandleAxisRelativeShift: HANDLE_AXIS_RELATIVE_SHIFT_X.get(handleType),
