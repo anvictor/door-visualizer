@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ReactComponent as Closer_LD } from "../images/Closer_LD.svg";
-import { ReactComponent as Closer_LU } from "../images/Closer_LU.svg";
-import { ReactComponent as Closer_R_D } from "../images/Closer_R_D.svg";
-import { ReactComponent as Closer_R_U } from "../images/Closer_R_U.svg";
-import { ReactComponent as Glasses_round_300_300 } from "../images/Glasses_round_300_300.svg";
-import { ReactComponent as Glasses_square_300_300 } from "../images/Glasses_square_300_300.svg";
-import { ReactComponent as Handle_long_L_x118_y76 } from "../images/Handle_long_L_x118_y76.svg";
-import { ReactComponent as Handle_long_R_x16_y76 } from "../images/Handle_long_R_x16_y76.svg";
-import { ReactComponent as Handle_round_L_x117_y25 } from "../images/Handle_round_L_x117_y25.svg";
-import { ReactComponent as Handle_round_R_x25_y25 } from "../images/Handle_round_R_x25_y25.svg";
+import { ReactComponent as CLOSER_LD } from "../images/CLOSER_LD.svg";
+import { ReactComponent as CLOSER_LU } from "../images/CLOSER_LU.svg";
+import { ReactComponent as CLOSER_RD } from "../images/CLOSER_RD.svg";
+import { ReactComponent as CLOSER_RU } from "../images/CLOSER_RU.svg";
+import { ReactComponent as GLASSES_ROUND_300_300 } from "../images/GLASSES_ROUND_300_300.svg";
+import { ReactComponent as GLASSES_SQUARE_300_300 } from "../images/GLASSES_SQUARE_300_300.svg";
+import { ReactComponent as HANDLE_LONG_L_X118_Y76 } from "../images/HANDLE_LONG_L_X118_Y76.svg";
+import { ReactComponent as HANDLE_LONG_R_X16_Y76 } from "../images/HANDLE_LONG_R_X16_Y76.svg";
+import { ReactComponent as HANDLE_ROUND_L_X117_Y25 } from "../images/HANDLE_ROUND_L_X117_Y25.svg";
+import { ReactComponent as HANDLE_ROUND_R_X25_Y25 } from "../images/HANDLE_ROUND_R_X25_Y25.svg";
 import { ReactComponent as Handle_square_L_x118_y26 } from "../images/Handle_square_L_x118_y26.svg";
 import { ReactComponent as Handle_square_R_x26_y26 } from "../images/Handle_square_R_x26_y26.svg";
 import { ReactComponent as HINGE_18_132 } from "../images/HINGE_18_132.svg";
@@ -564,10 +564,10 @@ const StellDoorVisualizer = () => {
         {/* svg#Handle order number is svg.children[6]*/}
         {handleData.handleType === "square_R" && <Handle_square_R_x26_y26 />}
         {handleData.handleType === "square_L" && <Handle_square_L_x118_y26 />}
-        {handleData.handleType === "round_L" && <Handle_round_L_x117_y25 />}
-        {handleData.handleType === "round_R" && <Handle_round_R_x25_y25 />}
-        {handleData.handleType === "long_L" && <Handle_long_L_x118_y76 />}
-        {handleData.handleType === "long_R" && <Handle_long_R_x16_y76 />}
+        {handleData.handleType === "round_L" && <HANDLE_ROUND_L_X117_Y25 />}
+        {handleData.handleType === "round_R" && <HANDLE_ROUND_R_X25_Y25 />}
+        {handleData.handleType === "long_L" && <HANDLE_LONG_L_X118_Y76 />}
+        {handleData.handleType === "long_R" && <HANDLE_LONG_R_X16_Y76 />}
         {/* svg#Hinge order number is svg.children[7-12]*/}
         <HINGE_18_132 />
         <HINGE_18_132 />
@@ -590,13 +590,13 @@ const StellDoorVisualizer = () => {
         />
 
         {/* svg#Closer order number is svg.children[15-18]*/}
-        <Closer_LD />
-        <Closer_LU />
-        <Closer_R_D />
-        <Closer_R_U />
+        <CLOSER_LD />
+        <CLOSER_LU />
+        <CLOSER_RD />
+        <CLOSER_RU />
         {/* svg#Glasse order number is svg.children[19-20]*/}
-        <Glasses_round_300_300 />
-        <Glasses_square_300_300 />
+        <GLASSES_ROUND_300_300 />
+        <GLASSES_SQUARE_300_300 />
         <Rooler />
       </svg>
       <div
