@@ -19,10 +19,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   disabled,
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
-  if (label === "Glazing Type") {
-    console.log(value, selectedValue);
-  }
-  if (label === "Hinges Count") {
+  if (label === "use Door Closer") {
     console.log(value, selectedValue);
   }
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {

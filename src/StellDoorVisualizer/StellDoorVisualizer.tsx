@@ -20,9 +20,11 @@ import {
   CLOSER_SHIFT_X,
   CLOSER_SHIFT_Y,
   CLOSER_WIDTH_X,
-  GLASING_CENTER_SHIFT_X,
-  GLASING_CENTER_SHIFT_Y,
-  GLASING_CENTER_Y,
+  GLAZING_CENTER_SHIFT_X,
+  GLAZING_CENTER_SHIFT_Y,
+  GLAZING_CENTER_Y,
+  FRAME_PROFILE_WIDTH_VISIBLE_X,
+  FRAME_PROFILE_WIDTH_X,
   STROKE_COLOR,
   add_10_Percents,
   getFrameClearanceHeight_Y,
@@ -106,6 +108,7 @@ const StellDoorVisualizer = () => {
     thresholdHeight_Y.value,
     frameJumb_Y.value
   );
+  const pushViewFrameVisibility = pullView ? "hidden" : "visible";
 
   const prepareFrames = () => {
     // pull view frame
@@ -413,24 +416,34 @@ const StellDoorVisualizer = () => {
 
   // Glazing
   const pullViewLeafLeft_Middle_X =
-    pictureLeafLeft_X + pictureLeafLeftWidth_X / 2 - GLASING_CENTER_SHIFT_X;
-  const pullViewLeafLeft_Middle_Y =
-    leafTop_Y + leafHeight_Y - GLASING_CENTER_Y - GLASING_CENTER_SHIFT_Y;
-  const pushViewFrameVisibility = pullView ? "hidden" : "visible";
+    pictureLeafLeft_X + pictureLeafLeftWidth_X / 2 - GLAZING_CENTER_SHIFT_X;
+
+  const pushViewLeafLeft_Middle_X =
+    pictureLeafRight_X +
+    pictureLeafRightWidth_X -
+    pullViewLeafLeft_Middle_X -
+    GLAZING_CENTER_SHIFT_X +
+    (FRAME_PROFILE_WIDTH_X - FRAME_PROFILE_WIDTH_VISIBLE_X);
+
+  const glazing_X = pullView
+    ? pullViewLeafLeft_Middle_X
+    : pushViewLeafLeft_Middle_X;
+
+  const glazing_Y =
+    leafTop_Y + leafHeight_Y - GLAZING_CENTER_Y - GLAZING_CENTER_SHIFT_Y;
 
   const prepareGlazing = () => {
-    
     const GLASSES_ROUND_300_300 = document.querySelector(
       '[shape-rendering="GLASSES_ROUND_300_300"]'
     );
-    GLASSES_ROUND_300_300?.setAttribute("x", `${pullViewLeafLeft_Middle_X}`);
-    GLASSES_ROUND_300_300?.setAttribute("y", `${pullViewLeafLeft_Middle_Y}`);
-    
+    GLASSES_ROUND_300_300?.setAttribute("x", `${glazing_X}`);
+    GLASSES_ROUND_300_300?.setAttribute("y", `${glazing_Y}`);
+
     const GLASSES_SQUARE_300_300 = document.querySelector(
       '[shape-rendering="GLASSES_SQUARE_300_300"]'
     );
-    GLASSES_SQUARE_300_300?.setAttribute("x", `${pullViewLeafLeft_Middle_X}`);
-    GLASSES_SQUARE_300_300?.setAttribute("y", `${pullViewLeafLeft_Middle_Y}`);
+    GLASSES_SQUARE_300_300?.setAttribute("x", `${glazing_X}`);
+    GLASSES_SQUARE_300_300?.setAttribute("y", `${glazing_Y}`);
 
     if (!useGlazing) {
       GLASSES_ROUND_300_300?.setAttribute("visibility", "hidden");
