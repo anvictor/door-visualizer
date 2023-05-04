@@ -1,6 +1,6 @@
 <svg
-  shape-rendering="geometricPrecision"
-  text-rendering="geometricPrecision"
+  shape-rendering="HINGE_18_132"
+  text-rendering="HINGE"
   style="background-color:transparent"
 ><defs><linearGradient
       id="eWJntuyZxQo2-fill"

@@ -1,6 +1,6 @@
 <svg
-  shape-rendering="geometricPrecision"
-  text-rendering="geometricPrecision"
+  shape-rendering="HANDLE_LONG_R_X16_Y_MIN_26"
+  text-rendering="HANDLE"
   style="background-color:transparent"
 ><defs><linearGradient
       id="eGoe0li5Cvn10-fill"

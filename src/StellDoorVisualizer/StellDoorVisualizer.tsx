@@ -5,7 +5,7 @@ import { ReactComponent as CLOSER_RD } from "../images/CLOSER_RD.svg";
 import { ReactComponent as CLOSER_RU } from "../images/CLOSER_RU.svg";
 import { ReactComponent as GLASSES_ROUND_300_300 } from "../images/GLASSES_ROUND_300_300.svg";
 import { ReactComponent as GLASSES_SQUARE_300_300 } from "../images/GLASSES_SQUARE_300_300.svg";
-import { ReactComponent as HANDLE_LONG_L_X118_YHANDLE_LONG_L_X118_Y_MIN_26 } from "../images/HANDLE_LONG_L_X118_Y_MIN_26.svg";
+import { ReactComponent as HANDLE_LONG_L_X118_Y_MIN_26 } from "../images/HANDLE_LONG_L_X118_Y_MIN_26.svg";
 import { ReactComponent as HANDLE_LONG_R_X16_Y_MIN_26 } from "../images/HANDLE_LONG_R_X16_Y_MIN_26.svg";
 import { ReactComponent as HANDLE_ROUND_L_X117_Y25 } from "../images/HANDLE_ROUND_L_X117_Y25.svg";
 import { ReactComponent as HANDLE_ROUND_R_X25_Y25 } from "../images/HANDLE_ROUND_R_X25_Y25.svg";
@@ -20,17 +20,11 @@ import {
   CLOSER_SHIFT_X,
   CLOSER_SHIFT_Y,
   CLOSER_WIDTH_X,
-  // FRAME_PROFILE_WIDTH_VISIBLE_X,
   GLASING_CENTER_SHIFT_X,
   GLASING_CENTER_SHIFT_Y,
   GLASING_CENTER_Y,
   GLASING_TYPE,
-  // PATTERN_IMAGE_HEIGHT_Y,
-  // PATTERN_IMAGE_WIDTH_X,
-  // SHIFT_VIEWPORT_Y,
   STROKE_COLOR,
-  // VISIBLE_WALL_HEIGHT_Y,
-  // VISIBLE_WALL_WIDTH_X,
   add_10_Percents,
   getFrameClearanceHeight_Y,
   getFrameClearanceLeft_X,
@@ -99,7 +93,10 @@ const StellDoorVisualizer = () => {
     frameLeft_X,
     frameProfileWidth_X.value
   );
-  const frameClearanceTop_Y = getFrameClearanceTop_Y(frameTop_Y, frameJumb_Y.value);
+  const frameClearanceTop_Y = getFrameClearanceTop_Y(
+    frameTop_Y,
+    frameJumb_Y.value
+  );
   const frameClearanceWidth_X = getFrameClearanceWidth_X(
     frameWidth_X,
     frameProfileWidth_X.value
@@ -188,7 +185,7 @@ const StellDoorVisualizer = () => {
     openDirection.value,
     pullView,
     frameProfileWidthVisible_X.value,
-    activeLeafWidth_X,
+    activeLeafWidth_X
   );
 
   const pictureLeafRightWidth_X = getPictureLeafRightWidth_X(
@@ -260,7 +257,11 @@ const StellDoorVisualizer = () => {
   };
 
   // Handles
-  const handleData = getHandleData(openDirection.value, pullView,handleTypeString);
+  const handleData = getHandleData(
+    openDirection.value,
+    pullView,
+    handleTypeString
+  );
   const handle_Y = getHandle_Y(
     handleHeight_Y,
     openDirection.value,
@@ -280,22 +281,27 @@ const StellDoorVisualizer = () => {
   );
 
   const prepareHandle = () => {
-    const svg = document.getElementById("scene");
-    const handle = svg?.children[6];
-    handle?.setAttribute("id", "Handle");
-    handle?.setAttribute("x", handle_X.toString());
-    handle?.setAttribute("y", handle_Y.toString());
+    const HANDLE = document.querySelector('[text-rendering="HANDLE"]');
+    HANDLE?.setAttribute("x", handle_X.toString());
+    HANDLE?.setAttribute("y", handle_Y.toString());
   };
 
   // Hinges
-  const hingeLeft_X = getHingeLeft_X(frameLeft_X, frameProfileWidthVisible_X.value);
+  const hingeLeft_X = getHingeLeft_X(
+    frameLeft_X,
+    frameProfileWidthVisible_X.value
+  );
   const hingeRight_X = getHingeRight_X(
     frameLeft_X,
     frameWidth_X,
     frameProfileWidthVisible_X.value
   );
   const hingeUp_Y = getHingeUp_Y(frameTop_Y, hingeUpUnderTop_Y.value);
-  const hingeDown_Y = getHingeDown_Y(frameTop_Y, frameHeight_Y, hingeDownOverBottom_Y.value);
+  const hingeDown_Y = getHingeDown_Y(
+    frameTop_Y,
+    frameHeight_Y,
+    hingeDownOverBottom_Y.value
+  );
   const hingeMiddle_Y = getHingeMiddle_Y(
     frameTop_Y,
     frameHeight_Y,
@@ -337,41 +343,37 @@ const StellDoorVisualizer = () => {
   );
 
   const prepareHinges = () => {
-    const svg = document.getElementById("scene");
-    const hingeLeftUp = svg?.children[7];
-    hingeLeftUp?.setAttribute("id", "hingeLeftUp");
-    const hingeLeftDown = svg?.children[8];
-    hingeLeftDown?.setAttribute("id", "hingeLeftDown");
-    const hingeRightUp = svg?.children[9];
-    hingeRightUp?.setAttribute("id", "hingeRightUp");
-    const hingeRightDown = svg?.children[10];
-    hingeRightDown?.setAttribute("id", "hingeRightDown");
-    const hingeLeftMiddle = svg?.children[11];
-    hingeLeftMiddle?.setAttribute("id", "hingeLeftMiddle");
-    const hingeRightMiddle = svg?.children[12];
-    hingeRightMiddle?.setAttribute("id", "hingeRightMiddle");
+    const Hinges = document.querySelectorAll('[text-rendering="HINGE"]');
 
-    hingeLeftUp?.setAttribute("x", `${hingeLeft_X}`);
-    hingeLeftUp?.setAttribute("y", `${hingeUp_Y}`);
-    hingeLeftUp?.setAttribute("visibility", `${hingeLeftUpVisibility}`);
-    hingeLeftDown?.setAttribute("x", `${hingeLeft_X}`);
-    hingeLeftDown?.setAttribute("y", `${hingeDown_Y}`);
-    hingeLeftDown?.setAttribute("visibility", `${hingeLeftDownVisibility}`);
-    hingeRightUp?.setAttribute("x", `${hingeRight_X}`);
-    hingeRightUp?.setAttribute("y", `${hingeUp_Y}`);
-    hingeRightUp?.setAttribute("visibility", `${hingeRightUpVisibility}`);
-    hingeRightDown?.setAttribute("x", `${hingeRight_X}`);
-    hingeRightDown?.setAttribute("y", `${hingeDown_Y}`);
-    hingeRightDown?.setAttribute("visibility", `${hingeRightDownVisibility}`);
-    hingeLeftMiddle?.setAttribute("x", `${hingeLeft_X}`);
-    hingeLeftMiddle?.setAttribute("y", `${hingeMiddle_Y}`);
-    hingeLeftMiddle?.setAttribute("visibility", `${hingeLeftMiddleVisibility}`);
-    hingeRightMiddle?.setAttribute("x", `${hingeRight_X}`);
-    hingeRightMiddle?.setAttribute("y", `${hingeMiddle_Y}`);
-    hingeRightMiddle?.setAttribute(
-      "visibility",
-      `${hingeRightMiddleVisibility}`
-    );
+    Hinges[0].setAttribute("id", "hingeLeftUp");
+    Hinges[0].setAttribute("x", `${hingeLeft_X}`);
+    Hinges[0].setAttribute("y", `${hingeUp_Y}`);
+    Hinges[0].setAttribute("visibility", `${hingeLeftUpVisibility}`);
+
+    Hinges[1].setAttribute("id", "hingeLeftDown");
+    Hinges[1].setAttribute("x", `${hingeLeft_X}`);
+    Hinges[1].setAttribute("y", `${hingeDown_Y}`);
+    Hinges[1].setAttribute("visibility", `${hingeLeftDownVisibility}`);
+
+    Hinges[2].setAttribute("id", "hingeRightUp");
+    Hinges[2].setAttribute("x", `${hingeRight_X}`);
+    Hinges[2].setAttribute("y", `${hingeUp_Y}`);
+    Hinges[2].setAttribute("visibility", `${hingeRightUpVisibility}`);
+
+    Hinges[3].setAttribute("id", "hingeRightDown");
+    Hinges[3].setAttribute("x", `${hingeRight_X}`);
+    Hinges[3].setAttribute("y", `${hingeDown_Y}`);
+    Hinges[3].setAttribute("visibility", `${hingeRightDownVisibility}`);
+
+    Hinges[4].setAttribute("id", "hingeLeftMiddle");
+    Hinges[4].setAttribute("x", `${hingeLeft_X}`);
+    Hinges[4].setAttribute("y", `${hingeMiddle_Y}`);
+    Hinges[4].setAttribute("visibility", `${hingeLeftMiddleVisibility}`);
+
+    Hinges[5].setAttribute("id", "hingeRightMiddle");
+    Hinges[5].setAttribute("x", `${hingeRight_X}`);
+    Hinges[5].setAttribute("y", `${hingeMiddle_Y}`);
+    Hinges[5].setAttribute("visibility", `${hingeRightMiddleVisibility}`);
   };
 
   // DoorCloser
@@ -379,37 +381,33 @@ const StellDoorVisualizer = () => {
     frameLeft_X + frameProfileWidthVisible_X.value + CLOSER_SHIFT_X;
   const closerRight_X =
     frameLeft_X + frameWidth_X - CLOSER_WIDTH_X - CLOSER_SHIFT_X;
-  const closerTop_Y = frameTop_Y + frameProfileWidthVisible_X.value - CLOSER_SHIFT_Y;
+  const closerTop_Y =
+    frameTop_Y + frameProfileWidthVisible_X.value - CLOSER_SHIFT_Y;
 
   const prepareDoorCloser = () => {
-    const svg = document.getElementById("scene");
-    const closer_LD = svg?.children[15];
-    closer_LD?.setAttribute("id", "closer_LD");
-    const closer_LU = svg?.children[16];
-    closer_LU?.setAttribute("id", "closer_LU");
-    const closer_R_D = svg?.children[17];
-    closer_R_D?.setAttribute("id", "closer_R_D");
-    const closer_R_U = svg?.children[18];
-    closer_R_U?.setAttribute("id", "closer_R_U");
+    const CLOSER_LD = document.querySelector('[shape-rendering="CLOSER_LD"]');
+    const CLOSER_LU = document.querySelector('[shape-rendering="CLOSER_LU"]');
+    const CLOSER_RD = document.querySelector('[shape-rendering="CLOSER_RD"]');
+    const CLOSER_RU = document.querySelector('[shape-rendering="CLOSER_RU"]');
 
-    closer_LD?.setAttribute("x", `${closerLeft_X}`);
-    closer_LD?.setAttribute("y", `${closerTop_Y}`);
-    closer_LU?.setAttribute("x", `${closerLeft_X}`);
-    closer_LU?.setAttribute("y", `${closerTop_Y}`);
-    closer_R_D?.setAttribute("x", `${closerRight_X}`);
-    closer_R_D?.setAttribute("y", `${closerTop_Y}`);
-    closer_R_U?.setAttribute("x", `${closerRight_X}`);
-    closer_R_U?.setAttribute("y", `${closerTop_Y}`);
+    CLOSER_LD?.setAttribute("x", `${closerLeft_X}`);
+    CLOSER_LD?.setAttribute("y", `${closerTop_Y}`);
+    CLOSER_LU?.setAttribute("x", `${closerLeft_X}`);
+    CLOSER_LU?.setAttribute("y", `${closerTop_Y}`);
+    CLOSER_RD?.setAttribute("x", `${closerRight_X}`);
+    CLOSER_RD?.setAttribute("y", `${closerTop_Y}`);
+    CLOSER_RU?.setAttribute("x", `${closerRight_X}`);
+    CLOSER_RU?.setAttribute("y", `${closerTop_Y}`);
     if (!useDoorCloser) {
-      closer_LD?.setAttribute("visibility", "hidden");
-      closer_LU?.setAttribute("visibility", "hidden");
-      closer_R_D?.setAttribute("visibility", "hidden");
-      closer_R_U?.setAttribute("visibility", "hidden");
+      CLOSER_LD?.setAttribute("visibility", "hidden");
+      CLOSER_LU?.setAttribute("visibility", "hidden");
+      CLOSER_RD?.setAttribute("visibility", "hidden");
+      CLOSER_RU?.setAttribute("visibility", "hidden");
     } else if (doorCloser === "OnHingeSide") {
       //only one visible
-      closer_LU?.setAttribute("visibility", "hidden");
-      closer_R_D?.setAttribute("visibility", "hidden");
-      closer_R_U?.setAttribute("visibility", "hidden");
+      CLOSER_LU?.setAttribute("visibility", "hidden");
+      CLOSER_RD?.setAttribute("visibility", "hidden");
+      CLOSER_RU?.setAttribute("visibility", "hidden");
     }
   };
 
@@ -421,23 +419,23 @@ const StellDoorVisualizer = () => {
   const pushViewFrameVisibility = pullView ? "hidden" : "visible";
 
   const prepareGlazing = () => {
-    const svg = document.getElementById("scene");
-    const glasses_round_300_300 = svg?.children[19];
-    glasses_round_300_300?.setAttribute("id", "glasses_round_300_300");
-    const glasses_square_300_300 = svg?.children[20];
-    glasses_square_300_300?.setAttribute("id", "glasses_square_300_300");
+   
+    const GLASSES_ROUND_300_300 = document.querySelector('[shape-rendering="GLASSES_ROUND_300_300"]');
+    GLASSES_ROUND_300_300?.setAttribute("id", "glasses_round_300_300");
+    const GLASSES_SQUARE_300_300 = document.querySelector('[shape-rendering="GLASSES_SQUARE_300_300"]');
+    GLASSES_SQUARE_300_300?.setAttribute("id", "glasses_square_300_300");
 
-    glasses_round_300_300?.setAttribute("x", `${pullViewLeafLeft_Middle_X}`);
-    glasses_round_300_300?.setAttribute("y", `${pullViewLeafLeft_Middle_Y}`);
+    GLASSES_ROUND_300_300?.setAttribute("x", `${pullViewLeafLeft_Middle_X}`);
+    GLASSES_ROUND_300_300?.setAttribute("y", `${pullViewLeafLeft_Middle_Y}`);
     if (!useGlazing) {
-      glasses_round_300_300?.setAttribute("visibility", "hidden");
-      glasses_square_300_300?.setAttribute("visibility", "hidden");
+      GLASSES_ROUND_300_300?.setAttribute("visibility", "hidden");
+      GLASSES_SQUARE_300_300?.setAttribute("visibility", "hidden");
     } else if (GLASING_TYPE === "glasses_round_300_300") {
       //only one visible
-      glasses_square_300_300?.setAttribute("visibility", "hidden");
+      GLASSES_SQUARE_300_300?.setAttribute("visibility", "hidden");
     } else if (GLASING_TYPE === "glasses_square_300_300") {
       //only one visible
-      glasses_round_300_300?.setAttribute("visibility", "hidden");
+      GLASSES_ROUND_300_300?.setAttribute("visibility", "hidden");
     }
   };
   const prepareSVG = () => {
@@ -448,9 +446,6 @@ const StellDoorVisualizer = () => {
         : 1100
     }`;
     const viewBoxShift = 0;
-    // `${
-    //   add_10_Percents(frameWidth_X) > 1000 ? 0 : (frameWidth_X - add_10_Percents(frameWidth_X))/2
-    // }`;
     if (svg) {
       svg.setAttribute(
         "viewBox",
@@ -482,7 +477,7 @@ const StellDoorVisualizer = () => {
     prepareDoorCloser();
     prepareGlazing();
     // catch svg scene
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -492,7 +487,7 @@ const StellDoorVisualizer = () => {
     prepareLeafs();
     prepareHinges();
     prepareHandle();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     values,
     hingesCount,
@@ -571,7 +566,7 @@ const StellDoorVisualizer = () => {
         {handleData.handleType === "square_L" && <HANDLE_SQUARE_L_X118_Y26 />}
         {handleData.handleType === "round_L" && <HANDLE_ROUND_L_X117_Y25 />}
         {handleData.handleType === "round_R" && <HANDLE_ROUND_R_X25_Y25 />}
-        {handleData.handleType === "long_L" && <HANDLE_LONG_L_X118_YHANDLE_LONG_L_X118_Y_MIN_26 />}
+        {handleData.handleType === "long_L" && <HANDLE_LONG_L_X118_Y_MIN_26 />}
         {handleData.handleType === "long_R" && <HANDLE_LONG_R_X16_Y_MIN_26 />}
         {/* svg#Hinge order number is svg.children[7-12]*/}
         <HINGE_18_132 />

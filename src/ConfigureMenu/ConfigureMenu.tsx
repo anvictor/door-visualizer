@@ -64,6 +64,14 @@ const ConfigureMenu = () => {
     { value: "SingleLeaf", displayName: "Single Leaf" },
     { value: "DoubleLeaf", displayName: "Double Leaf" },
   ];
+  const useGlazingOptions = [
+    { value: "useGlazing", displayName: "Glazing" },
+    { value: "noGlazing", displayName: "No Glazing" },
+  ];
+  const useDoorCloserOptions = [
+    { value: "useDoorCloser", displayName: "Closer" },
+    { value: "noDoorCloser", displayName: "No Closer" },
+  ];
 
   const onChange = <T extends keyof ValuesType>(
     propName: T,
@@ -446,9 +454,7 @@ const ConfigureMenu = () => {
           value={handleTypeString}
           label="Handle Type"
           className="inputAndLabel displayFlex width40percent"
-          onChange={(value: string) =>
-            onChange("handleTypeString", value)
-          }
+          onChange={(value: string) => onChange("handleTypeString", value)}
         />
         <Dropdown
           options={openDirectionOptions}
@@ -460,13 +466,56 @@ const ConfigureMenu = () => {
           }
         />
       </div>
-
-      <p>GLASING_TYPE = 'glasses_round_300_300' "Glasses_square_300_300"</p>
-      <p>HANDLE_TYPE = 'square'; // ["square", "round","long"]</p>
-      <p>
-        HANDLE: 'long_L','long_R', 'square_L', 'square_R', 'round_L', 'round_R'
-      </p>
-     
+      <div className="displayFlex rowEven">
+        <p className="width10percent">Glazing</p>
+        <RadioButtonGroup
+          groupName="use Glazing"
+          value={
+            useGlazing ? useGlazingOptions[0].value : useGlazingOptions[1].value
+          }
+          options={useGlazingOptions}
+          onChange={(value: string) => {
+            const boolValue = value === "useGlazing";
+            onChange("useGlazing", boolValue);
+          }}
+          className="width30percent"
+        />
+        <Dropdown
+          options={openDirectionOptions}
+          value={openDirection.value}
+          label="Open Direction"
+          className="inputAndLabel displayFlex width40percent"
+          onChange={(value: string) =>
+            onChange("openDirection", { ...openDirection, value })
+          }
+        />
+      </div>
+      <div className="displayFlex rowOdd">
+        <p className="width10percent">Closer</p>
+        <RadioButtonGroup
+          groupName="use Door Closer"
+          value={
+            useDoorCloser
+              ? useDoorCloserOptions[0].value
+              : useDoorCloserOptions[1].value
+          }
+          options={useDoorCloserOptions}
+          onChange={(value: string) => {
+            const boolValue = value === "useDoorCloser";
+            onChange("useDoorCloser", boolValue);
+          }}
+          className="width30percent"
+        />
+       <Dropdown
+          options={openDirectionOptions}
+          value={openDirection.value}
+          label="Open Direction"
+          className="inputAndLabel displayFlex width40percent"
+          onChange={(value: string) =>
+            onChange("openDirection", { ...openDirection, value })
+          }
+        />
+      </div>
     </div>
   );
 };

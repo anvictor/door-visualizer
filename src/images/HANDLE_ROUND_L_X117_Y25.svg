@@ -1,6 +1,6 @@
 <svg
-  shape-rendering="geometricPrecision"
-  text-rendering="geometricPrecision"
+  shape-rendering="HANDLE_ROUND_L_X117_Y25"
+  text-rendering="HANDLE"
   style="background-color:transparent"
 ><defs><radialGradient
       id="ebA8JTRBxQF3-fill"
