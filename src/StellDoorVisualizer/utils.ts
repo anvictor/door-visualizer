@@ -43,10 +43,10 @@ const HINGE_DOWN_OVER_BOTTOM_MAX_Y = 500;
 const HINGE_DOWN_OVER_BOTTOM_Y = 400;
 const HINGE_WIDTH_X = 18;
 const HINGE_HEIGHT_Y = 132;
-const GLASING_TYPE = "glasses_round_300_300"; // "glasses_round_300_300","Glasses_square_300_300"
-const GLASING_CENTER_Y = 1780;
-const GLASING_CENTER_SHIFT_X = 150;
-const GLASING_CENTER_SHIFT_Y = 150;
+const GLAZING_CENTER_Y = 1780;
+const GLAZING_CENTER_SHIFT_X = 150;
+const GLAZING_CENTER_SHIFT_Y = 150;
+const GLAZING_TYPE = "no"; // ["Square", "Round", "no"]
 const CLOSER_WIDTH_X = 578;
 const CLOSER_SHIFT_X = 20;
 const CLOSER_SHIFT_Y = 30;
@@ -137,6 +137,10 @@ const values: ValuesType = {
     value: HINGE_DOWN_OVER_BOTTOM_Y,
   },
   handleTypeString: HANDLE_TYPE,
+  glazingType: {
+    value: GLAZING_TYPE,
+    displayName: GLAZING_TYPE,
+  },
 };
 
 const add_10_Percents = (value: number) => +value + +value / 10;
@@ -620,13 +624,9 @@ export {
   CLOSER_WIDTH_X,
   FRAME_MIN,
   FRAME_MAX,
-  GLASING_CENTER_SHIFT_X,
-  GLASING_CENTER_SHIFT_Y,
-  GLASING_CENTER_Y,
-  GLASING_TYPE,
-  // PATTERN_IMAGE_HEIGHT_Y,
-  // PATTERN_IMAGE_WIDTH_X,
-  // SHIFT_VIEWPORT_Y,
+  GLAZING_CENTER_SHIFT_X as GLASING_CENTER_SHIFT_X,
+  GLAZING_CENTER_SHIFT_Y as GLASING_CENTER_SHIFT_Y,
+  GLAZING_CENTER_Y as GLASING_CENTER_Y,
   STROKE_COLOR,
   LEAF_MIN,
   add_10_Percents,

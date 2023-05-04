@@ -41,4 +41,5 @@ export interface ValuesType {
   hingeUpUnderTop_Y: LimitedNumType;
   hingeDownOverBottom_Y: LimitedNumType;
   handleTypeString: string;
+  glazingType: OptionType;
 }

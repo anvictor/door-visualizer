@@ -23,7 +23,6 @@ import {
   GLASING_CENTER_SHIFT_X,
   GLASING_CENTER_SHIFT_Y,
   GLASING_CENTER_Y,
-  GLASING_TYPE,
   STROKE_COLOR,
   add_10_Percents,
   getFrameClearanceHeight_Y,
@@ -83,6 +82,7 @@ const StellDoorVisualizer = () => {
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
     handleTypeString,
+    glazingType,
   } = values;
   //Frame
   const frameWidth_X = +doorWidth_X.value;
@@ -419,25 +419,34 @@ const StellDoorVisualizer = () => {
   const pushViewFrameVisibility = pullView ? "hidden" : "visible";
 
   const prepareGlazing = () => {
-   
-    const GLASSES_ROUND_300_300 = document.querySelector('[shape-rendering="GLASSES_ROUND_300_300"]');
-    GLASSES_ROUND_300_300?.setAttribute("id", "glasses_round_300_300");
-    const GLASSES_SQUARE_300_300 = document.querySelector('[shape-rendering="GLASSES_SQUARE_300_300"]');
-    GLASSES_SQUARE_300_300?.setAttribute("id", "glasses_square_300_300");
-
+    
+    const GLASSES_ROUND_300_300 = document.querySelector(
+      '[shape-rendering="GLASSES_ROUND_300_300"]'
+    );
     GLASSES_ROUND_300_300?.setAttribute("x", `${pullViewLeafLeft_Middle_X}`);
     GLASSES_ROUND_300_300?.setAttribute("y", `${pullViewLeafLeft_Middle_Y}`);
+    
+    const GLASSES_SQUARE_300_300 = document.querySelector(
+      '[shape-rendering="GLASSES_SQUARE_300_300"]'
+    );
+    GLASSES_SQUARE_300_300?.setAttribute("x", `${pullViewLeafLeft_Middle_X}`);
+    GLASSES_SQUARE_300_300?.setAttribute("y", `${pullViewLeafLeft_Middle_Y}`);
+
     if (!useGlazing) {
       GLASSES_ROUND_300_300?.setAttribute("visibility", "hidden");
       GLASSES_SQUARE_300_300?.setAttribute("visibility", "hidden");
-    } else if (GLASING_TYPE === "glasses_round_300_300") {
+    } else if (glazingType.value === "Round") {
       //only one visible
+      GLASSES_ROUND_300_300?.setAttribute("visibility", "visible");
       GLASSES_SQUARE_300_300?.setAttribute("visibility", "hidden");
-    } else if (GLASING_TYPE === "glasses_square_300_300") {
+    } else if (glazingType.value === "Square") {
       //only one visible
+
       GLASSES_ROUND_300_300?.setAttribute("visibility", "hidden");
+      GLASSES_SQUARE_300_300?.setAttribute("visibility", "visible");
     }
   };
+
   const prepareSVG = () => {
     const svg = document.getElementById("scene");
     const viewBoxWidth = `${
@@ -487,6 +496,8 @@ const StellDoorVisualizer = () => {
     prepareLeafs();
     prepareHinges();
     prepareHandle();
+    prepareGlazing();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     values,

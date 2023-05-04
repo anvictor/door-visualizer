@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ColorPickerWithSearch from "../ColorPickerWithSearch/ColorPickerWithSearch";
 import NumericInput from "../NumericInputWithLimits/NumericInputWithLimits";
 import ValuesContext from "../ValuesContext/ValuesContext";
@@ -19,7 +19,6 @@ const ConfigureMenu = () => {
     frameJumbVisible_Y,
     frameProfileWidth_X,
     frameProfileWidthVisible_X,
-    handleHeight_Y,
     hingesCount,
     doorWidth_X,
     leavesCount,
@@ -32,11 +31,10 @@ const ConfigureMenu = () => {
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
     handleTypeString,
+    glazingType
   } = values;
-
   const isExactlyHalf = activeLeafWidth_X.type === "exactlyHalf";
   const isDoubleLeaf = leavesCount.value === "DoubleLeaf";
-
   const isDisabled_leavesCount =
     doorWidth_X.value < 1200 || doorWidth_X.value > 1800;
   const isDisabled_activeLeafWidth_X =
@@ -67,6 +65,11 @@ const ConfigureMenu = () => {
   const useGlazingOptions = [
     { value: "useGlazing", displayName: "Glazing" },
     { value: "noGlazing", displayName: "No Glazing" },
+  ];
+  const useGlazingTypeOptions = [
+    { value: "no", displayName: "No Glazing" },
+    { value: "Round", displayName: "Round" },
+    { value: "Square", displayName: "Square" },
   ];
   const useDoorCloserOptions = [
     { value: "useDoorCloser", displayName: "Closer" },
@@ -172,7 +175,6 @@ const ConfigureMenu = () => {
         value: doorWidth_X.value - frameProfileWidthVisible_X.value * 2,
       });
     } else if (chosenValue.value === "DoubleLeaf") {
-      console.log(chosenValue.value);
       onChange("activeLeafWidth_X", {
         ...activeLeafWidth_X,
         type: "exactlyHalf",
@@ -225,6 +227,24 @@ const ConfigureMenu = () => {
     });
   };
 
+  const handleOnChangeGlaZing = (value: string) => {
+    if (value !== "no") {
+      onChange("glazingType",{...glazingType, value});
+    } else {
+      onChange("useGlazing", false);
+      onChange("glazingType",{...glazingType, value: "no"});
+    }
+  };
+
+  const handleOnChangeUseGlaZing = (value: string) => {
+    onChange("useGlazing", value === "useGlazing");
+    if (value === "useGlazing") {
+      onChange("glazingType", {...glazingType, value: "Square"});
+    } else {
+      onChange("glazingType", {...glazingType, value: "no"});
+    }
+  };
+
   return (
     <div className="ConfigureMenu">
       <div className="displayFlex rowOdd">
@@ -235,7 +255,7 @@ const ConfigureMenu = () => {
           value={doorWidth_X.value}
           label="Installation Width"
           className="inputAndLabel displayFlex width40percent"
-          getNumber={(value: string) => handleWidthChange(value)}
+          getNumber={handleWidthChange}
         />
         <NumericInput
           min={doorHeight_Y.min}
@@ -243,7 +263,7 @@ const ConfigureMenu = () => {
           value={doorHeight_Y.value}
           label="Installation Height"
           className="inputAndLabel displayFlex width40percent"
-          getNumber={(value: string) => handleHeightChange(value)}
+          getNumber={handleHeightChange}
         />
       </div>
       <div className="displayFlex rowEven">
@@ -474,20 +494,17 @@ const ConfigureMenu = () => {
             useGlazing ? useGlazingOptions[0].value : useGlazingOptions[1].value
           }
           options={useGlazingOptions}
-          onChange={(value: string) => {
-            const boolValue = value === "useGlazing";
-            onChange("useGlazing", boolValue);
-          }}
+          onChange={handleOnChangeUseGlaZing}
           className="width30percent"
         />
         <Dropdown
-          options={openDirectionOptions}
-          value={openDirection.value}
-          label="Open Direction"
+          options={useGlazingTypeOptions}
+          // value={"no"}
+          value={glazingType.value}
+          label="Glazing Type"
           className="inputAndLabel displayFlex width40percent"
-          onChange={(value: string) =>
-            onChange("openDirection", { ...openDirection, value })
-          }
+          onChange={handleOnChangeGlaZing}
+          disabled={!useGlazing}
         />
       </div>
       <div className="displayFlex rowOdd">
@@ -506,7 +523,7 @@ const ConfigureMenu = () => {
           }}
           className="width30percent"
         />
-       <Dropdown
+        <Dropdown
           options={openDirectionOptions}
           value={openDirection.value}
           label="Open Direction"
