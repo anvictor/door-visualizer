@@ -21,7 +21,7 @@ export interface ValuesType {
   activeLeafWidthOptions:OptionType[],
   activeLeafWidth_X: ActiveLeafType;
   openDirection: OptionType;
-  doorCloser: string;
+  closerMountedPosition: OptionType;
   doorLeafColor: string;
   frameColor: string;
   frameJumb_Y: LimitedNumType;
@@ -42,4 +42,5 @@ export interface ValuesType {
   hingeDownOverBottom_Y: LimitedNumType;
   handleTypeString: string;
   glazingType: OptionType;
+  useSecondCloser: boolean;
 }

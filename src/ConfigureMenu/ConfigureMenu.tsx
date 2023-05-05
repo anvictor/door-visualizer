@@ -12,7 +12,7 @@ const ConfigureMenu = () => {
     activeLeafWidth_X,
     activeLeafWidthOptions,
     openDirection,
-    doorCloser,
+    closerMountedPosition,
     doorLeafColor,
     frameColor,
     frameJumb_Y,
@@ -31,7 +31,8 @@ const ConfigureMenu = () => {
     hingeUpUnderTop_Y,
     hingeDownOverBottom_Y,
     handleTypeString,
-    glazingType
+    glazingType,
+    useSecondCloser,
   } = values;
   const isExactlyHalf = activeLeafWidth_X.type === "exactlyHalf";
   const isDoubleLeaf = leavesCount.value === "DoubleLeaf";
@@ -74,6 +75,14 @@ const ConfigureMenu = () => {
   const useDoorCloserOptions = [
     { value: "useDoorCloser", displayName: "Closer" },
     { value: "noDoorCloser", displayName: "No Closer" },
+  ];
+  const closerMountedPositionOptions = [
+    { value: "Outside", displayName: "Outside" },
+    { value: "Inside", displayName: "Inside" },
+  ];
+  const useSecondCloserOptions = [
+    { value: "useSecondCloser", displayName: "Second Closer" },
+    { value: "noSecondCloser", displayName: "No Second Closer" },
   ];
 
   const onChange = <T extends keyof ValuesType>(
@@ -229,21 +238,34 @@ const ConfigureMenu = () => {
 
   const handleOnChangeGlaZing = (value: string) => {
     if (value !== "no") {
-      onChange("glazingType",{...glazingType, value});
+      onChange("glazingType", { ...glazingType, value });
     } else {
       onChange("useGlazing", false);
-      onChange("glazingType",{...glazingType, value: "no"});
+      onChange("glazingType", { ...glazingType, value: "no" });
     }
   };
 
   const handleOnChangeUseGlaZing = (value: string) => {
     onChange("useGlazing", value === "useGlazing");
     if (value === "useGlazing") {
-      onChange("glazingType", {...glazingType, value: "Square"});
+      onChange("glazingType", { ...glazingType, value: "Square" });
     } else {
-      onChange("glazingType", {...glazingType, value: "no"});
+      onChange("glazingType", { ...glazingType, value: "no" });
     }
   };
+
+  const handleCloserMountedPosition = (value: any) => {
+    const chosenValue = closerMountedPositionOptions.filter(
+      (option) => option.value === value
+    )[0];
+    onChange("closerMountedPosition", chosenValue);
+  };
+
+  const handleUseCloser = (value: string) => {
+    const isUse = value === "useDoorCloser";
+    onChange("useDoorCloser", isUse);
+    if(!isUse) onChange("useSecondCloser", false);
+  }
 
   return (
     <div className="ConfigureMenu">
@@ -517,20 +539,31 @@ const ConfigureMenu = () => {
               : useDoorCloserOptions[1].value
           }
           options={useDoorCloserOptions}
-          onChange={(value: string) => {
-            const boolValue = value === "useDoorCloser";
-            onChange("useDoorCloser", boolValue);
-          }}
+          onChange={handleUseCloser}
           className="width30percent"
         />
-        <Dropdown
-          options={openDirectionOptions}
-          value={openDirection.value}
-          label="Open Direction"
-          className="inputAndLabel displayFlex width40percent"
-          onChange={(value: string) =>
-            onChange("openDirection", { ...openDirection, value })
+        <RadioButtonGroup
+          groupName="Mounted position"
+          value={closerMountedPosition.value}
+          options={closerMountedPositionOptions}
+          onChange={handleCloserMountedPosition}
+          className="width30percent"
+          disabled={!useDoorCloser}
+        />
+        <RadioButtonGroup
+          groupName="Second Closer"
+          value={
+            useSecondCloser
+              ? useSecondCloserOptions[0].value
+              : useSecondCloserOptions[1].value
           }
+          options={useSecondCloserOptions}
+          onChange={(value: string) => {
+            const isUse = value === "useSecondCloser";
+            onChange("useSecondCloser", isUse);
+          }}
+          className="width30percent"
+          disabled={!useDoorCloser}
         />
       </div>
     </div>

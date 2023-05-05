@@ -74,7 +74,7 @@ const values: ValuesType = {
     { value: "number", displayName: "Number in mm" },
   ],
   openDirection: { value: "Left", displayName: "Left hand pull" }, // "Left", "Right"
-  doorCloser: "up",
+  closerMountedPosition:{ value: "Inside", displayName: "Inside" }, //'Inside', 'Outside'
   doorLeafColor: "",
   frameColor: "",
   frameJumb_Y: {
@@ -125,6 +125,7 @@ const values: ValuesType = {
     value: THRESH_HOLD_HEIGHT_VISIBLE_Y,
   },
   useDoorCloser: false,
+  useSecondCloser: false,
   useGlazing: false,
   hingeUpUnderTop_Y: {
     min: HINGE_UP_UNDER_TOP_MAX_Y,

@@ -64,7 +64,7 @@ const StellDoorVisualizer = () => {
   const {
     activeLeafWidth_X,
     openDirection,
-    doorCloser,
+    closerMountedPosition,
     doorLeafColor,
     frameColor,
     frameJumb_Y,
@@ -85,6 +85,7 @@ const StellDoorVisualizer = () => {
     hingeDownOverBottom_Y,
     handleTypeString,
     glazingType,
+    useSecondCloser,
   } = values;
   //Frame
   const frameWidth_X = +doorWidth_X.value;
@@ -401,17 +402,88 @@ const StellDoorVisualizer = () => {
     CLOSER_RD?.setAttribute("y", `${closerTop_Y}`);
     CLOSER_RU?.setAttribute("x", `${closerRight_X}`);
     CLOSER_RU?.setAttribute("y", `${closerTop_Y}`);
-    if (!useDoorCloser) {
-      CLOSER_LD?.setAttribute("visibility", "hidden");
-      CLOSER_LU?.setAttribute("visibility", "hidden");
-      CLOSER_RD?.setAttribute("visibility", "hidden");
-      CLOSER_RU?.setAttribute("visibility", "hidden");
-    } else if (doorCloser === "OnHingeSide") {
-      //only one visible
-      CLOSER_LU?.setAttribute("visibility", "hidden");
-      CLOSER_RD?.setAttribute("visibility", "hidden");
-      CLOSER_RU?.setAttribute("visibility", "hidden");
-    }
+    const isCloser_LU_visible =
+      (useDoorCloser &&
+        pullView &&
+        closerMountedPosition.value === "Outside" &&
+        openDirection.value === "Left" &&
+        leavesCount.value === "SingleLeaf") ||
+      (useDoorCloser &&
+        pullView &&
+        closerMountedPosition.value === "Outside" &&
+        openDirection.value === "Left" &&
+        leavesCount.value === "DoubleLeaf") ||
+      (useDoorCloser &&
+        pullView &&
+        closerMountedPosition.value === "Outside" &&
+        openDirection.value === "Right" &&
+        leavesCount.value === "DoubleLeaf" &&
+        useSecondCloser);
+
+    const isCloser_RU_visible =
+      (useDoorCloser &&
+        pullView &&
+        closerMountedPosition.value === "Outside" &&
+        openDirection.value === "Right" &&
+        leavesCount.value === "SingleLeaf") ||
+      (useDoorCloser &&
+        pullView &&
+        closerMountedPosition.value === "Outside" &&
+        openDirection.value === "Left" &&
+        leavesCount.value === "DoubleLeaf" &&
+        useSecondCloser) ||
+      (useDoorCloser &&
+        pullView &&
+        closerMountedPosition.value === "Outside" &&
+        openDirection.value === "Right" &&
+        leavesCount.value === "DoubleLeaf");
+
+    const isCloser_LD_visible =
+      (useDoorCloser &&
+        !pullView &&
+        closerMountedPosition.value === "Inside" &&
+        openDirection.value === "Right" &&
+        leavesCount.value === "SingleLeaf") ||
+      (useDoorCloser &&
+        !pullView &&
+        closerMountedPosition.value === "Inside" &&
+        openDirection.value === "Left" &&
+        leavesCount.value === "DoubleLeaf" &&
+        useSecondCloser) ||
+      (useDoorCloser &&
+        !pullView &&
+        closerMountedPosition.value === "Inside" &&
+        openDirection.value === "Right" &&
+        leavesCount.value === "DoubleLeaf");
+
+    const isCloser_RD_visible =
+      (useDoorCloser &&
+        !pullView &&
+        closerMountedPosition.value === "Inside" &&
+        openDirection.value === "Left") ||
+      (useDoorCloser &&
+        !pullView &&
+        closerMountedPosition.value === "Inside" &&
+        openDirection.value === "Right" &&
+        leavesCount.value === "DoubleLeaf" &&
+        useSecondCloser);
+
+    CLOSER_LD?.setAttribute(
+      "visibility",
+      isCloser_LD_visible ? "visible" : "hidden"
+    );
+    CLOSER_LU?.setAttribute(
+      "visibility",
+      isCloser_LU_visible ? "visible" : "hidden"
+    );
+    CLOSER_RD?.setAttribute(
+      "visibility",
+      isCloser_RD_visible ? "visible" : "hidden"
+    );
+    CLOSER_RU?.setAttribute(
+      "visibility",
+      isCloser_RU_visible ? "visible" : "hidden"
+    );
   };
 
   // Glazing
@@ -510,6 +582,7 @@ const StellDoorVisualizer = () => {
     prepareHinges();
     prepareHandle();
     prepareGlazing();
+    prepareDoorCloser();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

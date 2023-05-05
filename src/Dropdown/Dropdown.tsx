@@ -19,9 +19,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   disabled,
 }) => {
   const [selectedValue, setSelectedValue] = useState(value);
-  if (label === "use Door Closer") {
-    console.log(value, selectedValue);
-  }
+ 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSelectedValue(value);
