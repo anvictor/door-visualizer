@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import colorsData from "../colorsRal.json";
 
 interface Color {
@@ -14,7 +14,12 @@ interface ColorPickerProps {
   colorName: string;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ getColor, label, className, colorName }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({
+  getColor,
+  label,
+  className,
+  colorName,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedColor, setSelectedColor] = useState(colorName);
   const [active, setActive] = useState(false);
@@ -30,7 +35,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ getColor, label, className, c
   const filteredColor = colorsData.colors.find((color: Color) =>
     color.id.toLowerCase().includes(selectedColor.toLowerCase())
   );
-  const displayName = colorName? filteredColor?.displayName : "";
+  const displayName = colorName ? filteredColor?.displayName : "";
 
   const handleOptionClick = (color: string) => {
     setSelectedColor(color);
@@ -44,7 +49,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ getColor, label, className, c
 
   return (
     <div className={`ColorPickerWithSearch ${className}`}>
-      <p className="ColorPickerWithSearch_label">{label}</p>
+      <p className="ColorPickerWithSearch_label" style={{ marginRight: "5px" }}>
+        {label}:
+      </p>
       <div className="ColorPickerWithSearch_dropdown">
         <input
           className="ColorPickerWithSearch_input"
@@ -54,17 +61,23 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ getColor, label, className, c
           placeholder="Search colors..."
           onFocus={() => setActive(true)}
         />
-       {searchTerm && <div className={`ColorPickerWithSearch_options${active ? "_active" : ""}`}>
-          {filteredColors.map((color: Color) => (
-            <div
-              key={color.id}
-              style={{ backgroundColor: color.hex, cursor: "pointer" }}
-              onClick={() => handleOptionClick(color.id)}
-            >
-              {color.displayName}
-            </div>
-          ))}
-        </div>}
+        {searchTerm && (
+          <div
+            className={`ColorPickerWithSearch_options${
+              active ? "_active" : ""
+            }`}
+          >
+            {filteredColors.map((color: Color) => (
+              <div
+                key={color.id}
+                style={{ backgroundColor: color.hex, cursor: "pointer" }}
+                onClick={() => handleOptionClick(color.id)}
+              >
+                {color.displayName}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

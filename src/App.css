@@ -1,16 +1,12 @@
 .App {
   display: flex;
   font-size: small;
-  align-items:center;
 }
 .ConfigureMenu {
-  width: 1024px;
   border: 1px solid gray;
   margin: 5px;
 }
-/* .ColorPickerWithSearch {
- 
-} */
+
 .ColorPickerWithSearch_options {
   visibility: hidden;
 }
@@ -27,15 +23,12 @@
 }
 .displayFlex {
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
+  justify-content:space-around;
   align-items: center;
 }
 .ColorPickerWithSearch {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-top: -18px;
+  margin: 0px 15px;
 }
 .ColorPickerWithSearch_dropdown {
   position: relative;
@@ -43,8 +36,9 @@
 .width10percent {
   width: 10%;
 }
-.width20percent {
-  width: 20%;
+.width100 {
+  width: 100px;
+  border-right: 1px solid grey;
 }
 .width30percent {
   width: 30%;
@@ -58,21 +52,30 @@
 .width27percent {
   width: 27%;
 }
-.inputAndLabel {
-  height: 27px;
-}
+
 .numInput {
   margin: 5px;
 }
 .rowEven {
-  padding: 5px;
   background-color: rgba(128, 128, 128, 0.466);
+  padding-left: 5px;
 }
 .rowOdd {
-  padding: 5px;
   background-color: rgba(128, 128, 128, 0.151);
+  padding-left: 5px;
 }
 .dropdown {
   display: flex;
   margin: 5px;
+}
+.control{
+  width: 100%;
+}
+.Visualizer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.svgWrapper{
+  height: 600px;
 }

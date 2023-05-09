@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface RadioButtonProps {
   groupName: string;
@@ -23,20 +23,22 @@ const RadioButtonGroup: React.FC<RadioButtonProps> = ({
 
   return (
     <div className={className}>
-      <p>{groupName}</p>
-      {options.map((option, index) => (
-        <label key={index}>
-          <input
-            type="radio"
-            name={groupName}
-            value={option.value}
-            checked={value === option.value}
-            onChange={handleChange}
-            disabled={disabled}
-          />
-          {option.displayName}
-        </label>
-      ))}
+      <p style={{ marginRight: "5px" }}>{groupName}:</p>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {options.map((option, index) => (
+          <label key={index}>
+            <input
+              type="radio"
+              name={groupName}
+              value={option.value}
+              checked={value === option.value}
+              onChange={handleChange}
+              disabled={disabled}
+            />
+            {option.displayName}
+          </label>
+        ))}
+      </div>
     </div>
   );
 };

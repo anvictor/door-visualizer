@@ -30,7 +30,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   },[value]);
   return (
     <div className={`dropdown ${className}`}>
-      <label htmlFor="dropdown">{label}</label>
+      <label htmlFor="dropdown" style={{marginRight:'5px'}}>{label}:</label>
       <select
         id="dropdown"
         value={selectedValue}

@@ -17,17 +17,13 @@ import ALUM_BRUSHED_V from "../images/ALUM_BRUSHED_V.png";
 import colorsData from "../colorsRal.json";
 import "./StellDoorVisualizer.css";
 import {
+  add_10_Percents,
   CLOSER_SHIFT_X,
   CLOSER_SHIFT_INSIDE_Y,
   CLOSER_SHIFT_OUTSIDE_Y,
   CLOSER_WIDTH_X,
-  GLAZING_CENTER_SHIFT_X,
-  GLAZING_CENTER_SHIFT_Y,
-  GLAZING_CENTER_Y,
   FRAME_PROFILE_WIDTH_VISIBLE_X,
   FRAME_PROFILE_WIDTH_X,
-  STROKE_COLOR,
-  add_10_Percents,
   getFrameClearanceHeight_Y,
   getFrameClearanceLeft_X,
   getFrameClearanceTop_Y,
@@ -52,7 +48,11 @@ import {
   getPictureLeafLeft_X,
   getPictureLeafRightWidth_X,
   getPictureLeafRight_X,
-} from "./utils";
+  GLAZING_CENTER_SHIFT_X,
+  GLAZING_CENTER_SHIFT_Y,
+  GLAZING_CENTER_Y,
+  STROKE_COLOR,
+  } from "./utils";
 import ValuesContext from "../ValuesContext/ValuesContext";
 import Rooler from "./Rooler";
 
@@ -276,10 +276,7 @@ const StellDoorVisualizer = () => {
   const handle_X = getHandle_X(
     openDirection.value,
     isDoubleLeaf,
-    pictureLeafLeft_X,
-    pictureLeafLeftWidth_X,
     pictureLeafRight_X,
-    pictureLeafRightWidth_X,
     doorWidth_X.value,
     frameProfileWidth_X.value,
     pullView,

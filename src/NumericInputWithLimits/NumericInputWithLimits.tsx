@@ -1,10 +1,10 @@
-import React, { useState, ChangeEvent } from "react";
+import React, {  ChangeEvent } from "react";
 
 interface NumericInputPropsType {
   min: number;
   max: number;
   label: string;
-  className: string;
+  className?: string;
   value: number;
   getNumber: Function;
   disabled?: boolean;
@@ -34,7 +34,7 @@ const NumericInput: React.FC<NumericInputPropsType> = ({
 
   return (
     <div className={`numInput ${className}`}>
-      <p>{label}</p>
+      <p style={{marginRight: "5px"}}>{label}:</p>
       <input
         type="number"
         value={value}

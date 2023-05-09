@@ -1,4 +1,4 @@
-import { ActiveLeafType, ValuesType } from "../types";
+import { ActiveLeafType, HandleFunctions, ValuesType } from "../types";
 /**
  * The image of the door is made SVG in layers.
 The list of important layers from the bottom - the furthest from the viewer.
@@ -18,56 +18,56 @@ In the case when only one sheet is used, it is always depicted by the first shee
 
 In case reorder or add or remove layers change indexation.
  */
-const LEAF_MIN = 250;
-const DOOR_WIDTH_MIN_X = 700;
-const DOOR_WIDTH_X = 920;
-const DOOR_WIDTH_MIN_FOR_DOUBLE_X = 1000;
-const DOOR_WIDTH_MAX_FOR_DOUBLE_X = 1800;
-const LEAF_WIDTH_MIN_FOR_CLOSER_X = 500;
-const DOOR_HEIGHT_INFLUENT_MAX_Y = 700;
-const DOOR_HEIGHT_INFLUENT_HINGE_MIN_Y = 1201;
-const DOOR_HEIGHT_INFLUENT_HANDLE_MIN_Y = 1100;
-const DOOR_HEIGHT_INFLUENT = 1100;
-const DOOR_WIDTH_MAX_X = 2800;
-const DOOR_HEIGHT_MIN_Y = 900;
-const DOOR_HEIGHT_MAX_Y = 3000;
-const DOOR_HEIGHT_Y = 2200;
-const THRESH_HOLD_HEIGHT_VISIBLE_Y = 5;
-const THRESH_HOLD_HEIGHT_MIN_Y = 0;
-const FRAME_MIN = 30;
-const FRAME_MAX = 70;
-const FRAME_PROFILE_WIDTH_VISIBLE_X = 40;
-const FRAME_PROFILE_WIDTH_X = 70;
-const FRAME_JUMB_VISIBLE_Y = 15;
-const FRAME_JUMB_X = 50;
-const STROKE_COLOR = "black";
-const HINGE_UP_UNDER_TOP_MIN_Y = 0;
-const HINGE_UP_UNDER_TOP_MAX_Y = 200;
-const HINGE_UP_UNDER_TOP_Y = 150;
-const THRESH_HOLD_HEIGHT_Y = 55;
-const HINGE_DOWN_OVER_BOTTOM_MIN_Y = 100;
-const HINGE_DOWN_OVER_BOTTOM_MAX_Y = 500;
-const HINGE_DOWN_OVER_BOTTOM_Y = 400;
-const HINGE_WIDTH_X = 18;
-const HINGE_HEIGHT_Y = 132;
-const GLAZING_CENTER_Y = 1780;
-const GLAZING_CENTER_SHIFT_X = 150;
-const GLAZING_CENTER_SHIFT_Y = 150;
-const GLAZING_TYPE = "no"; // ["Square", "Round", "no"]
-const CLOSER_WIDTH_X = 610;
-const CLOSER_SHIFT_X = 10;
+const ACTIVE_TO_PASSIVE_LEAF_OVERLAP = 40;
 const CLOSER_SHIFT_INSIDE_Y = 39;
 const CLOSER_SHIFT_OUTSIDE_Y = 95;
-const HANDLE_TYPE = "square"; // ["square", "round", "long"]
-const LOCK_SHIFT_X = 50;
-const ACTIVE_TO_PASSIVE_LEAF_OVERLAP = 40;
+const CLOSER_SHIFT_X = 10;
+const CLOSER_WIDTH_X = 610;
+const DOOR_HEIGHT_INFLUENT = 1100;
+const DOOR_HEIGHT_INFLUENT_HANDLE_MIN_Y = 1100;
+const DOOR_HEIGHT_INFLUENT_HINGE_MIN_Y = 1201;
+const DOOR_HEIGHT_INFLUENT_MAX_Y = 700;
+const DOOR_HEIGHT_MAX_Y = 3000;
+const DOOR_HEIGHT_MIN_Y = 900;
+const DOOR_HEIGHT_Y = 2200;
+const DOOR_WIDTH_MAX_FOR_DOUBLE_X = 1800;
+const DOOR_WIDTH_MAX_X = 2800;
+const DOOR_WIDTH_MIN_FOR_DOUBLE_X = 1000;
+const DOOR_WIDTH_MIN_X = 700;
+const DOOR_WIDTH_X = 920;
+const FRAME_JUMB_VISIBLE_Y = 15;
+const FRAME_JUMB_X = 50;
+const FRAME_MAX = 70;
+const FRAME_MIN = 30;
+const FRAME_PROFILE_WIDTH_VISIBLE_X = 40;
+const FRAME_PROFILE_WIDTH_X = 70;
+const GLAZING_CENTER_SHIFT_X = 150;
+const GLAZING_CENTER_SHIFT_Y = 150;
+const GLAZING_CENTER_Y = 1780;
+const GLAZING_TYPE = "no"; // ["Square", "Round", "no"]
 const HANDLE_AXIS_RELATIVE_SHIFT_X = new Map();
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_L", { X: 118, Y: -26 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("long_R", { X: 16, Y: -26 });
-HANDLE_AXIS_RELATIVE_SHIFT_X.set("square_L", { X: 118, Y: 26 });
-HANDLE_AXIS_RELATIVE_SHIFT_X.set("square_R", { X: 26, Y: 26 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("round_L", { X: 117, Y: 25 });
 HANDLE_AXIS_RELATIVE_SHIFT_X.set("round_R", { X: 25, Y: 25 });
+HANDLE_AXIS_RELATIVE_SHIFT_X.set("square_L", { X: 118, Y: 26 });
+HANDLE_AXIS_RELATIVE_SHIFT_X.set("square_R", { X: 26, Y: 26 });
+const HANDLE_TYPE = "square"; // ["square", "round", "long"]
+const HINGE_DOWN_OVER_BOTTOM_MAX_Y = 500;
+const HINGE_DOWN_OVER_BOTTOM_MIN_Y = 100;
+const HINGE_DOWN_OVER_BOTTOM_Y = 400;
+const HINGE_HEIGHT_Y = 132;
+const HINGE_UP_UNDER_TOP_MAX_Y = 200;
+const HINGE_UP_UNDER_TOP_MIN_Y = 0;
+const HINGE_UP_UNDER_TOP_Y = 150;
+const HINGE_WIDTH_X = 18;
+const LEAF_MIN = 250;
+const LEAF_WIDTH_MIN_FOR_CLOSER_X = 500;
+const LOCK_SHIFT_X = 50;
+const STROKE_COLOR = "black";
+const THRESH_HOLD_HEIGHT_MIN_Y = 0;
+const THRESH_HOLD_HEIGHT_VISIBLE_Y = 5;
+const THRESH_HOLD_HEIGHT_Y = 55;
 
 const values: ValuesType = {
   activeLeafWidth_X: {
@@ -207,115 +207,63 @@ const getPictureLeafLeftWidth_X = (
   frameProfileWidthVisible_X: number,
   activeLeafWidth_X: ActiveLeafType
 ) => {
-  /*
-  H-two door leaves from PULL view side devided visual width HALF or NOT 
-  P-PULL view side or NOT
-  D-DOUBLE leafs or NOT 
-  L-active LEFT or NOT?
-   
-   H P D L
-____________
-   0 0 0 0
-   0 0 0 1
-   0 0 1 0
-   0 0 1 1
-   0 1 0 0
-   0 1 0 1
-   0 1 1 0
-   0 1 1 1
-   1 0 0 0
-   1 0 0 1
-   1 0 1 0
-   1 0 1 1
-   1 1 0 0
-   1 1 0 1
-   1 1 1 0
-   1 1 1 1
-   */
   let pictureLeafLeftWidth_X = 200;
-  // no lint error
+
   const isExactlyHalf = activeLeafWidth_X.type === "exactlyHalf";
   const indexLogicLeafLeftWidth =
-    1000 * +isExactlyHalf +
-    100 * +pullView +
-    10 * +isDoubleLeaf +
-    +(openDirection === "Left");
+    1000 * Number(isExactlyHalf) +
+    100 * Number(pullView) +
+    10 * Number(isDoubleLeaf) +
+    Number(openDirection === "Left");
 
-  let indexLeafPicture = "";
-  if (
-    indexLogicLeafLeftWidth === 0 ||
-    indexLogicLeafLeftWidth === 1 ||
-    indexLogicLeafLeftWidth === 100 ||
-    indexLogicLeafLeftWidth === 101 ||
-    indexLogicLeafLeftWidth === 1000 ||
-    indexLogicLeafLeftWidth === 1001 ||
-    indexLogicLeafLeftWidth === 1100 ||
-    indexLogicLeafLeftWidth === 1101
-  ) {
-    indexLeafPicture = "one_leaf";
-  }
-  if (indexLogicLeafLeftWidth === 10) {
-    indexLeafPicture = "right_push_active";
-  }
-  if (indexLogicLeafLeftWidth === 11) {
-    indexLeafPicture = "right_push_passive";
-  }
-  if (indexLogicLeafLeftWidth === 110) {
-    indexLeafPicture = "left_pull_passive";
-  }
-  if (indexLogicLeafLeftWidth === 111) {
-    indexLeafPicture = "left_pull_active";
-  }
-  if (indexLogicLeafLeftWidth === 1010) {
-    indexLeafPicture = "right_push_is_overlaped";
-  }
-  if (indexLogicLeafLeftWidth === 1011) {
-    indexLeafPicture = "right_push_overlaps";
-  }
-  if (indexLogicLeafLeftWidth === 1110 || indexLogicLeafLeftWidth === 1111) {
-    indexLeafPicture = "pull_half";
-  }
-
-  switch (indexLeafPicture) {
-    case "one_leaf":
-      pictureLeafLeftWidth_X = +frameWidth_X - frameProfileWidthVisible_X * 2;
+  switch (indexLogicLeafLeftWidth) {
+    case 0:
+    case 1:
+    case 100:
+    case 101:
+    case 1000:
+    case 1001:
+    case 1100:
+    case 1101:
+      pictureLeafLeftWidth_X = frameWidth_X - frameProfileWidthVisible_X * 2;
       break;
-    case "right_push_active":
+    case 10:
       pictureLeafLeftWidth_X =
         activeLeafWidth_X.value - ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
       break;
-    case "right_push_passive":
+    case 11:
       pictureLeafLeftWidth_X =
-        +frameWidth_X -
+        frameWidth_X -
         frameProfileWidthVisible_X * 2 -
         activeLeafWidth_X.value +
         ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
       break;
-    case "left_pull_passive":
+    case 110:
       pictureLeafLeftWidth_X =
-        +frameWidth_X -
-        frameProfileWidthVisible_X * 2 -
-        activeLeafWidth_X.value;
+        frameWidth_X - frameProfileWidthVisible_X * 2 - activeLeafWidth_X.value;
       break;
-    case "left_pull_active":
+    case 111:
       pictureLeafLeftWidth_X = activeLeafWidth_X.value;
       break;
-    case "right_push_is_overlaped":
+    case 1010:
       pictureLeafLeftWidth_X =
-        (+frameWidth_X - frameProfileWidthVisible_X * 2) / 2 -
-        +ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
+        (frameWidth_X - frameProfileWidthVisible_X * 2) / 2 -
+        ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
       break;
-    case "right_push_overlaps": //*
+    case 1011:
       pictureLeafLeftWidth_X =
-        (+frameWidth_X - frameProfileWidthVisible_X * 2) / 2 +
-        +ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
+        (frameWidth_X - frameProfileWidthVisible_X * 2) / 2 +
+        ACTIVE_TO_PASSIVE_LEAF_OVERLAP;
       break;
-    case "pull_half":
+    case 1110:
+    case 1111:
       pictureLeafLeftWidth_X =
-        (+frameWidth_X - frameProfileWidthVisible_X * 2) / 2;
+        (frameWidth_X - frameProfileWidthVisible_X * 2) / 2;
       break;
     default:
+      break;
   }
+
   return pictureLeafLeftWidth_X;
 };
 
@@ -373,10 +321,7 @@ const getHandle_Y = (
 const getHandle_X = (
   openDirection: string,
   isDoubleLeaf: boolean,
-  pictureLeafLeft_X: number,
-  pictureLeafLeftWidth_X: number,
   pictureLeafRight_X: number,
-  pictureLeafRightWidth_X: number,
   doorWidth_X: number,
   frameProfileWidth_X: number,
   pullView: boolean,
@@ -395,90 +340,75 @@ const getHandle_X = (
     1 1 1      pull_&_left   *
    */
 
-  const indexLogicHandle_X =
-    100 * +pullView + 10 * +isDoubleLeaf + +(openDirection === "Left");
+  const handleTypes: { [key: string]: string } = {
+    0: "push_&_single_&_right",
+    10: "push_&_double_&_right",
+    1: "push_&_single_&_left",
+    11: "push_&_double_&_left",
+    100: "pull_&_single_&_right",
+    101: "pull_&_left",
+    110: "pull_&_double_&_right",
+    111: "pull_&_left",
+  };
 
-  let indexPictureHandle_X = "";
-  if (indexLogicHandle_X === 0) {
-    indexPictureHandle_X = "push_&_single_&_right";
-  }
-  if (indexLogicHandle_X === 10) {
-    indexPictureHandle_X = "push_&_double_&_right";
-  }
-  if (indexLogicHandle_X === 1) {
-    indexPictureHandle_X = "push_&_single_&_left";
-  }
-  if (indexLogicHandle_X === 11) {
-    indexPictureHandle_X = "push_&_double_&_left";
-  }
-  if (indexLogicHandle_X === 100 || indexLogicHandle_X === 110) {
-    indexPictureHandle_X = "pull_&_single_&_right";
-  }
-  if (indexLogicHandle_X === 101 || indexLogicHandle_X === 111) {
-    indexPictureHandle_X = "pull_&_left";
-  }
-  if (indexLogicHandle_X === 110) {
-    indexPictureHandle_X = "pull_&_double_&_right";
-  }
+  const indexLogicHandle_X =
+    100 * Number(pullView) +
+    10 * Number(isDoubleLeaf) +
+    Number(openDirection === "Left");
+
+  const indexPictureHandle_X = handleTypes[indexLogicHandle_X.toString()] ?? "";
+
   const handleAxisShift_X = getHandleData(
     openDirection,
     pullView,
     handleTypeString
   ).HandleAxisRelativeShift.X;
-  console.log("handleAxisShift_X", handleAxisShift_X);
 
-  switch (indexPictureHandle_X) {
-    case "push_&_single_&_right":
-      handle_X =
-        getFrameClearanceLeft_X(
-          getFrameLeft_X(doorWidth_X),
-          frameProfileWidth_X
-        ) +
-        getFrameClearanceWidth_X(doorWidth_X, frameProfileWidth_X) -
-        handleAxisShift_X -
-        LOCK_SHIFT_X;
-      break;
-    case "push_&_single_&_left":
-      handle_X =
-        getFrameClearanceLeft_X(
-          getFrameLeft_X(doorWidth_X),
-          frameProfileWidth_X
-        ) +
-        LOCK_SHIFT_X -
-        handleAxisShift_X;
-      break;
-    case "push_&_double_&_right":
-      handle_X = pictureLeafRight_X - handleAxisShift_X - LOCK_SHIFT_X;
-      break;
-    case "push_&_double_&_left":
-      handle_X = pictureLeafRight_X + LOCK_SHIFT_X - handleAxisShift_X;
-      break;
-    case "pull_&_single_&_right":
-      handle_X =
-        getFrameClearanceLeft_X(
-          getFrameLeft_X(doorWidth_X),
-          frameProfileWidth_X
-        ) +
-        LOCK_SHIFT_X -
-        handleAxisShift_X;
-      break;
+  const handleCalculations: HandleFunctions = {
+    "push_&_single_&_right": () =>
+      getFrameClearanceLeft_X(
+        getFrameLeft_X(doorWidth_X),
+        frameProfileWidth_X
+      ) +
+      getFrameClearanceWidth_X(doorWidth_X, frameProfileWidth_X) -
+      handleAxisShift_X -
+      LOCK_SHIFT_X,
+    "push_&_single_&_left": () =>
+      getFrameClearanceLeft_X(
+        getFrameLeft_X(doorWidth_X),
+        frameProfileWidth_X
+      ) +
+      LOCK_SHIFT_X -
+      handleAxisShift_X,
+    "push_&_double_&_right": () =>
+      pictureLeafRight_X - handleAxisShift_X - LOCK_SHIFT_X,
+    "push_&_double_&_left": () =>
+      pictureLeafRight_X + LOCK_SHIFT_X - handleAxisShift_X,
+    "pull_&_single_&_right": () =>
+      getFrameClearanceLeft_X(
+        getFrameLeft_X(doorWidth_X),
+        frameProfileWidth_X
+      ) +
+      LOCK_SHIFT_X -
+      handleAxisShift_X,
+    "pull_&_left": () =>
+      pictureLeafRight_X -
+      ACTIVE_TO_PASSIVE_LEAF_OVERLAP -
+      LOCK_SHIFT_X -
+      handleAxisShift_X,
+    "pull_&_double_&_right": () =>
+      pictureLeafRight_X +
+      ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
+      LOCK_SHIFT_X -
+      handleAxisShift_X,
+  };
 
-    case "pull_&_left":
-      handle_X =
-        pictureLeafRight_X -
-        ACTIVE_TO_PASSIVE_LEAF_OVERLAP -
-        LOCK_SHIFT_X -
-        handleAxisShift_X;
-      break;
-    case "pull_&_double_&_right":
-      handle_X =
-        pictureLeafRight_X +
-        ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
-        LOCK_SHIFT_X -
-        handleAxisShift_X;
-      break;
+  const handlePositionCalculation = handleCalculations[indexPictureHandle_X];
 
-    default:
+  if (handlePositionCalculation) {
+    handle_X = handlePositionCalculation();
+  } else {
+    // handle unknown handle type string
   }
 
   return handle_X;
@@ -630,13 +560,13 @@ export {
   CLOSER_WIDTH_X,
   FRAME_MIN,
   FRAME_MAX,
+  FRAME_PROFILE_WIDTH_VISIBLE_X,
+  FRAME_PROFILE_WIDTH_X,
   GLAZING_CENTER_SHIFT_X,
   GLAZING_CENTER_SHIFT_Y,
   GLAZING_CENTER_Y,
-  STROKE_COLOR,
   LEAF_MIN,
-  FRAME_PROFILE_WIDTH_VISIBLE_X,
-  FRAME_PROFILE_WIDTH_X,
+  STROKE_COLOR,
   add_10_Percents,
   getFrameClearanceHeight_Y,
   getFrameClearanceLeft_X,
