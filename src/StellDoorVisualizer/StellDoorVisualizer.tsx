@@ -18,7 +18,8 @@ import colorsData from "../colorsRal.json";
 import "./StellDoorVisualizer.css";
 import {
   CLOSER_SHIFT_X,
-  CLOSER_SHIFT_Y,
+  CLOSER_SHIFT_INSIDE_Y,
+  CLOSER_SHIFT_OUTSIDE_Y,
   CLOSER_WIDTH_X,
   GLAZING_CENTER_SHIFT_X,
   GLAZING_CENTER_SHIFT_Y,
@@ -58,8 +59,8 @@ import Rooler from "./Rooler";
 const StellDoorVisualizer = () => {
   const { values } = useContext(ValuesContext);
   const [pullView, setPullView] = useState(true);
-  const handleHoverPullView = () => {
-    setPullView(!pullView);
+  const handleHoverPullView = (event: string) => {
+    setPullView(event==="Leave");
   };
   const {
     activeLeafWidth_X,
@@ -220,7 +221,6 @@ const StellDoorVisualizer = () => {
       Looking from opposite, it reflects the [RIGHT] leaf.
       Or only one leaf in any case.
      */
-
     const pictureLeafLeft = document.getElementById("picture_Leaf_Left");
     if (pictureLeafLeft) {
       pictureLeafLeft.setAttribute("x", pictureLeafLeft_X.toString());
@@ -280,6 +280,8 @@ const StellDoorVisualizer = () => {
     pictureLeafLeftWidth_X,
     pictureLeafRight_X,
     pictureLeafRightWidth_X,
+    doorWidth_X.value,
+    frameProfileWidth_X.value,
     pullView,
     handleTypeString
   );
@@ -381,12 +383,25 @@ const StellDoorVisualizer = () => {
   };
 
   // DoorCloser
-  const closerLeft_X =
-    frameLeft_X + frameProfileWidthVisible_X.value + CLOSER_SHIFT_X;
-  const closerRight_X =
-    frameLeft_X + frameWidth_X - CLOSER_WIDTH_X - CLOSER_SHIFT_X;
-  const closerTop_Y =
-    frameTop_Y + frameProfileWidthVisible_X.value - CLOSER_SHIFT_Y;
+  const isCloserOutside = closerMountedPosition.value === "Outside";
+  const closerLeft_X = isCloserOutside
+    ? frameLeft_X + frameProfileWidthVisible_X.value + CLOSER_SHIFT_X
+    : frameLeft_X + frameProfileWidth_X.value + CLOSER_SHIFT_X;
+
+  const closerRight_X = isCloserOutside
+    ? frameLeft_X +
+      frameWidth_X -
+      frameProfileWidthVisible_X.value -
+      CLOSER_WIDTH_X -
+      CLOSER_SHIFT_X
+    : frameLeft_X +
+      frameWidth_X -
+      frameProfileWidth_X.value -
+      CLOSER_WIDTH_X -
+      CLOSER_SHIFT_X;
+  const closerTop_Y = isCloserOutside
+    ? frameTop_Y + frameJumbVisible_Y.value - CLOSER_SHIFT_OUTSIDE_Y
+    : frameTop_Y + frameJumb_Y.value - CLOSER_SHIFT_INSIDE_Y;
 
   const prepareDoorCloser = () => {
     const CLOSER_LD = document.querySelector('[shape-rendering="CLOSER_LD"]');
@@ -697,8 +712,8 @@ const StellDoorVisualizer = () => {
         <Rooler />
       </svg>
       <div
-        onMouseEnter={handleHoverPullView}
-        onMouseLeave={handleHoverPullView}
+        onMouseEnter={()=>handleHoverPullView("Enter")}
+        onMouseLeave={()=>handleHoverPullView("Leave")}
       >
         {pullView && "hover me to see PUSH view"}
         {!pullView && "leave me to see PULL view"}

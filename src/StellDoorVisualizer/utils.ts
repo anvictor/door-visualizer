@@ -21,6 +21,13 @@ In case reorder or add or remove layers change indexation.
 const LEAF_MIN = 250;
 const DOOR_WIDTH_MIN_X = 700;
 const DOOR_WIDTH_X = 920;
+const DOOR_WIDTH_MIN_FOR_DOUBLE_X = 1000;
+const DOOR_WIDTH_MAX_FOR_DOUBLE_X = 1800;
+const LEAF_WIDTH_MIN_FOR_CLOSER_X = 500;
+const DOOR_HEIGHT_INFLUENT_MAX_Y = 700;
+const DOOR_HEIGHT_INFLUENT_HINGE_MIN_Y = 1201;
+const DOOR_HEIGHT_INFLUENT_HANDLE_MIN_Y = 1100;
+const DOOR_HEIGHT_INFLUENT = 1100;
 const DOOR_WIDTH_MAX_X = 2800;
 const DOOR_HEIGHT_MIN_Y = 900;
 const DOOR_HEIGHT_MAX_Y = 3000;
@@ -47,9 +54,10 @@ const GLAZING_CENTER_Y = 1780;
 const GLAZING_CENTER_SHIFT_X = 150;
 const GLAZING_CENTER_SHIFT_Y = 150;
 const GLAZING_TYPE = "no"; // ["Square", "Round", "no"]
-const CLOSER_WIDTH_X = 578;
-const CLOSER_SHIFT_X = 20;
-const CLOSER_SHIFT_Y = 30;
+const CLOSER_WIDTH_X = 610;
+const CLOSER_SHIFT_X = 10;
+const CLOSER_SHIFT_INSIDE_Y = 39;
+const CLOSER_SHIFT_OUTSIDE_Y = 95;
 const HANDLE_TYPE = "square"; // ["square", "round", "long"]
 const LOCK_SHIFT_X = 50;
 const ACTIVE_TO_PASSIVE_LEAF_OVERLAP = 40;
@@ -74,7 +82,7 @@ const values: ValuesType = {
     { value: "number", displayName: "Number in mm" },
   ],
   openDirection: { value: "Left", displayName: "Left hand pull" }, // "Left", "Right"
-  closerMountedPosition:{ value: "Inside", displayName: "Inside" }, //'Inside', 'Outside'
+  closerMountedPosition: { value: "Inside", displayName: "Inside" }, //'Inside', 'Outside'
   doorLeafColor: "",
   frameColor: "",
   frameJumb_Y: {
@@ -142,6 +150,13 @@ const values: ValuesType = {
     value: GLAZING_TYPE,
     displayName: GLAZING_TYPE,
   },
+  leafWidthMinForDouble_X: DOOR_WIDTH_MIN_FOR_DOUBLE_X,
+  leafWidthMaxForDouble_X: DOOR_WIDTH_MAX_FOR_DOUBLE_X,
+  leafWidthMinForCloser_X: LEAF_WIDTH_MIN_FOR_CLOSER_X,
+  doorHeightInfluentMax_Y: DOOR_HEIGHT_INFLUENT_MAX_Y,
+  doorHeightInfluentHingeMin_Y: DOOR_HEIGHT_INFLUENT_HINGE_MIN_Y,
+  doorHeightInfluentHandleMin_Y: DOOR_HEIGHT_INFLUENT_HANDLE_MIN_Y,
+  doorHeightInfluent_Y: DOOR_HEIGHT_INFLUENT,
 };
 
 const add_10_Percents = (value: number) => +value + +value / 10;
@@ -362,111 +377,100 @@ const getHandle_X = (
   pictureLeafLeftWidth_X: number,
   pictureLeafRight_X: number,
   pictureLeafRightWidth_X: number,
+  doorWidth_X: number,
+  frameProfileWidth_X: number,
   pullView: boolean,
   handleTypeString: string
 ) => {
   let handle_X = 0;
   /*
-    PULL? Double? Left?  handle-position-X=
-    0 0 0               pictureLeafLeft_X +               // *
-                        pictureLeafLeftWidth_X -
-                        ACTIVE_TO_PASSIVE_LEAF_OVERLAP -
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    0 0 1               pictureLeafLeft_X +               // **              
-                        ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    0 1 0               pictureLeafLeft_X +               // ***
-                        pictureLeafLeftWidth_X -
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    0 1 1               pictureLeafRight_X +               // ****
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    1 0 0               pictureLeafLeft_X +               // **
-                        ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    1 0 1               pictureLeafLeft_X +               // *
-                        pictureLeafLeftWidth_X -
-                        ACTIVE_TO_PASSIVE_LEAF_OVERLAP -
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    1 1 0               pictureLeafRight_X +               // ***** 
-                        ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
-
-    1 1 1               pictureLeafLeft_X +               // *
-                        pictureLeafLeftWidth_X -
-                        ACTIVE_TO_PASSIVE_LEAF_OVERLAP -
-                        LOCK_SHIFT_X -
-                        handleAxisShift_X
+    PULL? Double? Left? 
+    0 0 0      push_&_single_&_right  *    
+    0 0 1      push_&_single_&_left  *  
+    0 1 0      push_&_double_&_right   *   
+    0 1 1      push_&_double_&_left  *      
+    1 0 0      pull_&_single_&_right      * 
+    1 0 1      pull_&_left       * 
+    1 1 0      pull_&_double_&_right        
+    1 1 1      pull_&_left   *
    */
+
   const indexLogicHandle_X =
     100 * +pullView + 10 * +isDoubleLeaf + +(openDirection === "Left");
 
   let indexPictureHandle_X = "";
-  if (
-    indexLogicHandle_X === 0 ||
-    indexLogicHandle_X === 101 ||
-    indexLogicHandle_X === 111
-  ) {
-    indexPictureHandle_X = "handle_at_right_with_overlaping"; // *
-  }
-  if (indexLogicHandle_X === 1 || indexLogicHandle_X === 100) {
-    indexPictureHandle_X = "handle_at_left_with_overlaping"; // **
+  if (indexLogicHandle_X === 0) {
+    indexPictureHandle_X = "push_&_single_&_right";
   }
   if (indexLogicHandle_X === 10) {
-    indexPictureHandle_X = "handle_at_left_no_overlaping"; // ***
+    indexPictureHandle_X = "push_&_double_&_right";
+  }
+  if (indexLogicHandle_X === 1) {
+    indexPictureHandle_X = "push_&_single_&_left";
   }
   if (indexLogicHandle_X === 11) {
-    indexPictureHandle_X = "right_picture_leaf_handle_at_left_no_overlaping"; // ****
+    indexPictureHandle_X = "push_&_double_&_left";
+  }
+  if (indexLogicHandle_X === 100 || indexLogicHandle_X === 110) {
+    indexPictureHandle_X = "pull_&_single_&_right";
+  }
+  if (indexLogicHandle_X === 101 || indexLogicHandle_X === 111) {
+    indexPictureHandle_X = "pull_&_left";
   }
   if (indexLogicHandle_X === 110) {
-    indexPictureHandle_X = "right_picture_leaf_handle_at_left_with_overlaping"; // *****
+    indexPictureHandle_X = "pull_&_double_&_right";
   }
-
   const handleAxisShift_X = getHandleData(
     openDirection,
     pullView,
     handleTypeString
   ).HandleAxisRelativeShift.X;
+  console.log("handleAxisShift_X", handleAxisShift_X);
 
   switch (indexPictureHandle_X) {
-    case "handle_at_right_with_overlaping": // *
+    case "push_&_single_&_right":
       handle_X =
-        pictureLeafLeft_X +
-        pictureLeafLeftWidth_X -
+        getFrameClearanceLeft_X(
+          getFrameLeft_X(doorWidth_X),
+          frameProfileWidth_X
+        ) +
+        getFrameClearanceWidth_X(doorWidth_X, frameProfileWidth_X) -
+        handleAxisShift_X -
+        LOCK_SHIFT_X;
+      break;
+    case "push_&_single_&_left":
+      handle_X =
+        getFrameClearanceLeft_X(
+          getFrameLeft_X(doorWidth_X),
+          frameProfileWidth_X
+        ) +
+        LOCK_SHIFT_X -
+        handleAxisShift_X;
+      break;
+    case "push_&_double_&_right":
+      handle_X = pictureLeafRight_X - handleAxisShift_X - LOCK_SHIFT_X;
+      break;
+    case "push_&_double_&_left":
+      handle_X = pictureLeafRight_X + LOCK_SHIFT_X - handleAxisShift_X;
+      break;
+    case "pull_&_single_&_right":
+      handle_X =
+        getFrameClearanceLeft_X(
+          getFrameLeft_X(doorWidth_X),
+          frameProfileWidth_X
+        ) +
+        LOCK_SHIFT_X -
+        handleAxisShift_X;
+      break;
+
+    case "pull_&_left":
+      handle_X =
+        pictureLeafRight_X -
         ACTIVE_TO_PASSIVE_LEAF_OVERLAP -
         LOCK_SHIFT_X -
         handleAxisShift_X;
       break;
-    case "handle_at_left_with_overlaping": // **
-      handle_X =
-        pictureLeafLeft_X +
-        ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
-        LOCK_SHIFT_X -
-        handleAxisShift_X;
-      break;
-    case "handle_at_left_no_overlaping": // ***
-      handle_X =
-        pictureLeafLeft_X +
-        pictureLeafLeftWidth_X +
-        LOCK_SHIFT_X -
-        handleAxisShift_X;
-      break;
-    case "right_picture_leaf_handle_at_left_no_overlaping": // ****
-      handle_X = pictureLeafRight_X + LOCK_SHIFT_X - handleAxisShift_X;
-      break;
-    case "right_picture_leaf_handle_at_left_with_overlaping": // *****
+    case "pull_&_double_&_right":
       handle_X =
         pictureLeafRight_X +
         ACTIVE_TO_PASSIVE_LEAF_OVERLAP +
@@ -621,7 +625,8 @@ const getHandleData = (
 export {
   values,
   CLOSER_SHIFT_X,
-  CLOSER_SHIFT_Y,
+  CLOSER_SHIFT_INSIDE_Y,
+  CLOSER_SHIFT_OUTSIDE_Y,
   CLOSER_WIDTH_X,
   FRAME_MIN,
   FRAME_MAX,

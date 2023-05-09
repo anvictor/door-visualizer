@@ -33,13 +33,21 @@ const ConfigureMenu = () => {
     handleTypeString,
     glazingType,
     useSecondCloser,
+    leafWidthMinForDouble_X,
+    leafWidthMaxForDouble_X,
+    leafWidthMinForCloser_X,
+    doorHeightInfluentMax_Y,
+    doorHeightInfluentHingeMin_Y,
+    doorHeightInfluentHandleMin_Y,
+    doorHeightInfluent_Y,
   } = values;
   const isExactlyHalf = activeLeafWidth_X.type === "exactlyHalf";
   const isDoubleLeaf = leavesCount.value === "DoubleLeaf";
   const isDisabled_leavesCount =
-    doorWidth_X.value < 1200 || doorWidth_X.value > 1800;
+    doorWidth_X.value < leafWidthMinForDouble_X ||
+    doorWidth_X.value > leafWidthMaxForDouble_X;
   const isDisabled_activeLeafWidth_X =
-    doorWidth_X.value < 1200 || !isDoubleLeaf;
+    doorWidth_X.value < leafWidthMinForDouble_X || !isDoubleLeaf;
   const isDisabled_ActiveLeafWidth_X = !isDoubleLeaf || isExactlyHalf;
 
   const hingesCountOptions = [
@@ -117,35 +125,32 @@ const ConfigureMenu = () => {
   };
 
   const handleHeightChange = (value: string) => {
-    const doorHeightInfluentMax = 1500;
-    const doorHeightInfluentHingeMin = 1201;
-    const doorHeightInfluentHandleMin = 1100;
-    const doorHeightInfluent = 1100;
     onChange("doorHeight_Y", { ...doorHeight_Y, value: +value });
-    if (+value < doorHeightInfluentMax && +value > doorHeightInfluentHingeMin) {
+    if (
+      +value < doorHeightInfluentMax_Y &&
+      +value > doorHeightInfluentHingeMin_Y
+    ) {
       onChange("hingeDownOverBottom_Y", {
         ...hingeDownOverBottom_Y,
-        max: +value - doorHeightInfluent,
-        value: +value - doorHeightInfluent,
+        max: +value - doorHeightInfluent_Y,
+        value: +value - doorHeightInfluent_Y,
       });
     }
     if (
-      +value < doorHeightInfluentMax &&
-      +value > doorHeightInfluentHandleMin
+      +value < doorHeightInfluentMax_Y &&
+      +value > doorHeightInfluentHandleMin_Y
     ) {
       onChange("handleHeight_Y", `${+value - 450}`);
     }
   };
 
   const handleWidthChange = (value: string) => {
-    const doorWidthInfluentMax = 1800;
-    const doorWidthInfluentMin = 1200;
     onChange("doorWidth_X", { ...doorWidth_X, value: +value });
-    if (+value < doorWidthInfluentMin) {
+    if (+value < leafWidthMinForDouble_X) {
       handleLeavesCount("SingleLeaf");
       handleActiveLeafWidthType("number");
     }
-    if (+value > doorWidthInfluentMax) {
+    if (+value > leafWidthMaxForDouble_X) {
       handleLeavesCount("DoubleLeaf");
     }
     const activeWidthMax = getLimitedActiveLeafWidth(0).max;
@@ -229,10 +234,12 @@ const ConfigureMenu = () => {
   };
 
   const handleActiveLeafWidth = (value: number) => {
+    const leftLeafPullWidth_X = getLimitedActiveLeafWidth(value).value;
+
     onChange("activeLeafWidth_X", {
       ...activeLeafWidth_X,
       max: getLimitedActiveLeafWidth(value).max,
-      value: getLimitedActiveLeafWidth(value).value,
+      value: leftLeafPullWidth_X,
     });
   };
 
@@ -264,8 +271,10 @@ const ConfigureMenu = () => {
   const handleUseCloser = (value: string) => {
     const isUse = value === "useDoorCloser";
     onChange("useDoorCloser", isUse);
-    if(!isUse) onChange("useSecondCloser", false);
-  }
+    if (!isUse) onChange("useSecondCloser", false);
+  };
+  const isDisabledSecondCloser =
+    !useDoorCloser || leavesCount.value === "SingleLeaf";
 
   return (
     <div className="ConfigureMenu">
@@ -563,7 +572,7 @@ const ConfigureMenu = () => {
             onChange("useSecondCloser", isUse);
           }}
           className="width30percent"
-          disabled={!useDoorCloser}
+          disabled={isDisabledSecondCloser}
         />
       </div>
     </div>

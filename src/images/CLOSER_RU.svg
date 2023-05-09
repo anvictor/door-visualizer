@@ -1,7 +1,7 @@
-<svg shape-rendering="CLOSER_RU" text-rendering="CLOSER">
+<svg shape-rendering="CLOSER_RU" text-rendering="CLOSER_W610_H135">
   <g transform="matrix(-1 0 0-1 607 133)">
     <rect
-      width="578"
+      width="78"
       height="27"
       rx="0"
       ry="0"
@@ -16,7 +16,7 @@
       stroke="#000"
     />
     <path
-      d="M46.00102,44v-17h22v2h384v-2h10v12h-394v5h-22Z"
+      d="M46.00102,44v-17h22v2h84v-2h10v12h-94v5h-22Z"
       fill="#bdbdbd"
       stroke="#000"
     />

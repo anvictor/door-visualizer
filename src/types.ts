@@ -18,7 +18,7 @@ export interface ActiveLeafType {
 }
 
 export interface ValuesType {
-  activeLeafWidthOptions:OptionType[],
+  activeLeafWidthOptions: OptionType[];
   activeLeafWidth_X: ActiveLeafType;
   openDirection: OptionType;
   closerMountedPosition: OptionType;
@@ -43,4 +43,11 @@ export interface ValuesType {
   handleTypeString: string;
   glazingType: OptionType;
   useSecondCloser: boolean;
+  leafWidthMinForDouble_X: number;
+  leafWidthMaxForDouble_X: number;
+  leafWidthMinForCloser_X: number;
+  doorHeightInfluentMax_Y: number;
+  doorHeightInfluentHingeMin_Y: number;
+  doorHeightInfluentHandleMin_Y: number;
+  doorHeightInfluent_Y: number;
 }
