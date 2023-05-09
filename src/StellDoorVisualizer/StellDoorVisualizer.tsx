@@ -563,7 +563,6 @@ const StellDoorVisualizer = () => {
     const Ruler = document.getElementById("ruler");
     if (Ruler) {
       const ruler_X = (frameClearanceLeft_X + frameClearanceWidth_X) / 2 - 440;
-      console.log(ruler_X);
       Ruler.setAttribute("x", `${ruler_X}`);
     }
   };
