@@ -52,15 +52,15 @@ import {
   GLAZING_CENTER_SHIFT_Y,
   GLAZING_CENTER_Y,
   STROKE_COLOR,
-  } from "./utils";
+} from "./utils";
 import ValuesContext from "../ValuesContext/ValuesContext";
-import Rooler from "./Rooler";
+import Ruler from "./Ruler";
 
 const StellDoorVisualizer = () => {
   const { values } = useContext(ValuesContext);
   const [pullView, setPullView] = useState(true);
   const handleHoverPullView = (event: string) => {
-    setPullView(event==="Leave");
+    setPullView(event === "Leave");
   };
   const {
     activeLeafWidth_X,
@@ -559,23 +559,18 @@ const StellDoorVisualizer = () => {
       );
     }
   };
-  const prepareRooler = () => {
-    const Rooler = document.getElementById("rooler");
-    if (Rooler) {
-      Rooler.setAttribute(
-        "x",
-        `${
-          add_10_Percents(frameWidth_X) > 1100
-            ? add_10_Percents(frameWidth_X) / 2 - 500
-            : 50
-        }`
-      );
+  const prepareRuler = () => {
+    const Ruler = document.getElementById("ruler");
+    if (Ruler) {
+      const ruler_X = (frameClearanceLeft_X + frameClearanceWidth_X) / 2 - 440;
+      console.log(ruler_X);
+      Ruler.setAttribute("x", `${ruler_X}`);
     }
   };
 
   useEffect(() => {
     prepareSVG();
-    prepareRooler();
+    prepareRuler();
     prepareFrames();
     prepareLeafs();
     prepareHinges();
@@ -588,7 +583,7 @@ const StellDoorVisualizer = () => {
 
   useEffect(() => {
     prepareSVG();
-    prepareRooler();
+    prepareRuler();
     prepareFrames();
     prepareLeafs();
     prepareHinges();
@@ -706,11 +701,11 @@ const StellDoorVisualizer = () => {
         {/* svg#Glasse order number is svg.children[19-20]*/}
         <GLASSES_ROUND_300_300 />
         <GLASSES_SQUARE_300_300 />
-        <Rooler />
+        <Ruler />
       </svg>
       <div
-        onMouseEnter={()=>handleHoverPullView("Enter")}
-        onMouseLeave={()=>handleHoverPullView("Leave")}
+        onMouseEnter={() => handleHoverPullView("Enter")}
+        onMouseLeave={() => handleHoverPullView("Leave")}
       >
         {pullView && "hover me to see PUSH view"}
         {!pullView && "leave me to see PULL view"}
